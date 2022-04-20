@@ -1,8 +1,6 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
-export EDITOR='nvim'
-
 # the fuck
 eval $(thefuck --alias)
 
@@ -131,6 +129,17 @@ source $ZSH/oh-my-zsh.sh
 # else
 #   export EDITOR='mvim'
 # fi
+
+if [ -n "$NVIM_LISTEN_ADDRESS" ]; then
+  alias nvim=nvr -cc split --remote-wait +'set bufhidden=wipe'
+fi
+if [ -n "$NVIM_LISTEN_ADDRESS" ]; then
+  export VISUAL="nvr -cc split --remote-wait +'set bufhidden=wipe'"
+  export EDITOR="nvr -cc split --remote-wait +'set bufhidden=wipe'"
+else
+  export VISUAL="nvim"
+  export EDITOR="nvim"
+fi
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
