@@ -1,0 +1,68 @@
+##########
+# Misc
+mpd_music_dir = "~/Music"
+mpd_crossfade_time = "5"
+display_bitrate = yes
+ignore_leading_the = yes
+empty_tag_marker = ""
+mouse_support = yes
+empty_tag_color = red
+enable_window_title = no
+
+##########
+# Playlist
+user_interface = "alternative"
+default_place_to_search_in = "database"
+ #(classic/columns)
+playlist_display_mode = columns
+playlist_disable_highlight_delay = "1"
+playlist_show_remaining_time = yes
+colors_enabled = yes
+active_window_border = magenta
+progressbar_color = 243
+header_window_color = yellow
+main_window_color = 5
+statusbar_color = 7
+volume_color = yellow
+browser_display_mode = classic
+autocenter_mode = yes
+song_columns_list_format = "(10)[blue]{l} (30)[green]{a} (30)[magenta]{b} (50)[yellow]{t}" 
+alternative_header_first_line_format = "$0$aqqu$/a {$7%a - $9}{$5%t$9}|{$8%f$9} $0$atqq$/a$9"
+alternative_header_second_line_format = "{{$6%b$9}{ [$6%y$9]}}|{%D}"
+song_list_format = "{$3%n │ $9}{$7%a - $9}{$5%t$9}|{$8%f$9}$R{$6 │ %b$9}{$3 │ %l$9}"
+
+
+##########
+# Visivility
+visualizer_data_source = "/tmp/mpd.fifo"
+visualizer_output_name = "mpd_fifo"
+visualizer_look = ●▮
+# visualizer_color = 4,5,5,6,6,3,3,3
+ #(classic/columns)
+search_engine_display_mode = columns
+header_visibility = no
+statusbar_visibility = yes
+titles_visibility = yes
+progressbar_look = "─╼·"
+now_playing_prefix = $b$r
+now_playing_suffix = $/r$/b
+centered_cursor = yes
+ #(spectrum/wave)
+visualizer_type = spectrum
+visualizer_in_stereo = yes
+
+##########
+# Selected tracks
+selected_item_prefix = " √ "
+
+##########
+# Navigation
+cyclic_scrolling = "yes"
+header_text_scrolling = "yes"
+jump_to_now_playing_song_at_start = "yes"
+lines_scrolled = "2"
+
+##########
+# Other
+system_encoding = "utf-8"
+regular_expressions = "extended"
