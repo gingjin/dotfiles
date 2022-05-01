@@ -15,10 +15,10 @@ gaps outer 0
 
 exec --no-startup-id $HOME/.config/polybar/launch.sh
 exec --no-startup-id flameshot
-exec --no-startup-id dunst
+# exec --no-startup-id dunst
 exec --no-startup-id copyq
-exec --no-startup-id qv2ray
-exec_always feh --bg-fill ~/Pictures/bg.png
+# exec --no-startup-id qv2ray
+exec_always feh --bg-fill ~/Pictures/1200056.jpg
 
 # i3 config file (v4)
 #
@@ -32,7 +32,7 @@ set $mod Mod4
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
-#font pango:DejaVu Sans Mono 8
+font pango:DejaVu Sans Mono 8
 
 # Start XDG autostart .desktop files using dex. See also
 # https://wiki.archlinux.org/index.php/XDG_Autostart
@@ -54,6 +54,11 @@ exec --no-startup-id nm-applet
 
 bindsym XF86AudioRaiseVolume exec --no-startup-id pamixer --increase 10
 bindsym XF86AudioLowerVolume exec --no-startup-id pamixer --decrease 10
+bindsym XF86AudioPlay exec --no-startup-id mpc play
+# bindsym XF86AudioPlay exec --no-startup-id mpc pause
+bindsym XF86AudioStop exec --no-startup-id mpc stop
+bindsym XF86AudioPrev exec --no-startup-id mpc prev
+bindsym XF86AudioNext exec --no-startup-id mpc next
 
 bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 10
 bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 10
