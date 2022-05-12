@@ -8,30 +8,42 @@ local handlers = {
 	}),
 }
 
-local map = vim.api.nvim_set_keymap
-local opts = { noremap = true, silent = true }
-map("n", "<leader>e", ":lua vim.diagnostic.open_float()<CR>", opts)
-map("n", "[e", ":lua vim.diagnostic.goto_prev()<CR>", opts)
-map("n", "]e", ":lua vim.diagnostic.goto_next()<CR>", opts)
-map("n", "<leader>q", ":lua vim.diagnostic.setloclist()<CR>", opts)
-
 local on_attach = function(client, bufnr)
-	local option = vim.api.nvim_buf_set_option
-	option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
+	-- vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
 
-	local bufmap = vim.api.nvim_buf_set_keymap
-	bufmap(bufnr, "n", "<leader>gD", ":lua vim.lsp.buf.declaration()<CR>", opts)
-	bufmap(bufnr, "n", "<leader>gd", ":lua vim.lsp.buf.definition()<CR>", opts)
-	bufmap(bufnr, "n", "<leader>D", ":lua vim.lsp.buf.type_definition()<CR>", opts)
-	bufmap(bufnr, "n", "K", ":Lspsaga hover_doc<cr>", opts)
-	bufmap(bufnr, "n", "<C-k>", ":lua vim.lsp.buf.signature_help()<CR>", opts)
-	bufmap(bufnr, "n", "gi", ":lua vim.lsp.buf.implementation()<CR>", opts)
-	bufmap(bufnr, "n", "<leader>gr", ":lua vim.lsp.buf.references()<CR>", opts)
-	bufmap(bufnr, "n", "<leader>wa", ":lua vim.lsp.buf.add_workspace_folder()<CR>", opts)
-	bufmap(bufnr, "n", "<leader>wr", ":lua vim.lsp.buf.remove_workspace_folder()<CR>", opts)
-	bufmap(bufnr, "n", "<leader>wl", ":lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>", opts)
-	bufmap(bufnr, "n", "<leader>rn", ":lua vim.lsp.buf.rename()<CR>", opts)
-	bufmap(bufnr, "n", "<leader>ca", ":lua vim.lsp.buf.code_action()<CR>", opts)
+	local map = vim.api.nvim_buf_set_keymap
+	local opts = { noremap = true, silent = true }
+
+	map(bufnr, "n", "<leader>e", ":lua vim.diagnostic.open_float()<CR>", opts)
+	-- map("n", "[e", ":lua vim.diagnostic.goto_prev()<CR>", opts)
+	-- map("n", "]e", ":lua vim.diagnostic.goto_next()<CR>", opts)
+	-- map("n", "<leader>q", ":lua vim.diagnostic.setloclist()<CR>", opts)
+	-- bufmap(bufnr, "n", "<leader>gd", ":lua vim.lsp.buf.definition()<CR>", opts)
+	-- bufmap(bufnr, "n", "<leader>gr", ":lua vim.lsp.buf.references()<CR>", opts)
+	-- bufmap(bufnr, "n", "<leader>D", ":lua vim.lsp.buf.type_definition()<CR>", opts)
+	-- bufmap(bufnr, "n", "K", ":Lspsaga hover_doc<cr>", opts)
+	-- bufmap(bufnr, "n", "<C-k>", ":lua vim.lsp.buf.signature_help()<CR>", opts)
+	-- bufmap(bufnr, "n", "<leader>rn", ":lua vim.lsp.buf.rename()<CR>", opts)
+	-- bufmap(bufnr, "n", "<leader>ca", ":lua vim.lsp.buf.code_action()<CR>", opts)
+	map(bufnr, "n", "<leader>gD", ":lua vim.lsp.buf.declaration()<CR>", opts)
+	map(bufnr, "n", "gi", ":lua vim.lsp.buf.implementation()<CR>", opts)
+	map(bufnr, "n", "<leader>wa", ":lua vim.lsp.buf.add_workspace_folder()<CR>", opts)
+	map(bufnr, "n", "<leader>wr", ":lua vim.lsp.buf.remove_workspace_folder()<CR>", opts)
+	map(bufnr, "n", "<leader>wl", ":lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>", opts)
+	--
+	--
+	map(bufnr, "n", "[e", ":Lspsaga diagnostic_jump_prev<CR>", opts)
+	map(bufnr, "n", "]e", ":Lspsaga diagnostic_jump_next<CR>", opts)
+	map(bufnr, "n", "<leader>ld", ":Lspsaga show_line_diagnostics<CR>", opts)
+	map(bufnr, "n", "K", ":Lspsaga hover_doc<CR>", opts)
+	map(bufnr, "n", "<C-k>", ":Lspsaga signature_help<CR>", opts)
+	map(bufnr, "n", "<C-d>", ":lua require('lspsaga.action').smart_scroll_with_saga(1)<CR>", opts)
+	map(bufnr, "n", "<C-u>", ":lua require('lspsaga.action').smart_scroll_with_saga(-1)<CR>", opts)
+	map(bufnr, "n", "<leader>rn", ":Lspsaga rename<CR>", opts)
+	map(bufnr, "n", "<leader>pd", ":Lspsaga preview_definition<CR>", opts)
+	map(bufnr, "n", "<leader>lf", ":Lspsaga lsp_finder<CR>", opts)
+	map(bufnr, "n", "<leader>ca", ":Lspsaga code_action<CR>", opts)
+	map(bufnr, "x", "<leader>ca", ":<C-U>Lspsaga range_code_action<CR>", opts)
 end
 
 local servers = {
@@ -48,7 +60,7 @@ local servers = {
 	"lemminx",
 	"ltex",
 	"pyright",
-	-- "r_language_server",
+	"r_language_server",
 	"rust_analyzer",
 	"serve_d",
 	"solargraph",
@@ -72,11 +84,10 @@ require("nvim-lsp-installer").setup({
 	},
 })
 
-local lspconfig = require("lspconfig")
 local capabilities = lsp.protocol.make_client_capabilities()
 capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
 for _, server in ipairs(servers) do
-	lspconfig[server].setup({
+	require("lspconfig")[server].setup({
 		handlers = handlers,
 		on_attach = on_attach,
 		capabilities = capabilities,
@@ -109,8 +120,8 @@ lspsaga.init_lsp_saga({
 		vsplit = "s",
 		split = "i",
 		quit = "q",
-		scroll_down = "<C-f>",
-		scroll_up = "<C-b>",
+		scroll_down = "<C-d>",
+		scroll_up = "<C-u>",
 	},
 	code_action_keys = { quit = "q", exec = "<CR>" },
 	rename_action_keys = { quit = "<C-c>", exec = "<CR>" },
@@ -125,12 +136,6 @@ lspsaga.init_lsp_saga({
 
 local cmd = vim.api.nvim_command
 cmd("highlight link LspSagaFinderSelection Search")
---cmd([[
---augroup lspsaga_filetypes
---  autocmd!
---  autocmd FileType LspsagaHover nnoremap <buffer><nowait><silent> <Esc> <cmd>close!<cr>
---augroup END
---]])
 
 -- nvim lspkind
 
