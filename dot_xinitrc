@@ -35,7 +35,5 @@ fi
 export LANG=zh_CN.UTF-8
 export LANGUAGE=zh_CN:en_US
 
-xsetroot -cursor_name left_ptr
-
 # exec i3
 exec bspwm
