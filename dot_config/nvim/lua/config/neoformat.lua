@@ -1,10 +1,10 @@
 -- nvim neoformat
 
-local cmd = vim.api.nvim_command
-cmd("augroup fmt")
-cmd("autocmd!")
-cmd("autocmd BufWritePre * undojoin | Neoformat")
-cmd("augroup end")
+-- local cmd = vim.api.nvim_command
+-- cmd("augroup fmt")
+-- cmd("autocmd!")
+-- cmd("autocmd BufWritePre * undojoin | Neoformat")
+-- cmd("augroup end")
 
 local g = vim.g
 g.neoformat_basic_format_trim = 1
