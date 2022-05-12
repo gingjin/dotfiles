@@ -151,6 +151,6 @@ require("lualine").setup({
 
 local map = vim.api.nvim_set_keymap
 local opts = { noremap = true, silent = true }
-map("n", "<Tab>", [[:bnext<CR>]], opts)
-map("n", "<S-Tab>", [[:bprevious<CR>]], opts)
+map("n", "<Tab>", [[:bnext<cr>]], opts)
+map("n", "<S-Tab>", [[:bprevious<cr>]], opts)
 map("n", "<leader>bd", [[:bdelete<cr>]], opts)
