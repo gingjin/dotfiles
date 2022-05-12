@@ -2,7 +2,7 @@
 
 require("luasnip.loaders.from_vscode").load()
 require("luasnip.loaders.from_vscode").load({
-	paths = { vim.fn.getenv("HOME") .. "/.config/nvim/snippets" },
+	paths = { vim.fn.getenv("HOME") .. "/.config/nvim/lua/snippets" },
 })
 
 local cmp = require("cmp")
@@ -56,10 +56,10 @@ cmp.setup({
 		}),
 	},
 	mapping = cmp.mapping.preset.insert({
-		["<C-f>"] = cmp.mapping.scroll_docs(4),
-		["<C-b>"] = cmp.mapping.scroll_docs(-4),
-		-- ["<C-p>"] = cmp.mapping.select_prev_item(),
-		-- ["<C-n>"] = cmp.mapping.select_next_item(),
+		["<C-d>"] = cmp.mapping.scroll_docs(4),
+		["<C-u>"] = cmp.mapping.scroll_docs(-4),
+		["<C-p>"] = cmp.mapping.select_prev_item(),
+		["<C-n>"] = cmp.mapping.select_next_item(),
 		["<C-Space>"] = cmp.mapping.complete(),
 		["<C-c>"] = cmp.mapping.close(),
 		["<CR>"] = cmp.mapping.confirm({
