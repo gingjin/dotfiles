@@ -1,0 +1,1000 @@
+Name            : acpid
+Description     : A daemon for delivering ACPI power management events with netlink support
+Groups          : None
+
+Name            : adobe-source-han-sans-otc-fonts
+Description     : Adobe Source Han Sans - Pan-CJK OpenType/CFF Collection fonts
+Groups          : None
+
+Name            : adobe-source-han-serif-otc-fonts
+Description     : Adobe Source Han Serif - Pan-CJK OpenType/CFF Collection fonts
+Groups          : None
+
+Name            : alacritty
+Description     : A cross-platform, GPU-accelerated terminal emulator
+Groups          : None
+
+Name            : alsa-utils
+Description     : Advanced Linux Sound Architecture - Utilities
+Groups          : None
+
+Name            : archlinuxcn-keyring
+Description     : Arch Linux CN PGP keyring
+Groups          : None
+
+Name            : atool
+Description     : A script for managing file archives of various types
+Groups          : None
+
+Name            : autoconf
+Description     : A GNU tool for automatically configuring source code
+Groups          : base-devel
+
+Name            : automake
+Description     : A GNU tool for automatically creating Makefiles
+Groups          : base-devel
+
+Name            : autopep8
+Description     : A tool that automatically formats Python code to conform to the PEP 8 style guide
+Groups          : None
+
+Name            : axel
+Description     : Light command line download accelerator
+Groups          : None
+
+Name            : base
+Description     : Minimal package set to define a basic Arch Linux installation
+Groups          : None
+
+Name            : biber
+Description     : A Unicode-capable BibTeX replacement for biblatex users
+Groups          : None
+
+Name            : binutils
+Description     : A set of programs to assemble and manipulate binary and object files
+Groups          : base-devel
+
+Name            : bison
+Description     : The GNU general-purpose parser generator
+Groups          : base-devel
+
+Name            : breeze-icons
+Description     : Breeze icon themes
+Groups          : kf5
+
+Name            : broadcom-wl-dkms
+Description     : Broadcom 802.11 Linux STA wireless driver
+Groups          : None
+
+Name            : bspwm
+Description     : Tiling window manager based on binary space partitioning
+Groups          : None
+
+Name            : chezmoi
+Description     : Manage your dotfiles across multiple machines
+Groups          : None
+
+Name            : chromedriver
+Description     : Standalone server that implements the W3C WebDriver standard (for google-chrome)
+Groups          : None
+
+Name            : composer
+Description     : Dependency Manager for PHP
+Groups          : None
+
+Name            : convmv
+Description     : Tool for converting encodings on filesystems
+Groups          : None
+
+Name            : copyq
+Description     : Clipboard manager with searchable and editable history
+Groups          : None
+
+Name            : debuginfod
+Description     : Handle ELF object files and DWARF debugging information (debuginfod)
+Groups          : None
+
+Name            : delve
+Description     : A debugger for the Go programming language.
+Groups          : None
+
+Name            : dhcpcd
+Description     : RFC2131 compliant DHCP client daemon
+Groups          : None
+
+Name            : dolphin
+Description     : KDE File Manager
+Groups          : kde-applications  kde-system
+
+Name            : dolphin-plugins
+Description     : Extra Dolphin plugins
+Groups          : kde-applications  kdesdk
+
+Name            : efibootmgr
+Description     : Linux user-space application to modify the EFI Boot Manager
+Groups          : None
+
+Name            : fakeroot
+Description     : Tool for simulating superuser privileges
+Groups          : base-devel
+
+Name            : fcitx5
+Description     : Next generation of fcitx
+Groups          : fcitx5-im
+
+Name            : fcitx5-configtool
+Description     : Configuration Tool for Fcitx5
+Groups          : fcitx5-im
+
+Name            : fcitx5-gtk
+Description     : Fcitx5 gtk im module and glib based dbus client library
+Groups          : fcitx5-im
+
+Name            : fcitx5-lua
+Description     : Lua support for Fcitx 5
+Groups          : None
+
+Name            : fcitx5-pinyin-zhwiki-rime
+Description     : Fcitx 5 Pinyin Dictionary from zh.wikipedia.org for rime
+Groups          : None
+
+Name            : fcitx5-qt
+Description     : Fcitx5 Qt Library
+Groups          : fcitx5-im
+
+Name            : fcitx5-rime
+Description     : RIME support for Fcitx5
+Groups          : None
+
+Name            : fd
+Description     : Simple, fast and user-friendly alternative to find
+Groups          : None
+
+Name            : feh
+Description     : Fast and light imlib2-based image viewer
+Groups          : None
+
+Name            : file
+Description     : File type identification utility
+Groups          : base-devel
+
+Name            : findutils
+Description     : GNU utilities to locate files
+Groups          : base-devel
+
+Name            : flameshot
+Description     : Powerful yet simple to use screenshot software
+Groups          : None
+
+Name            : flex
+Description     : A tool for generating text-scanning programs
+Groups          : base-devel
+
+Name            : font-manager
+Description     : A simple font management application for GTK+ Desktop Environments
+Groups          : None
+
+Name            : fonts-cjk-sc-yrdzst
+Description     : 杨润东竹石体：本套字体授权全社会免费商用，意味着您可以将其无限制地捆入您的商业产品中，如海报、包装、logo、网页、APP 等
+Groups          : None
+
+Name            : fzf
+Description     : Command-line fuzzy finder
+Groups          : None
+
+Name            : gawk
+Description     : GNU version of awk
+Groups          : base-devel
+
+Name            : gcc
+Description     : The GNU Compiler Collection - C and C++ frontends
+Groups          : base-devel
+
+Name            : gdb
+Description     : The GNU Debugger
+Groups          : None
+
+Name            : gettext
+Description     : GNU internationalization library
+Groups          : base-devel
+
+Name            : glib2-docs
+Description     : Documentation for GLib
+Groups          : None
+
+Name            : go
+Description     : Core compiler tools for the Go programming language
+Groups          : None
+
+Name            : gofumpt
+Description     : A stricter gofmt
+Groups          : None
+
+Name            : google-chrome
+Description     : The popular and trusted web browser by Google (Stable Channel)
+Groups          : None
+
+Name            : gptfdisk
+Description     : A text-mode partitioning tool that works on GUID Partition Table (GPT) disks
+Groups          : None
+
+Name            : grep
+Description     : A string search utility
+Groups          : base-devel
+
+Name            : groff
+Description     : GNU troff text-formatting system
+Groups          : base-devel
+
+Name            : grub
+Description     : GNU GRand Unified Bootloader (2)
+Groups          : None
+
+Name            : gzip
+Description     : GNU compression utility
+Groups          : base-devel
+
+Name            : htop
+Description     : Interactive process viewer
+Groups          : None
+
+Name            : i3lock-fancy-git
+Description     : i3lock-color script: blurs background, adds lock icon and text, offers dark/light background detection.
+Groups          : None
+
+Name            : inkscape
+Description     : Professional vector graphics editor
+Groups          : None
+
+Name            : intel-ucode
+Description     : Microcode update files for Intel CPUs
+Groups          : None
+
+Name            : iwd
+Description     : Internet Wireless Daemon
+Groups          : None
+
+Name            : jdk-openjdk
+Description     : OpenJDK Java 18 development kit
+Groups          : None
+
+Name            : js-beautify
+Description     : Beautify JavaScript/JSON (jsbeautifier.org)
+Groups          : None
+
+Name            : julia
+Description     : High-level, high-performance, dynamic programming language
+Groups          : None
+
+Name            : kdeconnect
+Description     : Adds communication between KDE and your smartphone
+Groups          : kde-applications  kde-network
+
+Name            : lazygit
+Description     : Simple terminal UI for git commands
+Groups          : None
+
+Name            : lhasa
+Description     : Free LZH/LHA archive tool
+Groups          : None
+
+Name            : libisoburn
+Description     : frontend for libraries libburn and libisofs
+Groups          : None
+
+Name            : libtool
+Description     : A generic library support script
+Groups          : base-devel
+
+Name            : linux
+Description     : The Linux kernel and modules
+Groups          : None
+
+Name            : linux-firmware
+Description     : Firmware files for Linux
+Groups          : None
+
+Name            : linux-headers
+Description     : Headers and scripts for building modules for the Linux kernel
+Groups          : None
+
+Name            : lua-language-server
+Description     : Lua Language Server coded by Lua
+Groups          : None
+
+Name            : m4
+Description     : The GNU macro processor
+Groups          : base-devel
+
+Name            : make
+Description     : GNU make utility to maintain groups of programs
+Groups          : base-devel
+
+Name            : man-db
+Description     : A utility for reading man pages
+Groups          : None
+
+Name            : man-pages
+Description     : Linux man pages
+Groups          : None
+
+Name            : mpc
+Description     : Minimalist command line interface to MPD
+Groups          : None
+
+Name            : mpd
+Description     : Flexible, powerful, server-side application for playing music
+Groups          : None
+
+Name            : mpv
+Description     : a free, open source, and cross-platform media player
+Groups          : None
+
+Name            : ncmpcpp
+Description     : Almost exact clone of ncmpc with some new features
+Groups          : None
+
+Name            : neofetch
+Description     : A CLI system information tool written in BASH that supports displaying images.
+Groups          : None
+
+Name            : neovim
+Description     : Fork of Vim aiming to improve user experience, plugins, and GUIs
+Groups          : None
+
+Name            : neovim-remote
+Description     : Support --remote and friends for Neovim
+Groups          : None
+
+Name            : nerd-fonts-complete
+Description     : Nerd Fonts: Iconic font aggregator, collection, & patcher. 3,600+ icons, 50+ patched fonts.
+Groups          : None
+
+Name            : ninja
+Description     : Small build system with a focus on speed
+Groups          : None
+
+Name            : nodejs-material-design-icons
+Description     : Material Design icons by Google
+Groups          : None
+
+Name            : noto-fonts-cjk
+Description     : Google Noto CJK fonts
+Groups          : None
+
+Name            : noto-fonts-emoji
+Description     : Google Noto emoji fonts
+Groups          : None
+
+Name            : npm
+Description     : A package manager for javascript
+Groups          : None
+
+Name            : nvim-packer-git
+Description     : A use-package inspired plugin manager for Neovim.
+Groups          : None
+
+Name            : oh-my-zsh-git
+Description     : A community-driven framework for managing your zsh configuration. Includes 180+ optional plugins and over 120 themes to spice up your morning, and an auto-update tool so that makes it easy to keep up with the latest updates from the community
+Groups          : None
+
+Name            : otf-cascadia-code
+Description     : A monospaced font by Microsoft that includes programming ligatures
+Groups          : None
+
+Name            : otf-fira-mono
+Description     : Mozilla's monospace typeface designed for Firefox OS
+Groups          : None
+
+Name            : otf-latinmodern-math
+Description     : Improved version of Computer Modern fonts as used in LaTeX – OpenType Math component
+Groups          : None
+
+Name            : pacman
+Description     : A library-based package manager with dependency support
+Groups          : base-devel
+
+Name            : pamixer
+Description     : Pulseaudio command-line mixer like amixer
+Groups          : None
+
+Name            : patch
+Description     : A utility to apply patch files to original sources
+Groups          : base-devel
+
+Name            : php
+Description     : A general-purpose scripting language that is especially suited to web development
+Groups          : None
+
+Name            : picom
+Description     : X compositor that may fix tearing issues
+Groups          : None
+
+Name            : pkgconf
+Description     : Package compiler and linker metadata toolkit
+Groups          : base-devel
+
+Name            : polybar
+Description     : A fast and easy-to-use status bar
+Groups          : None
+
+Name            : prettierd
+Description     : prettier, as a daemon, for ludicrous formatting speed.
+Groups          : None
+
+Name            : pulseaudio
+Description     : A featureful, general-purpose sound server
+Groups          : None
+
+Name            : pulseaudio-alsa
+Description     : ALSA Configuration for PulseAudio
+Groups          : None
+
+Name            : pyright
+Description     : Type checker for the Python language
+Groups          : None
+
+Name            : python-debugpy
+Description     : An implementation of the Debug Adapter Protocol for Python
+Groups          : None
+
+Name            : python-pip
+Description     : The PyPA recommended tool for installing Python packages
+Groups          : None
+
+Name            : python-pynvim
+Description     : Python client for Neovim
+Groups          : None
+
+Name            : python-requests
+Description     : Python HTTP for Humans
+Groups          : None
+
+Name            : r
+Description     : Language and environment for statistical computing and graphics
+Groups          : None
+
+Name            : ranger
+Description     : Simple, vim-like file manager
+Groups          : None
+
+Name            : rar
+Description     : A command-line port of the rar compression utility
+Groups          : None
+
+Name            : ripgrep
+Description     : A search tool that combines the usability of ag with the raw speed of grep
+Groups          : None
+
+Name            : rofi
+Description     : A window switcher, application launcher and dmenu replacement
+Groups          : None
+
+Name            : ruby
+Description     : An object-oriented language for quick and easy programming
+Groups          : None
+
+Name            : ruby-docs
+Description     : Documentation files for ruby
+Groups          : None
+
+Name            : rubygems
+Description     : Package management framework for Ruby
+Groups          : None
+
+Name            : rust
+Description     : Systems programming language focused on safety, speed and concurrency
+Groups          : None
+
+Name            : sed
+Description     : GNU stream editor
+Groups          : base-devel
+
+Name            : shfmt
+Description     : Format shell programs
+Groups          : None
+
+Name            : siji-git
+Description     : Iconic bitmap font based on stlarch with additional glyphs
+Groups          : None
+
+Name            : sof-firmware
+Description     : Sound Open Firmware
+Groups          : None
+
+Name            : spaceship-prompt-git
+Description     : A Zsh prompt for Astronauts
+Groups          : None
+
+Name            : stylua
+Description     : Code formatter for Lua
+Groups          : None
+
+Name            : sudo
+Description     : Give certain users the ability to run some commands as root
+Groups          : base-devel
+
+Name            : sxhkd
+Description     : Simple X hotkey daemon
+Groups          : None
+
+Name            : systemd
+Description     : system and service manager
+Groups          : None
+
+Name            : texinfo
+Description     : GNU documentation system for on-line information and printed output
+Groups          : base-devel
+
+Name            : texlive-bibtexextra
+Description     : TeX Live - Additional BibTeX styles and bibliography databases
+Groups          : texlive-most
+
+Name            : texlive-core
+Description     : TeX Live core distribution
+Groups          : texlive-most
+
+Name            : texlive-fontsextra
+Description     : TeX Live - all sorts of extra fonts
+Groups          : texlive-most
+
+Name            : texlive-formatsextra
+Description     : TeX Live - collection of extra TeX 'formats'
+Groups          : texlive-most
+
+Name            : texlive-games
+Description     : TeX Live - Setups for typesetting various board games, including chess
+Groups          : texlive-most
+
+Name            : texlive-humanities
+Description     : TeX Live - LaTeX packages for law, linguistics, social sciences, and humanities
+Groups          : texlive-most
+
+Name            : texlive-langchinese
+Description     : TeX Live - Fonts and macro packages to typeset Chinese texts
+Groups          : texlive-lang
+
+Name            : texlive-langcyrillic
+Description     : TeX Live - Fonts and macro packages to typeset Cyrillic texts
+Groups          : texlive-lang
+
+Name            : texlive-langextra
+Description     : TeX Live - Bundle of all extra language support
+Groups          : texlive-lang
+
+Name            : texlive-langgreek
+Description     : TeX Live - Fonts and support for typesetting Greek
+Groups          : texlive-lang
+
+Name            : texlive-langjapanese
+Description     : TeX Live - Fonts and macro packages to typeset Japanese texts
+Groups          : texlive-lang
+
+Name            : texlive-langkorean
+Description     : TeX Live - Fonts and macro packages to typeset Korean texts
+Groups          : texlive-lang
+
+Name            : texlive-latexextra
+Description     : TeX Live - Large collection of add-on packages for LaTeX
+Groups          : texlive-most
+
+Name            : texlive-latexindent-meta
+Description     : Meta package to use latexindent
+Groups          : None
+
+Name            : texlive-music
+Description     : TeX Live - Music typesetting packages
+Groups          : texlive-most
+
+Name            : texlive-pictures
+Description     : TeX Live - Packages for drawings graphics
+Groups          : texlive-most
+
+Name            : texlive-pstricks
+Description     : TeX Live - Additional PSTricks packages
+Groups          : texlive-most
+
+Name            : texlive-publishers
+Description     : TeX Live - LaTeX classes and packages for specific publishers
+Groups          : texlive-most
+
+Name            : texlive-science
+Description     : TeX Live - Typesetting for mathematics, natural and computer sciences
+Groups          : texlive-most
+
+Name            : thermald
+Description     : The Linux Thermal Daemon program from 01.org
+Groups          : None
+
+Name            : tk
+Description     : A windowing toolkit for use with tcl
+Groups          : None
+
+Name            : tllocalmgr-git
+Description     : A shell and command-line utility to manage TeXLive on Arch Linux
+Groups          : None
+
+Name            : trash-cli
+Description     : Command line trashcan (recycle bin) interface
+Groups          : None
+
+Name            : tree
+Description     : A directory listing program displaying a depth indented list of files
+Groups          : None
+
+Name            : ttc-iosevka
+Description     : Typeface family designed for coding, terminal use and technical documents.
+Groups          : None
+
+Name            : ttf-cascadia-code
+Description     : A monospaced font by Microsoft that includes programming ligatures
+Groups          : None
+
+Name            : ttf-comic-mono-git
+Description     : like the famous font but monospace and with adjusted metric
+Groups          : None
+
+Name            : ttf-fira-code
+Description     : Monospaced font with programming ligatures
+Groups          : None
+
+Name            : ttf-fira-mono
+Description     : Mozilla's monospace typeface designed for Firefox OS
+Groups          : None
+
+Name            : ttf-font-awesome
+Description     : Iconic font designed for Bootstrap
+Groups          : None
+
+Name            : ttf-jetbrains-mono
+Description     : Typeface for developers, by JetBrains
+Groups          : None
+
+Name            : ttf-nerd-fonts-symbols
+Description     : High number of extra glyphs from popular 'iconic fonts' (2048-em)
+Groups          : None
+
+Name            : ttf-symbola
+Description     : Font for symbol blocks of the Unicode Standard (TTF)
+Groups          : None
+
+Name            : ttf-wps-fonts
+Description     : Symbol fonts required by wps-office.
+Groups          : None
+
+Name            : ueberzug
+Description     : Command line util which allows to display images in combination with X11
+Groups          : None
+
+Name            : unarchiver
+Description     : unar and lsar: Objective-C tools for uncompressing archive files
+Groups          : None
+
+Name            : uncrustify
+Description     : A source code beautifier
+Groups          : None
+
+Name            : unzip
+Description     : For extracting and viewing files in .zip archives
+Groups          : None
+
+Name            : w3m
+Description     : Text-based Web browser as well as pager
+Groups          : None
+
+Name            : wget
+Description     : Network utility to retrieve files from the Web
+Groups          : None
+
+Name            : which
+Description     : A utility to show the full path of commands
+Groups          : base-devel
+
+Name            : woff-fira-code
+Description     : Monospaced font with programming ligatures
+Groups          : None
+
+Name            : woff2-cascadia-code
+Description     : A monospaced font by Microsoft that includes programming ligatures
+Groups          : None
+
+Name            : woff2-fira-code
+Description     : Monospaced font with programming ligatures
+Groups          : None
+
+Name            : wps-office-cn
+Description     : Kingsoft Office (WPS Office) CN version - an office productivity suite
+Groups          : None
+
+Name            : wps-office-mui-zh-cn
+Description     : Chinese (Simplified) mui package for WPS Office
+Groups          : None
+
+Name            : xclip
+Description     : Command line interface to the X11 clipboard
+Groups          : None
+
+Name            : xdg-user-dirs
+Description     : Manage user directories like ~/Desktop and ~/Music
+Groups          : None
+
+Name            : xdotool
+Description     : Command-line X11 automation tool
+Groups          : None
+
+Name            : xf86-input-evdev
+Description     : X.org evdev input driver
+Groups          : xorg-drivers
+
+Name            : xf86-input-libinput
+Description     : Generic input driver for the X.Org server based on libinput
+Groups          : xorg-drivers
+
+Name            : xf86-input-synaptics
+Description     : Synaptics driver for notebook touchpads
+Groups          : xorg-drivers
+
+Name            : xf86-input-vmmouse
+Description     : X.org VMWare Mouse input driver
+Groups          : xorg-drivers
+
+Name            : xf86-input-void
+Description     : X.org void input driver
+Groups          : xorg-drivers
+
+Name            : xf86-video-amdgpu
+Description     : X.org amdgpu video driver
+Groups          : xorg-drivers
+
+Name            : xf86-video-ati
+Description     : X.org ati video driver
+Groups          : xorg-drivers
+
+Name            : xf86-video-dummy
+Description     : X.org dummy video driver
+Groups          : xorg-drivers
+
+Name            : xf86-video-fbdev
+Description     : X.org framebuffer video driver
+Groups          : xorg-drivers
+
+Name            : xf86-video-intel
+Description     : X.org Intel i810/i830/i915/945G/G965+ video drivers
+Groups          : xorg-drivers
+
+Name            : xf86-video-nouveau
+Description     : Open Source 3D acceleration driver for nVidia cards
+Groups          : xorg-drivers
+
+Name            : xf86-video-openchrome
+Description     : X.Org Openchrome drivers
+Groups          : xorg-drivers
+
+Name            : xf86-video-qxl
+Description     : Xorg X11 qxl video driver
+Groups          : xorg-drivers
+
+Name            : xf86-video-vesa
+Description     : X.org vesa video driver
+Groups          : xorg-drivers  xorg
+
+Name            : xf86-video-vmware
+Description     : X.org vmware video driver
+Groups          : xorg-drivers
+
+Name            : xf86-video-voodoo
+Description     : X.org 3dfx Voodoo1/Voodoo2 2D video driver
+Groups          : xorg-drivers
+
+Name            : xorg-bdftopcf
+Description     : Convert X font from Bitmap Distribution Format to Portable Compiled Format
+Groups          : xorg  xorg-apps
+
+Name            : xorg-font-util
+Description     : X.Org font utilities
+Groups          : xorg-fonts  xorg
+
+Name            : xorg-iceauth
+Description     : ICE authority file utility
+Groups          : xorg-apps  xorg
+
+Name            : xorg-mkfontscale
+Description     : Create an index of scalable font files for X
+Groups          : xorg-apps  xorg
+
+Name            : xorg-server
+Description     : Xorg X server
+Groups          : xorg
+
+Name            : xorg-sessreg
+Description     : Register X sessions in system utmp/utmpx databases
+Groups          : xorg-apps  xorg
+
+Name            : xorg-setxkbmap
+Description     : Set the keyboard using the X Keyboard Extension
+Groups          : xorg-apps  xorg
+
+Name            : xorg-smproxy
+Description     : Allows X applications that do not support X11R6 session management to participate in an X11R6 session
+Groups          : xorg-apps  xorg
+
+Name            : xorg-x11perf
+Description     : Simple X server performance benchmarker
+Groups          : xorg-apps  xorg
+
+Name            : xorg-xauth
+Description     : X.Org authorization settings program
+Groups          : xorg-apps  xorg
+
+Name            : xorg-xbacklight
+Description     : RandR-based backlight control application
+Groups          : xorg-apps  xorg
+
+Name            : xorg-xclipboard
+Description     : X clipboard manager
+Groups          : None
+
+Name            : xorg-xcmsdb
+Description     : Device Color Characterization utility for X Color Management System
+Groups          : xorg-apps  xorg
+
+Name            : xorg-xcursorgen
+Description     : Create an X cursor file from PNG images
+Groups          : xorg-apps  xorg
+
+Name            : xorg-xdpyinfo
+Description     : Display information utility for X
+Groups          : xorg-apps  xorg
+
+Name            : xorg-xdriinfo
+Description     : Query configuration information of DRI drivers
+Groups          : xorg-apps  xorg
+
+Name            : xorg-xev
+Description     : Print contents of X events
+Groups          : xorg-apps  xorg
+
+Name            : xorg-xgamma
+Description     : Alter a monitor's gamma correction
+Groups          : xorg-apps  xorg
+
+Name            : xorg-xhost
+Description     : Server access control program for X
+Groups          : xorg-apps  xorg
+
+Name            : xorg-xinit
+Description     : X.Org initialisation program
+Groups          : None
+
+Name            : xorg-xinput
+Description     : Small commandline tool to configure devices
+Groups          : xorg-apps  xorg
+
+Name            : xorg-xkbcomp
+Description     : X Keyboard description compiler
+Groups          : xorg-apps  xorg
+
+Name            : xorg-xkbevd
+Description     : XKB event daemon
+Groups          : xorg-apps  xorg
+
+Name            : xorg-xkbutils
+Description     : XKB utility demos
+Groups          : xorg-apps  xorg
+
+Name            : xorg-xkill
+Description     : Kill a client by its X resource
+Groups          : xorg-apps  xorg
+
+Name            : xorg-xlsatoms
+Description     : List interned atoms defined on server
+Groups          : xorg-apps  xorg
+
+Name            : xorg-xlsclients
+Description     : List client applications running on a display
+Groups          : xorg-apps  xorg
+
+Name            : xorg-xlsfonts
+Description     : List available X fonts
+Groups          : None
+
+Name            : xorg-xmodmap
+Description     : Utility for modifying keymaps and button mappings
+Groups          : xorg-apps  xorg
+
+Name            : xorg-xpr
+Description     : Print an X window dump from xwd
+Groups          : xorg-apps  xorg
+
+Name            : xorg-xprop
+Description     : Property displayer for X
+Groups          : xorg-apps  xorg
+
+Name            : xorg-xrandr
+Description     : Primitive command line interface to RandR extension
+Groups          : xorg-apps  xorg
+
+Name            : xorg-xrdb
+Description     : X server resource database utility
+Groups          : xorg-apps  xorg
+
+Name            : xorg-xrefresh
+Description     : Refresh all or part of an X screen
+Groups          : xorg-apps  xorg
+
+Name            : xorg-xset
+Description     : User preference utility for X
+Groups          : xorg-apps  xorg
+
+Name            : xorg-xsetroot
+Description     : Classic X utility to set your root window background to a given pattern or color
+Groups          : xorg-apps  xorg
+
+Name            : xorg-xvinfo
+Description     : Prints out the capabilities of any video adaptors associated with the display that are accessible through the X-Video extension
+Groups          : xorg-apps  xorg
+
+Name            : xorg-xwd
+Description     : X Window System image dumping utility
+Groups          : xorg-apps  xorg
+
+Name            : xorg-xwininfo
+Description     : Command-line utility to print information about windows on an X server
+Groups          : xorg-apps  xorg
+
+Name            : xorg-xwud
+Description     : X Window System image undumping utility
+Groups          : xorg-apps  xorg
+
+Name            : yarn
+Description     : Fast, reliable, and secure dependency management
+Groups          : None
+
+Name            : yay
+Description     : Yet another yogurt. Pacman wrapper and AUR helper written in go.
+Groups          : None
+
+Name            : youdao-dict
+Description     : YouDao Dictionary
+Groups          : None
+
+Name            : z
+Description     : Tracks your most used directories, based on 'frecency'
+Groups          : None
+
+Name            : zathura
+Description     : Minimalistic document viewer
+Groups          : None
+
+Name            : zathura-cb
+Description     : Adds comic book support to zathura
+Groups          : None
+
+Name            : zathura-djvu
+Description     : DjVu support for Zathura
+Groups          : None
+
+Name            : zathura-pdf-mupdf
+Description     : PDF support for Zathura (MuPDF backend) (Supports PDF, ePub, and OpenXPS)
+Groups          : None
+
+Name            : zathura-ps
+Description     : Adds ps support to zathura by using the libspectre library
+Groups          : None
+
+Name            : zsh
+Description     : A very advanced and programmable command interpreter (shell) for UNIX
+Groups          : None
+
+Name            : zsh-autosuggestions
+Description     : Fish-like autosuggestions for zsh
+Groups          : None
+
+Name            : zsh-completions
+Description     : Additional completion definitions for Zsh
+Groups          : None
+
+Name            : zsh-syntax-highlighting
+Description     : Fish shell like syntax highlighting for Zsh
+Groups          : None
+
