@@ -96,77 +96,77 @@ end
 
 -- nvim lspsaga
 
-local lspsaga = require("lspsaga")
-lspsaga.init_lsp_saga({
-	debug = false,
-	use_saga_diagnostic_sign = true,
-	error_sign = "",
-	warn_sign = "",
-	infor_sign = "",
-	hint_sign = "",
-	diagnostic_header_icon = " ",
-	code_action_icon = " ",
-	code_action_prompt = {
-		enable = true,
-		sign = true,
-		sign_priority = 40,
-		virtual_text = true,
-	},
-	finder_definition_icon = "ﳗ ",
-	finder_reference_icon = " ",
-	max_preview_lines = 10,
-	finder_action_keys = {
-		open = "o",
-		vsplit = "s",
-		split = "i",
-		quit = "q",
-		scroll_down = "<C-d>",
-		scroll_up = "<C-u>",
-	},
-	code_action_keys = { quit = "q", exec = "<CR>" },
-	rename_action_keys = { quit = "<C-c>", exec = "<CR>" },
-	definition_preview_icon = " ",
-	border_style = "double",
-	rename_prompt_prefix = "",
-	server_filetype_map = {},
-	diagnostic_prefix_format = "%d. ",
-	diagnostic_message_format = "%m %c",
-	highlight_prefix = true,
-})
-
-local cmd = vim.api.nvim_command
-cmd("highlight link LspSagaFinderSelection Search")
-
--- nvim lspkind
-
-require("lspkind").init({
-	mode = "symbol",
-	preset = "default",
-	symbol_map = {
-		Text = "",
-		Method = "",
-		Function = "",
-		Constructor = "",
-		Field = "",
-		Variable = "",
-		Class = "𝓒",
-		Interface = "ﰮ",
-		Module = "",
-		Property = "",
-		Unit = "塞",
-		Value = "",
-		Enum = "",
-		Keyword = "",
-		Snippet = "",
-		Color = "",
-		File = "",
-		Reference = "",
-		Folder = "",
-		EnumMember = "",
-		Constant = "",
-		Struct = "𝓢",
-		Event = "",
-		Operator = "",
-		TypeParameter = "𝙏",
-	},
-})
+-- local lspsaga = require("lspsaga")
+-- lspsaga.init_lsp_saga({
+-- 	debug = false,
+-- 	use_saga_diagnostic_sign = true,
+-- 	error_sign = "",
+-- 	warn_sign = "",
+-- 	infor_sign = "",
+-- 	hint_sign = "",
+-- 	diagnostic_header_icon = " ",
+-- 	code_action_icon = " ",
+-- 	code_action_prompt = {
+-- 		enable = true,
+-- 		sign = true,
+-- 		sign_priority = 40,
+-- 		virtual_text = true,
+-- 	},
+-- 	finder_definition_icon = "ﳗ ",
+-- 	finder_reference_icon = " ",
+-- 	max_preview_lines = 10,
+-- 	finder_action_keys = {
+-- 		open = "o",
+-- 		vsplit = "s",
+-- 		split = "i",
+-- 		quit = "q",
+-- 		scroll_down = "<C-f>",
+-- 		scroll_up = "<C-b>",
+-- 	},
+-- 	code_action_keys = { quit = "q", exec = "<CR>" },
+-- 	rename_action_keys = { quit = "<C-c>", exec = "<CR>" },
+-- 	definition_preview_icon = " ",
+-- 	border_style = "double",
+-- 	rename_prompt_prefix = "",
+-- 	server_filetype_map = {},
+-- 	diagnostic_prefix_format = "%d. ",
+-- 	diagnostic_message_format = "%m %c",
+-- 	highlight_prefix = true,
+-- })
+--
+-- local cmd = vim.api.nvim_command
+-- cmd("highlight link LspSagaFinderSelection Search")
+--
+-- -- nvim lspkind
+--
+-- require("lspkind").init({
+-- 	mode = "symbol",
+-- 	preset = "default",
+-- 	symbol_map = {
+-- 		Text = "",
+-- 		Method = "",
+-- 		Function = "",
+-- 		Constructor = "",
+-- 		Field = "",
+-- 		Variable = "",
+-- 		Class = "𝓒",
+-- 		Interface = "ﰮ",
+-- 		Module = "",
+-- 		Property = "",
+-- 		Unit = "塞",
+-- 		Value = "",
+-- 		Enum = "",
+-- 		Keyword = "",
+-- 		Snippet = "",
+-- 		Color = "",
+-- 		File = "",
+-- 		Reference = "",
+-- 		Folder = "",
+-- 		EnumMember = "",
+-- 		Constant = "",
+-- 		Struct = "𝓢",
+-- 		Event = "",
+-- 		Operator = "",
+-- 		TypeParameter = "𝙏",
+-- 	},
+-- })
