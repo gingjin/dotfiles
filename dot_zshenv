@@ -1,5 +1,8 @@
 typeset -U path
 
+# go
+export GOPROXY=https://mirrors.aliyun.com/goproxy/
+
 # pyenv
 # eval "$(pyenv init --path)"
 # eval "$(pyenv virtualenv-init -)"
