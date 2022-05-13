@@ -1,3 +1,7 @@
+# export http_proxy="127.0.0.1:7890"
+
+export EDITOR=nvim
+
 # Path to your oh-my-zsh installation.
 export ZSH=/usr/share/oh-my-zsh
 
@@ -7,6 +11,7 @@ promptinit
 prompt spaceship
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+[[ -r "/usr/share/z/z.sh" ]] && source /usr/share/z/z.sh
 
 plugins=(archlinux cp gem git man node npm perl pip ruby yarn z)
 
