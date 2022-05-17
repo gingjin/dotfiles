@@ -8,9 +8,8 @@ pgrep -x sxhkd >/dev/null || sxhkd &
 copyq &
 fcitx5 &
 flameshot &
-# youdao-dict &
 picom --config ~/.config/picom/picom.conf -b &
-feh --bg-fill ~/Pictures/1200056.jpg
+feh --bg-fill ~/Pictures/wallpapers/bg_28.jpg
 $HOME/.config/polybar/launch.sh
 
 bspc monitor -d 1 2 3 4 5 6
