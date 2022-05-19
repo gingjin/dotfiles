@@ -41,7 +41,7 @@ g.nvim_tree_icons = {
 
 require("nvim-tree").setup({
 	auto_reload_on_write = true,
-	disable_netrw = false,
+	disable_netrw = true,
 	hijack_cursor = false,
 	hijack_netrw = true,
 	hijack_unnamed_buffer_when_opening = false,
@@ -59,7 +59,7 @@ require("nvim-tree").setup({
 		preserve_window_proportions = false,
 		number = false,
 		relativenumber = false,
-		signcolumn = "no",
+		signcolumn = "yes",
 		mappings = {
 			custom_only = false,
 			list = {
@@ -97,13 +97,13 @@ require("nvim-tree").setup({
 		args = {},
 	},
 	diagnostics = {
-		enable = false,
+		enable = true,
 		show_on_dirs = false,
 		icons = {
-			hint = "",
-			info = "",
-			warning = "",
 			error = "",
+			warning = "",
+			info = "",
+			hint = "",
 		},
 	},
 	filters = {
@@ -153,7 +153,3 @@ require("nvim-tree").setup({
 		},
 	},
 })
-
-local map = vim.api.nvim_set_keymap
-local opts = { noremap = true }
-map("n", "<A-e>", [[:NvimTreeToggle<cr>]], opts)
