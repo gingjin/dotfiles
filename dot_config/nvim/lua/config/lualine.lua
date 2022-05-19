@@ -1,11 +1,11 @@
 -- nvim lualine
 
 local colors = {
-	yellow = "#FFAA00",
-	green = "#009966",
+	red = "#db4b4b",
+	yellow = "#e0af68",
+	blue = "#0db9d7",
+	green = "#10B981",
 	orange = "#FF6600",
-	blue = "#0099CC",
-	red = "#aa0000",
 }
 
 local function buffer_not_empty()
@@ -85,14 +85,12 @@ require("lualine").setup({
 				always_visible = false,
 			},
 		},
-		lualine_x = {
-			"%p%% %l:%c% ",
+		lualine_x = { "filetype" },
+		lualine_y = {
 			{ "encoding", fmt = string.upper },
 			{ "fileformat", symbols = { unix = "LF", dos = "CRLF", mac = "CR" } },
-			"filetype",
 		},
-		lualine_y = {},
-		lualine_z = {},
+		lualine_z = { "%p%% %l:%c% " },
 	},
 	inactive_sections = {
 		lualine_a = {},
@@ -121,9 +119,7 @@ require("lualine").setup({
 		},
 		lualine_b = {},
 		lualine_c = {},
-		lualine_x = {
-			{ lsp, icon = " LSP:", cond = buffer_not_empty },
-		},
+		lualine_x = { { lsp, icon = " LSP:" } },
 		lualine_y = {
 			{ "b:gitsigns_head", icon = { "", color = { fg = colors.orange } } },
 			{
@@ -148,9 +144,3 @@ require("lualine").setup({
 		"quickfix",
 	},
 })
-
-local map = vim.api.nvim_set_keymap
-local opts = { noremap = true, silent = true }
-map("n", "<Tab>", [[:bnext<cr>]], opts)
-map("n", "<S-Tab>", [[:bprevious<cr>]], opts)
-map("n", "<leader>bd", [[:bdelete<cr>]], opts)
