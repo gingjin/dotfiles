@@ -1,7 +1,7 @@
 local g = vim.g
 g.mapleader = " "
 g.maplocalleader = " "
-g.python3_host_prog = "/usr/bin/python3"
+g.python3_host_prog = "~/.pyenv/versions/py3.7/bin/python3.7"
 
 local cmd = vim.cmd
 cmd("syntax enable")
@@ -14,7 +14,7 @@ local options = {
 	clipboard = "unnamedplus",
 	cmdheight = 1,
 	completeopt = { "menu", "menuone", "noselect" },
-	conceallevel = 1,
+	-- conceallevel = 1,
 	-- cursorcolumn = true,
 	cursorline = true,
 	encoding = "utf-8",
