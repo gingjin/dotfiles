@@ -10,8 +10,6 @@ tele.setup({
 		selection_caret = " ",
 		mappings = {
 			i = {
-				["<C-u>"] = true,
-				["<C-d>"] = true,
 				["<C-t>"] = trouble.open_with_trouble,
 			},
 			n = {
@@ -21,7 +19,7 @@ tele.setup({
 		width = 0.8,
 		previewer = true,
 		prompt_title = true,
-		file_ignore_patterns = { "./node_modules" },
+		file_ignore_patterns = { "node_modules", "__pycache__", ".git" },
 	},
 	extensions = {
 		media_files = {
@@ -61,23 +59,3 @@ tele.load_extension("ui-select")
 tele.load_extension("bookmarks")
 tele.load_extension("media_files")
 tele.load_extension("node_modules")
-
-local cmd = vim.cmd
-cmd([[hi TelescopeBorder   guifg=#2a2e36]])
-cmd([[hi TelescopePromptBorder   guifg=#2a2e36]])
-cmd([[hi TelescopeResultsBorder  guifg=#2a2e36]])
-cmd([[hi TelescopePreviewBorder  guifg=#525865]])
-cmd([[autocmd User TelescopePreviewerLoaded setlocal wrap]])
-
-local map = vim.api.nvim_set_keymap
-local opts = { noremap = true, silent = true }
-map("n", "<A-/>", [[:Telescope frecency<cr>]], opts)
-map("n", "<leader><space>", [[:Telescope<cr>]], opts)
-map("n", "<leader>fp", [[:Telescope packer<cr>]], opts)
-map("n", "<leader>fb", [[:Telescope buffers<cr>]], opts)
-map("n", "<leader>fs", [[:Telescope symbols<cr>]], opts)
-map("n", "<leader>fl", [[:Telescope luasnip<cr>]], opts)
-map("n", "<leader>fm", [[:Telescope bookmarks<cr>]], opts)
-map("n", "<leader>fg", [[:Telescope live_grep<cr>]], opts)
-map("n", "<leader>fh", [[:Telescope help_tags<cr>]], opts)
-map("n", "<leader>ff", [[:Telescope find_files<cr>]], opts)
