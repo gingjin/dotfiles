@@ -38,18 +38,9 @@ require("trouble").setup({
 	signs = {
 		error = "",
 		warning = "",
-		hint = "",
 		information = "",
+		hint = "",
 		other = "",
 	},
 	use_diagnostic_signs = false,
 })
-
-local map = vim.api.nvim_set_keymap
-local opts = { silent = true, noremap = true }
-map("n", "gR", ":TroubleToggle lsp_references<cr>", opts)
-map("n", "gD", ":TroubleToggle lsp_definitions<cr>", opts)
-map("n", "<leader>xx", ":TroubleToggle<cr>", opts)
-map("n", "<leader>xl", ":TroubleToggle loclist<cr>", opts)
-map("n", "<leader>xq", ":TroubleToggle quickfix<cr>", opts)
-map("n", "<leader>xw", ":TroubleToggle workspace_diagnostics<cr>", opts)
