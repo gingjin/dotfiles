@@ -1,7 +1,7 @@
 -- nvim neoformat
 
--- local augroup = vim.api.nvim_create_augroup
 -- local cmd = vim.api.nvim_create_autocmd
+-- local augroup = vim.api.nvim_create_augroup
 -- local formatOnSave = augroup("fmt", { clear = true })
 -- cmd("BufWritePre", {
 -- 	group = formatOnSave,
