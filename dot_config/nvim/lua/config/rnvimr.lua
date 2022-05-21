@@ -1,5 +1,5 @@
 -- nvim ranger
-
+--
 local g = vim.g
 g.rnvimr_enable_ex = 0
 g.rnvimr_enable_picker = 1
