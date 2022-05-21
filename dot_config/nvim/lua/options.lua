@@ -12,7 +12,7 @@ local options = {
 	autowriteall = true,
 	backup = false,
 	clipboard = "unnamedplus",
-	cmdheight = 1,
+	cmdheight = 2,
 	completeopt = { "menu", "menuone", "noselect" },
 	-- conceallevel = 1,
 	-- cursorcolumn = true,
@@ -53,3 +53,32 @@ local opt = vim.opt
 for k, v in pairs(options) do
 	opt[k] = v
 end
+
+local M = {}
+M.servers = function()
+	return {
+		"bashls",
+		"clangd",
+		"cssls",
+		"gopls",
+		"html",
+		"intelephense",
+		"jdtls",
+		"jsonls",
+		"julials",
+		"lemminx",
+		"ltex",
+		"pyright",
+		"r_language_server",
+		"rust_analyzer",
+		"sorbet",
+		"sqlls",
+		"sumneko_lua",
+		"tsserver",
+		"vimls",
+		"vuels",
+		"yamlls",
+	}
+end
+
+return M
