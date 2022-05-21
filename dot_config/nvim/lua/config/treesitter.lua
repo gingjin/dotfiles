@@ -1,4 +1,5 @@
 -- nvim treesitter
+--
 
 -- for _, config in pairs(require("nvim-treesitter.parsers").get_parser_configs()) do
 -- 	config.install_info.url = config.install_info.url:gsub(
@@ -31,7 +32,27 @@ require("nvim-treesitter.configs").setup({
 		},
 	},
 	autotag = { enable = true },
-	context_commentstring = { enable = true },
+	context_commentstring = {
+		enable = true,
+		config = {
+			{ css = "// %s" },
+			{
+				javascript = {
+					__default = "// %s",
+					jsx_element = "{/* %s */}",
+					jsx_fragment = "{/* %s */}",
+					jsx_attribute = "// %s",
+					comment = "// %s",
+				},
+			},
+			{
+				typescript = {
+					__default = "// %s",
+					__multiline = "/* %s */",
+				},
+			},
+		},
+	},
 	playground = {
 		enable = true,
 		disable = {},
