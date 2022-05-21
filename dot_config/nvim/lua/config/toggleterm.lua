@@ -1,5 +1,5 @@
 -- nvim toggleterm
-
+--
 require("toggleterm").setup({
 	size = 10,
 	open_mapping = [[<A-t>]],
