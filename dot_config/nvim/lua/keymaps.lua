@@ -83,16 +83,16 @@ keymap("n", "<A-r>", ":RnvimrToggle<CR>", opts)
 keymap("t", "<A-r>", "<C-\\><C-n>:RnvimrToggle<CR>", opts)
 
 -- nvim telescope
-keymap("n", "<A-/>", ":Telescope frecency<CR>", opts)
 keymap("n", "<leader><space>", ":Telescope<CR>", opts)
 keymap("n", "<leader>fp", ":Telescope packer<CR>", opts)
 keymap("n", "<leader>fb", ":Telescope buffers<CR>", opts)
 keymap("n", "<leader>fs", ":Telescope symbols<CR>", opts)
 keymap("n", "<leader>fl", ":Telescope luasnip<CR>", opts)
-keymap("n", "<leader>fm", ":Telescope bookmarks<CR>", opts)
 keymap("n", "<leader>fg", ":Telescope live_grep<CR>", opts)
 keymap("n", "<leader>fh", ":Telescope help_tags<CR>", opts)
+keymap("n", "<leader>fm", ":Telescope bookmarks<CR>", opts)
 keymap("n", "<leader>ff", ":Telescope find_files<CR>", opts)
+keymap("n", "<leader>fn", ":Telescope node_modules list<CR>", opts)
 
 -- nvim toggleterm
 function _G.set_terminal_keymaps()
@@ -108,8 +108,6 @@ local cmd = vim.api.nvim_command
 cmd("autocmd! TermOpen term://* lua set_terminal_keymaps()")
 
 -- nvim trouble
-keymap("n", "gR", ":TroubleToggle lsp_references<CR>", opts)
-keymap("n", "gD", ":TroubleToggle lsp_definitions<CR>", opts)
 keymap("n", "<leader>xx", ":TroubleToggle<CR>", opts)
 keymap("n", "<leader>xl", ":TroubleToggle loclist<CR>", opts)
 keymap("n", "<leader>xq", ":TroubleToggle quickfix<CR>", opts)
@@ -117,7 +115,7 @@ keymap("n", "<leader>xw", ":TroubleToggle workspace_diagnostics<CR>", opts)
 
 local M = {}
 -- nvim aerial
-M.aerial = function (bufmap)
+M.aerial = function(bufmap)
 	bufmap("n", "<leader>at", ":AerialToggle!<CR>", {})
 	bufmap("n", "{", ":AerialPrevUp<CR>", {})
 	bufmap("n", "}", ":AerialNextUp<CR>", {})
@@ -126,8 +124,8 @@ M.aerial = function (bufmap)
 end
 
 -- nvim cmp
-local luasnip = require("luasnip")
-M.cmp = function (cmp)
+M.cmp = function(cmp)
+	local luasnip = require("luasnip")
 	return {
 		["<C-d>"] = cmp.mapping.scroll_docs(4),
 		["<C-u>"] = cmp.mapping.scroll_docs(-4),
@@ -161,7 +159,7 @@ M.cmp = function (cmp)
 end
 
 -- nvim gitsigns
-M.gitsigns = function (bufmap)
+M.gitsigns = function(bufmap)
 	bufmap("n", "]d", "&diff ? ']d' : '<cmd>Gitsigns next_hunk<CR>'", { expr = true })
 	bufmap("n", "[d", "&diff ? '[d' : '<cmd>Gitsigns prev_hunk<CR>'", { expr = true })
 
@@ -184,10 +182,7 @@ M.gitsigns = function (bufmap)
 end
 
 -- nvim lspconfig
-M.lsp = function (bufmap)
-	bufmap("n", "gi", ":lua vim.lsp.buf.implementation()<CR>", opts)
-	bufmap("n", "gD", ":lua vim.lsp.buf.declaration()<CR>", opts)
-
+M.lsp = function(bufmap)
 	bufmap("n", "[e", ":Lspsaga diagnostic_jump_prev<CR>", opts)
 	bufmap("n", "]e", ":Lspsaga diagnostic_jump_next<CR>", opts)
 	bufmap("n", "K", ":Lspsaga hover_doc<CR>", opts)
