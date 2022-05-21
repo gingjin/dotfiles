@@ -1,6 +1,7 @@
 # Path to your oh-my-zsh installation.
 export ZSH=/usr/share/oh-my-zsh
 
+# porxy
 export http_proxy="127.0.0.1:7890"
 export https_proxy=$http_proxy
 
