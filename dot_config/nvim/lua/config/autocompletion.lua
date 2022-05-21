@@ -33,7 +33,6 @@ cmp.setup({
 		{ name = "treesitter" },
 		{ name = "nvim_lsp_signature_help" },
 		{ name = "npm", keyword_length = 4 },
-		-- { name = "vim-dadbod-completion" },
 	}),
 	mapping = cmp.mapping.preset.insert(require("keymaps").cmp(cmp)),
 	formatting = {
@@ -56,14 +55,14 @@ cmp.setup({
 				Snippet = "",
 				Color = "",
 				File = "",
-				Reference = "",
+				Reference = "",
 				Folder = "",
 				EnumMember = "",
 				Constant = "",
 				Struct = "𝓢",
 				Event = "",
 				Operator = "ﬦ",
-				TypeParameter = "𝙏",
+				TypeParameter = "",
 			})[vim_item.kind]
 			return vim_item
 		end,
