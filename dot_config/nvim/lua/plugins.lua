@@ -37,10 +37,10 @@ packer.startup(function(use)
 		"nvim-treesitter/nvim-treesitter",
 		run = ":TSUpdate",
 		requires = {
-			{ "p00f/nvim-ts-rainbow" },
-			{ "windwp/nvim-ts-autotag" },
-			{ "nvim-treesitter/playground" },
-			{ "JoosepAlviste/nvim-ts-context-commentstring" },
+			"p00f/nvim-ts-rainbow",
+			"windwp/nvim-ts-autotag",
+			"nvim-treesitter/playground",
+			"JoosepAlviste/nvim-ts-context-commentstring",
 		},
 		config = [[require "config/treesitter"]],
 	})
@@ -100,26 +100,26 @@ packer.startup(function(use)
 	use({ "theHamsta/nvim-dap-virtual-text", after = "nvim-dap", config = [[require "config/daptext"]] })
 	use({ "williamboman/nvim-lsp-installer", after = "nvim-lspconfig", config = [[require "config/lsp_install"]] })
 
-	use({ "h-hg/fcitx.nvim", event = "BufNew" })
-	use({ "tpope/vim-surround", event = "BufNew" })
-	use({ "mg979/vim-visual-multi", event = "BufNew" })
+	use({ "h-hg/fcitx.nvim", event = "VimEnter" })
+	use({ "tpope/vim-surround", event = "VimEnter" })
+	use({ "mg979/vim-visual-multi", event = "VimEnter" })
 	use({ "rafamadriz/friendly-snippets", event = "InsertCharPre" })
-	use({ "gingjin/vim-neovim-youdao-translator", event = "BufNew" })
-	use({ "neovim/nvim-lspconfig", event = "BufNew", config = [[require "config/lsp"]] })
-	use({ "sbdchd/neoformat", event = "BufNew", config = [[require "config/neoformat"]] })
-	use({ "folke/trouble.nvim", event = "BufNew", config = [[require "config/trouble"]] })
+	use({ "gingjin/vim-neovim-youdao-translator", event = "VimEnter" })
+	use({ "neovim/nvim-lspconfig", event = "VimEnter", config = [[require "config/lsp"]] })
+	use({ "sbdchd/neoformat", event = "VimEnter", config = [[require "config/neoformat"]] })
+	use({ "folke/trouble.nvim", event = "VimEnter", config = [[require "config/trouble"]] })
 	use({ "kevinhwang91/rnvimr", event = "BufNew", config = [[require "config/rnvimr"]] })
-	use({ "chentoast/marks.nvim", event = "BufNew", config = [[require "config/marks"]] })
-	use({ "stevearc/aerial.nvim", event = "BufNew", config = [[require "config/aerial"]] })
-	use({ "mfussenegger/nvim-lint", event = "BufNew", config = [[require "config/lint"]] })
-	use({ "numToStr/Comment.nvim", event = "BufNew", config = [[require "config/comment"]] })
-	use({ "kdheepak/lazygit.nvim", event = "BufNew", config = [[require "config/lazygit"]] })
-	use({ "folke/todo-comments.nvim", event = "BufNew", config = [[require "config/todo"]] })
-	use({ "lewis6991/gitsigns.nvim", event = "BufNew", config = [[require "config/gitsigns"]] })
-	use({ "akinsho/toggleterm.nvim", event = "BufNew", config = [[require "config/toggleterm"]] })
-	use({ "norcalli/nvim-colorizer.lua", event = "BufNew", config = [[require "config/colorizer"]] })
+	use({ "chentoast/marks.nvim", event = "VimEnter", config = [[require "config/marks"]] })
+	use({ "stevearc/aerial.nvim", event = "VimEnter", config = [[require "config/aerial"]] })
+	use({ "mfussenegger/nvim-lint", event = "VimEnter", config = [[require "config/lint"]] })
+	use({ "numToStr/Comment.nvim", event = "VimEnter", config = [[require "config/comment"]] })
+	use({ "kdheepak/lazygit.nvim", event = "VimEnter", config = [[require "config/lazygit"]] })
+	use({ "folke/todo-comments.nvim", event = "VimEnter", config = [[require "config/todo"]] })
+	use({ "lewis6991/gitsigns.nvim", event = "VimEnter", config = [[require "config/gitsigns"]] })
+	use({ "akinsho/toggleterm.nvim", event = "VimEnter", config = [[require "config/toggleterm"]] })
+	use({ "norcalli/nvim-colorizer.lua", event = "VimEnter", config = [[require "config/colorizer"]] })
 	use({ "max397574/better-escape.nvim", event = "InsertCharPre", config = [[require "config/escape"]] })
-	use({ "lukas-reineke/indent-blankline.nvim", event = "BufNew", config = [[require "config/indent"]] })
+	use({ "lukas-reineke/indent-blankline.nvim", event = "VimEnter", config = [[require "config/indent"]] })
 end)
 
 local cmd = vim.api.nvim_create_autocmd
