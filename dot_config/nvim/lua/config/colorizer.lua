@@ -1,7 +1,8 @@
 -- nvim colorizer
 --
 require("colorizer").setup({
-	default_options = {
+	filetypes = { "*" },
+	user_default_options = {
 		RGB = true,
 		RRGGBB = true,
 		names = true,
