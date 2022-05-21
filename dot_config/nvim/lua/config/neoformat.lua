@@ -1,14 +1,5 @@
 -- nvim neoformat
-
--- local cmd = vim.api.nvim_create_autocmd
--- local augroup = vim.api.nvim_create_augroup
--- local formatOnSave = augroup("fmt", { clear = true })
--- cmd("BufWritePre", {
--- 	group = formatOnSave,
--- 	pattern = "*",
--- 	command = "undojoin | Neoformat",
--- })
-
+--
 local g = vim.g
 g.neoformat_basic_format_trim = 1
 g.neoformat_basic_format_retab = 1
