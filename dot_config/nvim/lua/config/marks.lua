@@ -1,5 +1,5 @@
 -- nvim marks
-
+--
 require("marks").setup({
 	default_mappings = true,
 	builtin_marks = {},
