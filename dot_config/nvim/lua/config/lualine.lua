@@ -1,5 +1,5 @@
 -- nvim lualine
-
+--
 local colors = {
 	red = "#db4b4b",
 	yellow = "#e0af68",
@@ -86,11 +86,11 @@ require("lualine").setup({
 			},
 		},
 		lualine_x = { "filetype" },
-		lualine_y = {
+		lualine_y = { "%p%% %l:%c% " },
+		lualine_z = {
 			{ "encoding", fmt = string.upper },
 			{ "fileformat", symbols = { unix = "LF", dos = "CRLF", mac = "CR" } },
 		},
-		lualine_z = { "%p%% %l:%c% " },
 	},
 	inactive_sections = {
 		lualine_a = {},
