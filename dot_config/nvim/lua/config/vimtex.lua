@@ -1,5 +1,5 @@
 -- vimtex
-
+--
 local g = vim.g
 g.tex_flavor = "latex"
 -- g.tex_conceal = "abdmg"
@@ -27,7 +27,7 @@ cmd("User", {
 })
 local VimTeX = augroup("VimTeX", { clear = true })
 cmd("BufWritePost", {
-  group = VimTeX,
-  pattern = "*.tex",
-  command = "call vimtex#toc#refresh()",
+	group = VimTeX,
+	pattern = "*.tex",
+	command = "call vimtex#toc#refresh()",
 })
