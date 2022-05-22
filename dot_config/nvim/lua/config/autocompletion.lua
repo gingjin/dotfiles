@@ -1,6 +1,7 @@
 -- nvim cmp
 --
 local cmp = require("cmp")
+local luasnip = require("luasnip")
 cmp.setup({
 	sorting = {
 		comparators = {
@@ -16,7 +17,7 @@ cmp.setup({
 	},
 	snippet = {
 		expand = function(args)
-			require("luasnip").lsp_expand(args.body)
+			luasnip.lsp_expand(args.body)
 		end,
 	},
 	enabled = function()
@@ -34,7 +35,7 @@ cmp.setup({
 		{ name = "nvim_lsp_signature_help" },
 		{ name = "npm", keyword_length = 4 },
 	}),
-	mapping = cmp.mapping.preset.insert(require("keymaps").cmp(cmp)),
+	mapping = cmp.mapping.preset.insert(require("keymaps").cmp(cmp, luasnip)),
 	formatting = {
 		format = function(_, vim_item)
 			vim_item.kind = ({
