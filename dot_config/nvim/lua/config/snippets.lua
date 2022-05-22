@@ -1,5 +1,7 @@
 -- nvim luasnip
 --
+require("luasnip.loaders.from_vscode").load()
+
 local ls = require("luasnip")
 local s = ls.snippet
 local sn = ls.snippet_node
@@ -36,5 +38,3 @@ ls.add_snippets("tex", {
 }, {
 	key = "tex",
 })
-
-require("luasnip.loaders.from_vscode").lazy_load()
