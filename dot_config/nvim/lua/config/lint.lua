@@ -5,5 +5,4 @@ require("lint").linters_by_ft = {
 	python = { "flake8" },
 }
 
-vim.cmd("au BufEnter * lua require('lint').try_lint()")
-vim.cmd("au BufWritePost <buffer> lua require('lint').try_lint()")
+vim.cmd("au InsertLeave * lua require('lint').try_lint()")
