@@ -85,10 +85,12 @@ keymap("t", "<A-r>", "<C-\\><C-n>:RnvimrToggle<CR>", opts)
 -- nvim telescope
 keymap("n", "<leader><space>", ":Telescope<CR>", opts)
 keymap("n", "<leader>fp", ":Telescope packer<CR>", opts)
+keymap("n", "<leader>fk", ":Telescope keymaps<CR>", opts)
 keymap("n", "<leader>fb", ":Telescope buffers<CR>", opts)
 keymap("n", "<leader>fs", ":Telescope symbols<CR>", opts)
 keymap("n", "<leader>fl", ":Telescope luasnip<CR>", opts)
-keymap("n", "<leader>fg", ":Telescope live_grep<CR>", opts)
+keymap("n", "<leader>fo", ":Telescope oldfiles<CR>", opts)
+keymap("n", "<leader>fw", ":Telescope live_grep<CR>", opts)
 keymap("n", "<leader>fh", ":Telescope help_tags<CR>", opts)
 keymap("n", "<leader>fm", ":Telescope bookmarks<CR>", opts)
 keymap("n", "<leader>ff", ":Telescope find_files<CR>", opts)
@@ -107,12 +109,6 @@ end
 local cmd = vim.api.nvim_command
 cmd("autocmd! TermOpen term://* lua set_terminal_keymaps()")
 
--- nvim trouble
-keymap("n", "<leader>xx", ":TroubleToggle<CR>", opts)
-keymap("n", "<leader>xl", ":TroubleToggle loclist<CR>", opts)
-keymap("n", "<leader>xq", ":TroubleToggle quickfix<CR>", opts)
-keymap("n", "<leader>xw", ":TroubleToggle workspace_diagnostics<CR>", opts)
-
 local M = {}
 -- nvim aerial
 M.aerial = function(bufmap)
@@ -124,8 +120,7 @@ M.aerial = function(bufmap)
 end
 
 -- nvim cmp
-M.cmp = function(cmp)
-	local luasnip = require("luasnip")
+M.cmp = function(cmp, luasnip)
 	return {
 		["<C-d>"] = cmp.mapping.scroll_docs(4),
 		["<C-u>"] = cmp.mapping.scroll_docs(-4),
