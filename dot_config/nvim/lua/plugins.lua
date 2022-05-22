@@ -3,7 +3,6 @@
 local packer = require("packer")
 packer.init({
 	auto_reload_compiled = true,
-	-- git = { default_url_format = "https://ghproxy.com/https://github.com/%s" },
 	git = { default_url_format = "https://github.com/%s" },
 	display = {
 		open_fn = function()
@@ -26,46 +25,14 @@ packer.init({
 packer.startup(function(use)
 	use({ "jghauser/mkdir.nvim" })
 	use({ "nvim-lua/plenary.nvim" })
+	use({ "mg979/vim-visual-multi" })
 	use({ "dstein64/vim-startuptime" })
 	use({ "kyazdani42/nvim-web-devicons" })
-	use({ "L3MON4D3/LuaSnip", config = [[require "config/snippets"]] })
+	use({ "rafamadriz/friendly-snippets" })
+	use({ "gingjin/vim-neovim-youdao-translator" })
 	use({ "sainnhe/sonokai", config = [[require "config/colorscheme"]] })
 	use({ "nvim-lualine/lualine.nvim", config = [[require "config/lualine"]] })
 	use({ "kyazdani42/nvim-tree.lua", config = [[require "config/nvim-tree"]] })
-
-	use({
-		"nvim-treesitter/nvim-treesitter",
-		run = ":TSUpdate",
-		requires = {
-			"p00f/nvim-ts-rainbow",
-			"windwp/nvim-ts-autotag",
-			"nvim-treesitter/playground",
-			"JoosepAlviste/nvim-ts-context-commentstring",
-		},
-		config = [[require "config/treesitter"]],
-	})
-
-	use({
-		"hrsh7th/nvim-cmp",
-		after = "LuaSnip",
-		requires = {
-			"hrsh7th/cmp-calc",
-			"hrsh7th/cmp-path",
-			"hrsh7th/cmp-buffer",
-			"hrsh7th/cmp-cmdline",
-			"hrsh7th/cmp-nvim-lsp",
-			"hrsh7th/cmp-nvim-lua",
-			"hrsh7th/cmp-nvim-lsp-signature-help",
-			"hrsh7th/cmp-nvim-lsp-document-symbol",
-			-- thirdparty
-			"rcarriga/cmp-dap",
-			"David-Kunz/cmp-npm",
-			"ray-x/cmp-treesitter",
-			"saadparwaiz1/cmp_luasnip",
-			"lukas-reineke/cmp-under-comparator",
-		},
-		config = [[require "config/autocompletion"]],
-	})
 
 	use({
 		"nvim-telescope/telescope.nvim",
@@ -82,44 +49,74 @@ packer.startup(function(use)
 		config = [[require "config/telescope"]],
 	})
 
+	use({
+		"nvim-treesitter/nvim-treesitter",
+		run = ":TSUpdate",
+		requires = {
+			"p00f/nvim-ts-rainbow",
+			"windwp/nvim-ts-autotag",
+			"JoosepAlviste/nvim-ts-context-commentstring",
+		},
+		config = [[require "config/treesitter"]],
+	})
+
+	use({ "L3MON4D3/LuaSnip", config = [[require "config/snippets"]] })
+	use({
+		"hrsh7th/nvim-cmp",
+		requires = {
+			{ "hrsh7th/cmp-calc", after = "nvim-cmp" },
+			{ "hrsh7th/cmp-path", after = "nvim-cmp" },
+			{ "hrsh7th/cmp-buffer", after = "nvim-cmp" },
+			{ "hrsh7th/cmp-cmdline", after = "nvim-cmp" },
+			{ "hrsh7th/cmp-nvim-lsp"},
+			{ "hrsh7th/cmp-nvim-lua", after = "cmp_luasnip" },
+			{ "hrsh7th/cmp-nvim-lsp-signature-help", after = "nvim-lspconfig" },
+			{ "hrsh7th/cmp-nvim-lsp-document-symbol", after = "nvim-lspconfig" },
+			-- thirdparty
+			{ "rcarriga/cmp-dap", after = "nvim-dap" },
+			{ "David-Kunz/cmp-npm", after = "LuaSnip" },
+			{ "saadparwaiz1/cmp_luasnip", after = "LuaSnip" },
+			{ "ray-x/cmp-treesitter", after = "nvim-treesitter" },
+			{ "lukas-reineke/cmp-under-comparator"},
+		},
+		config = [[require "config/autocompletion"]],
+	})
+
+	use({ "mfussenegger/nvim-dap", event = "BufRead", config = [[require "config/dapconfig"]] })
+	use({ "rcarriga/nvim-dap-ui", after = "nvim-dap", config = [[require "config/dapui"]] })
+	use({ "theHamsta/nvim-dap-virtual-text", after = "nvim-dap", config = [[require "config/daptext"]] })
+
+	use({ "neovim/nvim-lspconfig", after='LuaSnip', config = [[require "config/lsp"]] })
+	use({ "tami5/lspsaga.nvim", after = "nvim-lspconfig", config = [[require "config/lspsaga"]] })
+	use({ "williamboman/nvim-lsp-installer", after = "nvim-lspconfig", config = [[require "config/lsp_install"]] })
+
+	use({ "sbdchd/neoformat", after = "nvim-cmp", config = [[require "config/neoformat"]] })
+	use({ "mfussenegger/nvim-lint", after = "nvim-cmp", config = [[require "config/lint"]] })
+	use({ "stevearc/aerial.nvim", after = "nvim-cmp", config = [[require "config/aerial"]] })
+	use({ "numToStr/Comment.nvim", after = "nvim-cmp", config = [[require "config/comment"]] })
+	use({ "folke/todo-comments.nvim", after = "nvim-cmp", config = [[require "config/todo"]] })
+	use({ "windwp/nvim-autopairs", after = "nvim-cmp", config = [[require "config/autopairs"]] })
+	use({ "lukas-reineke/indent-blankline.nvim", after = "nvim-treesitter", config = [[require "config/indent"]] })
+
+	use({ "tpope/vim-surround", event = "InsertCharPre" })
+	use({ "kevinhwang91/rnvimr", event = "BufRead", config = [[require "config/rnvimr"]] })
+	use({ "chentoast/marks.nvim", event = "BufRead", config = [[require "config/marks"]] })
+	use({ "kdheepak/lazygit.nvim", event = "BufRead", config = [[require "config/lazygit"]] })
+	use({ "lewis6991/gitsigns.nvim", event = "BufRead", config = [[require "config/gitsigns"]] })
+	use({ "akinsho/toggleterm.nvim", event = "BufRead", config = [[require "config/toggleterm"]] })
+	use({ "norcalli/nvim-colorizer.lua", event = "BufRead", config = [[require "config/colorizer"]] })
+	use({ "max397574/better-escape.nvim", event = "InsertCharPre", config = [[require "config/escape"]] })
+
 	use({ "mechatroner/rainbow_csv", ft = "csv" })
 	use({ "baskerville/vim-sxhkdrc", ft = "sxhkdrc" })
 	use({ "Vimjas/vim-python-pep8-indent", ft = "python" })
-	use({ "lervag/vimtex", config = [[require "config/vimtex"]], ft = "tex" })
+	use({ "lervag/vimtex", config = [[require "config/vimtex"]], ft = { "tex", "bib" } })
 	use({
 		"iamcco/markdown-preview.nvim",
 		run = "cd app && yarn install",
 		config = [[require 'config/markdown-preview']],
 		ft = "markdown",
 	})
-
-	use({ "rcarriga/nvim-dap-ui", after = "nvim-dap", config = [[require "config/dapui"]] })
-	use({ "mfussenegger/nvim-dap", after = "nvim-cmp", config = [[require "config/dapconfig"]] })
-	use({ "windwp/nvim-autopairs", after = "nvim-cmp", config = [[require "config/autopairs"]] })
-	use({ "tami5/lspsaga.nvim", after = "nvim-lspconfig", config = [[require "config/lspsaga"]] })
-	use({ "theHamsta/nvim-dap-virtual-text", after = "nvim-dap", config = [[require "config/daptext"]] })
-	use({ "williamboman/nvim-lsp-installer", after = "nvim-lspconfig", config = [[require "config/lsp_install"]] })
-
-	use({ "h-hg/fcitx.nvim", event = "VimEnter" })
-	use({ "tpope/vim-surround", event = "VimEnter" })
-	use({ "mg979/vim-visual-multi", event = "VimEnter" })
-	use({ "rafamadriz/friendly-snippets", event = "InsertCharPre" })
-	use({ "gingjin/vim-neovim-youdao-translator", event = "VimEnter" })
-	use({ "neovim/nvim-lspconfig", event = "VimEnter", config = [[require "config/lsp"]] })
-	use({ "sbdchd/neoformat", event = "VimEnter", config = [[require "config/neoformat"]] })
-	use({ "folke/trouble.nvim", event = "VimEnter", config = [[require "config/trouble"]] })
-	use({ "kevinhwang91/rnvimr", event = "BufNew", config = [[require "config/rnvimr"]] })
-	use({ "chentoast/marks.nvim", event = "VimEnter", config = [[require "config/marks"]] })
-	use({ "stevearc/aerial.nvim", event = "VimEnter", config = [[require "config/aerial"]] })
-	use({ "mfussenegger/nvim-lint", event = "VimEnter", config = [[require "config/lint"]] })
-	use({ "numToStr/Comment.nvim", event = "VimEnter", config = [[require "config/comment"]] })
-	use({ "kdheepak/lazygit.nvim", event = "VimEnter", config = [[require "config/lazygit"]] })
-	use({ "folke/todo-comments.nvim", event = "VimEnter", config = [[require "config/todo"]] })
-	use({ "lewis6991/gitsigns.nvim", event = "VimEnter", config = [[require "config/gitsigns"]] })
-	use({ "akinsho/toggleterm.nvim", event = "VimEnter", config = [[require "config/toggleterm"]] })
-	use({ "norcalli/nvim-colorizer.lua", event = "VimEnter", config = [[require "config/colorizer"]] })
-	use({ "max397574/better-escape.nvim", event = "InsertCharPre", config = [[require "config/escape"]] })
-	use({ "lukas-reineke/indent-blankline.nvim", event = "VimEnter", config = [[require "config/indent"]] })
 end)
 
 local cmd = vim.api.nvim_create_autocmd
