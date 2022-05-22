@@ -11,6 +11,12 @@ g.vimtex_compiler_method = "latexmk"
 g.vimtex_texcount_custom_arg = " -ch -total"
 g.matchup_override_vimtex = 1
 g.matchup_matchparen_deferred = 1
+g.vimtex_toc_config = {
+	["name"] = "ToC",
+	["show_help"] = 0,
+	["split_width"] = 30,
+	["todo_sorted"] = 0,
+}
 
 -- % !TEX program = xelatex
 g.vimtex_compiler_latexmk_engines = {
