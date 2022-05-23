@@ -4,17 +4,16 @@ g.maplocalleader = " "
 g.python3_host_prog = "~/.pyenv/versions/py3.7/bin/python3.7"
 
 local cmd = vim.cmd
-cmd("syntax enable")
-cmd("filetype plugin indent on")
+cmd("filetype plugin on")
+cmd("filetype indent on")
 
 local options = {
 	autowrite = true,
 	autowriteall = true,
 	backup = false,
 	clipboard = "unnamedplus",
-	cmdheight = 1,
+	cmdheight = 2,
 	completeopt = { "menu", "menuone", "noselect" },
-	-- conceallevel = 1,
 	-- cursorcolumn = true,
 	cursorline = true,
 	encoding = "utf-8",
@@ -80,5 +79,4 @@ M.servers = function()
 		"yamlls",
 	}
 end
-
 return M
