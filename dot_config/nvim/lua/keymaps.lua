@@ -122,8 +122,8 @@ end
 -- nvim cmp
 M.cmp = function(cmp, luasnip)
 	return {
-		["<C-d>"] = cmp.mapping.scroll_docs(4),
-		["<C-u>"] = cmp.mapping.scroll_docs(-4),
+		["<C-f>"] = cmp.mapping.scroll_docs(4),
+		["<C-b>"] = cmp.mapping.scroll_docs(-4),
 		["<C-p>"] = cmp.mapping.select_prev_item(),
 		["<C-n>"] = cmp.mapping.select_next_item(),
 		["<C-Space>"] = cmp.mapping.complete(),
@@ -181,15 +181,16 @@ M.lsp = function(bufmap)
 	bufmap("n", "[e", ":Lspsaga diagnostic_jump_prev<CR>", opts)
 	bufmap("n", "]e", ":Lspsaga diagnostic_jump_next<CR>", opts)
 	bufmap("n", "K", ":Lspsaga hover_doc<CR>", opts)
-	bufmap("n", "<C-k>", ":Lspsaga signature_help<CR>", opts)
-	bufmap("n", "<leader>rn", ":Lspsaga rename<CR>", opts)
-	bufmap("n", "<leader>lf", ":Lspsaga lsp_finder<CR>", opts)
-	bufmap("n", "<leader>pd", ":Lspsaga preview_definition<CR>", opts)
-	bufmap("n", "<leader>ld", ":Lspsaga show_line_diagnostics<CR>", opts)
+	bufmap("n", "gr", ":Lspsaga rename<CR>", opts)
+	bufmap("n", "gh", ":Lspsaga lsp_finder<CR>", opts)
+	bufmap("n", "gs", ":Lspsaga signature_help<CR>", opts)
+	bufmap("n", "gd", ":Lspsaga preview_definition<CR>", opts)
+	bufmap("n", "<leader>le", ":Lspsaga show_line_diagnostics<CR>", opts)
+	bufmap("n", "<leader>ce", ":Lspsaga show_cursor_diagnostics<CR>", opts)
 	bufmap("n", "<leader>ca", ":Lspsaga code_action<CR>", opts)
-	bufmap("x", "<leader>ca", ":<C-U>Lspsaga range_code_action<CR>", opts)
-	bufmap("n", "<C-d>", ":lua require('lspsaga.action').smart_scroll_with_saga(1)<CR>", {})
-	bufmap("n", "<C-u>", ":lua require('lspsaga.action').smart_scroll_with_saga(-1)<CR>", {})
+	bufmap("v", "<leader>ca", ":<C-U>Lspsaga range_code_action<CR>", opts)
+	bufmap("n", "<C-d>", ":lua require('lspsaga.action').smart_scroll_with_saga(1)<cr>", {})
+	bufmap("n", "<C-u>", ":lua require('lspsaga.action').smart_scroll_with_saga(-1)<cr>", {})
 end
 
 return M
