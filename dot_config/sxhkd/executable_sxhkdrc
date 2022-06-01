@@ -14,7 +14,7 @@ XF86MonBrightnessUp
 XF86MonBrightnessDown
   xbacklight -dec 10
 
-# Audio
+# audio
 XF86AudioRaiseVolume
   pamixer --increase 10
 XF86AudioLowerVolume
@@ -28,18 +28,14 @@ XF86AudioPrev
 XF86AudioNext
   mpc next
 
+# rofi
+super + d
+  rofi -show drun
+
 # terminal emulator
 super + Return
   alacritty
 
-# program launcher
-super + d
-  rofi -show drun
-super + z
-  rofi -show window
-
-super + c
-  i3lock-fancy
 
 # make sxhkd reload its configuration files:
 super + Escape
@@ -54,8 +50,7 @@ super + alt + {q,r}
   bspc {quit,wm -r}
 
 # close and kill
-# super + {_,shift + }w
-super + {q}
+super + {_,shift + }w
   bspc node -{c,k}
 
 # alternate between the tiled and monocle layout
@@ -76,7 +71,7 @@ super + g
 
 # set the window state
 super + {t,shift + t,s,f}
-  bspc node -t {tiled``seudo_tiled,floating,fullscreen}
+  bspc node -t {tiled,pseudo_tiled,floating,fullscreen}
 
 # set the node flags
 super + ctrl + {m,x,y,z}
@@ -109,8 +104,8 @@ super + {grave,Tab}
 # focus the older or newer node in the focus history
 super + {o,i}
   bspc wm -h off; \
-    bspc node {older,newer} -f; \
-      bspc wm -h on
+  bspc node {older,newer} -f; \
+  bspc wm -h on
 
 # focus or send to the given desktop
 super + {_,shift + }{1-9,0}
