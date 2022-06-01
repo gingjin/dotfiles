@@ -36,5 +36,5 @@ ls.add_snippets("tex", {
     }),
   }),
 }, {
-	key = "tex",
+  key = "tex",
 })
