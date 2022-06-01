@@ -1,6 +1,7 @@
-typeset -U path
-
 # go
+export GOROOT=$HOME/go
+export GOMODCACHE=$HOME/go/pkg/mod
+export PATH=$PATH:$GOROOT/bin
 export GOPROXY=https://mirrors.aliyun.com/goproxy/
 
 # Ruby
@@ -11,7 +12,3 @@ export PATH="$(ruby -e 'print Gem.user_dir')/bin:$PATH"
 export PERL_MM_OPT=$HOME/perl5
 # PERL_MB_OPT
 export PERL_MB_OPT=$HOME/perl5
-
-# FZF
-export FZF_DEFAULT_COMMAND="fd --hidden --exclude={.git,.idea,.vscode,.sass-cache,node_modules,build} --type f"
-export FZF_DEFAULT_OPTS="--height 60% --layout=reverse --preview '(highlight -O ansi {} || bat {}) 2> /dev/null | head -500' --preview-window=down"
