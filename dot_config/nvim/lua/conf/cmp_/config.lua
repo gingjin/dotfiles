@@ -39,8 +39,9 @@ cmp.setup({
   }),
   mapping = cmp.mapping.preset.insert(require("keymaps").cmp(cmp, luasnip)),
   formatting = {
+    fields = { "kind", "abbr" },
     format = function(_, vim_item)
-      vim_item.kind = require("conf.cmp_.kind").kind()[vim_item.kind]
+      vim_item.kind = require("conf.cmp_.kind").kind[vim_item.kind]
       return vim_item
     end,
   },
