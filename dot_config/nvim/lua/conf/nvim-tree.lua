@@ -35,7 +35,7 @@ require("nvim-tree").setup({
     add_trailing = true,
     group_empty = true,
     highlight_git = true,
-    highlight_opened_files = "none",
+    highlight_opened_files = "all",
     root_folder_modifier = ":~",
     indent_markers = {
       enable = true,
@@ -48,6 +48,7 @@ require("nvim-tree").setup({
     icons = {
       webdev_colors = true,
       git_placement = "before",
+      symlink_arrow = " ➛ ",
       padding = " ",
       show = {
         file = true,
