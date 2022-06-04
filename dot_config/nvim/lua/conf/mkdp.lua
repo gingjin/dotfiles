@@ -1,6 +1,7 @@
 -- markdown-preview
 --
 local g = vim.g
+g.mkdp_filetypes = "markdown"
 g.mkdp_auto_start = 0
 g.mkdp_auto_close = 1
 g.mkdp_refresh_slow = 1
