@@ -69,13 +69,13 @@ keymap("n", "<leader>lp", ":lua require'dap'.set_breakpoint(nil, nil, vim.fn.inp
 keymap("n", "<leader>dr", ":lua require'dap'.repl.toggle()<CR>", opts)
 keymap("n", "<leader>dl", ":lua require'dap'.run_last()<CR>", opts)
 
+-- nvim lazygit
+keymap("n", "<leader>gg", ":LazyGit<CR>", opts)
+
 -- nvim lualine
 keymap("n", "<Tab>", ":bnext<CR>", opts)
 keymap("n", "<S-Tab>", ":bprevious<CR>", opts)
 keymap("n", "<leader>bd", ":bdelete<CR>", opts)
-
--- nvim lazygit
-keymap("n", "<leader>gg", ":LazyGit<CR>", opts)
 
 -- nvim neoformat
 keymap("n", "<leader>i", ":Neoformat<CR>", opts)
@@ -93,14 +93,6 @@ keymap("n", "<leader>np", ":lua require('package-info').change_version<CR>", opt
 keymap("t", "<A-i>", "<C-\\><C-n>:RnvimrResize<CR>", opts)
 keymap("n", "<A-r>", ":RnvimrToggle<CR>", opts)
 keymap("t", "<A-r>", "<C-\\><C-n>:RnvimrToggle<CR>", opts)
-
--- nvim tree
-keymap("n", "<A-e>", ":NvimTreeToggle<CR>", opts)
-
--- nvim todo-comment
-keymap("n", "<leader>tl", ":TodoLocList<CR>", opts)
-keymap("n", "<leader>tq", ":TodoQuickFix<CR>", opts)
-keymap("n", "<leader>tt", ":TodoTelescope<CR>", opts)
 
 -- nvim telescope
 keymap("n", "<leader><space>", ":Telescope<CR>", opts)
@@ -122,6 +114,11 @@ keymap("n", "<leader>fdv", ":Telescope dap variables<CR>", opts)
 keymap("n", "<leader>fdc", ":Telescope dap configurations<CR>", opts)
 keymap("n", "<leader>fdl", ":Telescope dap list_breakpoints<CR>", opts)
 
+-- nvim todo-comment
+keymap("n", "<leader>tl", ":TodoLocList<CR>", opts)
+keymap("n", "<leader>tq", ":TodoQuickFix<CR>", opts)
+keymap("n", "<leader>tt", ":TodoTelescope<CR>", opts)
+
 -- nvim toggleterm
 function _G.set_terminal_keymaps()
   local map = vim.api.nvim_buf_set_keymap
@@ -134,6 +131,12 @@ function _G.set_terminal_keymaps()
 end
 local cmd = vim.api.nvim_command
 cmd("autocmd! TermOpen term://* lua set_terminal_keymaps()")
+
+-- nvim tree
+keymap("n", "<A-e>", ":NvimTreeToggle<CR>", opts)
+
+-- nvim zen-mode
+keymap("n", "<F12>", ":ZenMode<CR>", opts)
 
 local M = {}
 -- nvim aerial
@@ -148,14 +151,14 @@ end
 -- nvim cmp
 M.cmp = function(cmp, luasnip)
   return {
+    ["<C-Space>"] = cmp.mapping.complete(),
+    ["<C-c>"] = cmp.mapping.close(),
     ["<C-f>"] = cmp.mapping.scroll_docs(4),
     ["<C-b>"] = cmp.mapping.scroll_docs(-4),
     ["<C-p>"] = cmp.mapping.select_prev_item(),
     ["<C-n>"] = cmp.mapping.select_next_item(),
     ["<Up>"] = cmp.mapping.select_prev_item(),
     ["<Down>"] = cmp.mapping.select_next_item(),
-    ["<C-Space>"] = cmp.mapping.complete(),
-    ["<C-c>"] = cmp.mapping.close(),
     ["<CR>"] = cmp.mapping.confirm({
       behavior = cmp.ConfirmBehavior.Replace,
       select = false,
@@ -206,18 +209,19 @@ end
 
 -- nvim lspconfig
 M.lsp = function(bufmap)
-  bufmap("n", "[e", ":Lspsaga diagnostic_jump_prev<CR>", opts)
-  bufmap("n", "]e", ":Lspsaga diagnostic_jump_next<CR>", opts)
-  bufmap("n", "K", ":Lspsaga hover_doc<CR>", opts)
-  bufmap("n", "gr", ":Lspsaga rename<CR>", opts)
-  bufmap("n", "gh", ":Lspsaga lsp_finder<CR>", opts)
-  bufmap("n", "gs", ":Lspsaga signature_help<CR>", opts)
-  bufmap("n", "<leader>pd", ":Lspsaga preview_definition<CR>", opts)
-  bufmap("n", "<leader>le", ":Lspsaga show_line_diagnostics<CR>", opts)
-  bufmap("n", "<leader>ce", ":Lspsaga show_cursor_diagnostics<CR>", opts)
-  bufmap("n", "<leader>ca", ":Lspsaga code_action<CR>", opts)
-  bufmap("v", "<leader>ca", ":<C-U>Lspsaga range_code_action<CR>", opts)
-  bufmap("n", "<C-d>", ":lua require('lspsaga.action').smart_scroll_with_saga(1)<cr>", {})
-  bufmap("n", "<C-u>", ":lua require('lspsaga.action').smart_scroll_with_saga(-1)<cr>", {})
+  bufmap("n", "[e", ":lua vim.diagnostic.goto_prev()<CR>", opts)
+  bufmap("n", "]e", ":lua vim.diagnostic.goto_next()<CR>", opts)
+  bufmap("n", "<leader>e", ":lua vim.diagnostic.open_float()<CR>", opts)
+  bufmap("n", "<leader>q", ":lua vim.diagnostic.setloclist()<CR>", opts)
+
+  bufmap("n", "K", ":lua vim.lsp.buf.hover()<CR>", opts)
+  bufmap("n", "gr", ":lua vim.lsp.buf.references()<CR>", opts)
+  bufmap("n", "gd", ":lua vim.lsp.buf.definition()<CR>", opts)
+  bufmap("n", "gD", ":lua vim.lsp.buf.declaration()<CR>", opts)
+  bufmap("n", "gs", ":lua vim.lsp.buf.signature_help()<CR>", opts)
+  bufmap("n", "gh", ":lua vim.lsp.buf.type_definition()<CR>", opts)
+  bufmap("n", "<leader>rn", ":lua vim.lsp.buf.rename()<CR>", opts)
+  bufmap("n", "<leader>ca", ":lua vim.lsp.buf.code_action()<CR>", opts)
+  bufmap("v", "<leader>ca", ":lua vim.lsp.buf.code_action()<CR>", opts)
 end
 return M
