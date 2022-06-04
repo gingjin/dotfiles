@@ -36,6 +36,9 @@ keymap("n", "<C-s>", ":wa<CR>", opts)
 -- save and close the file
 keymap("n", "<C-q>", ":wq<CR>", opts)
 
+-- dadbod
+keymap("n", "<leader>dt", ":DBUIToggle<CR>", opts)
+
 -- markdown-preview
 keymap("n", "<leader>mp", "<Plug>MarkdownPreviewToggle", {})
 
