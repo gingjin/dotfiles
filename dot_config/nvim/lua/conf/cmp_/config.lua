@@ -1,7 +1,5 @@
 -- nvim cmp
 --
-vim.cmd("autocmd FileType sql,mysql,plsql lua require('cmp').setup.buffer({ sources = {{ name = 'vim-dadbod-completion' }} })")
-
 local cmp = require("cmp")
 local luasnip = require("luasnip")
 cmp.setup({
@@ -37,6 +35,11 @@ cmp.setup({
     { name = "npm", keyword_length = 4 },
     { name = "nvim_lsp_signature_help" },
   }),
+  buffer = {
+    sources = {
+      { name = "vim-dadbod-completion" },
+    },
+  },
   mapping = cmp.mapping.preset.insert(require("keymaps").cmp(cmp, luasnip)),
   formatting = {
     fields = { "kind", "abbr" },
