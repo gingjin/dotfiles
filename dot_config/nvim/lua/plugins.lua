@@ -22,12 +22,13 @@ packer.init({
 packer.startup(function(use)
   use({ "sainnhe/sonokai" })
 
-  use({ "tpope/vim-surround" })
   use({ "jghauser/mkdir.nvim" })
-  use({ "nvim-lua/plenary.nvim" })
-  use({ "mg979/vim-visual-multi" })
   use({ "dstein64/vim-startuptime" })
   use({ "kyazdani42/nvim-web-devicons" })
+
+  use({ "stevearc/aerial.nvim", config = [[require "conf.aerial"]] })
+  use({ "nvim-lualine/lualine.nvim", config = [[require "conf.lualine"]] })
+  use({ "kyazdani42/nvim-tree.lua", config = [[require "conf.nvim-tree"]] })
 
   use({
     "nvim-treesitter/nvim-treesitter",
@@ -49,8 +50,6 @@ packer.startup(function(use)
   use({
     "neovim/nvim-lspconfig",
     requires = {
-      "tami5/lspsaga.nvim",
-      "stevearc/aerial.nvim",
       "williamboman/nvim-lsp-installer",
     },
     config = [[require "conf.lsp_.init"]],
@@ -76,7 +75,6 @@ packer.startup(function(use)
       "hrsh7th/cmp-nvim-lsp",
       "hrsh7th/cmp-nvim-lsp-signature-help",
       "hrsh7th/cmp-nvim-lsp-document-symbol",
-      --hirdparty
       "rcarriga/cmp-dap",
       "David-Kunz/cmp-npm",
       "ray-x/cmp-treesitter",
@@ -91,14 +89,15 @@ packer.startup(function(use)
     "nvim-telescope/telescope.nvim",
     requires = {
       "nvim-lua/popup.nvim",
-      "tyru/open-browser.vim",
+      "nvim-lua/plenary.nvim",
+      "nvim-telescope/telescope-dap.nvim",
+      "nvim-telescope/telescope-packer.nvim",
       "nvim-telescope/telescope-symbols.nvim",
       "nvim-telescope/telescope-node-modules.nvim",
-      { "nvim-telescope/telescope-dap.nvim", module = "telescope._extensions.dap" },
-      { "benfowler/telescope-luasnip.nvim", module = "telescope._extensions.luasnip" },
-      { "nvim-telescope/telescope-packer.nvim", module = "telescope._extensions.packer" },
-      { "dhruvmanila/telescope-bookmarks.nvim", module = "telescope._extensions.bookmarks" },
-      { "nvim-telescope/telescope-fzf-native.nvim", run = "make", module = "telescope._extensions.fzf" },
+      "nvim-telescope/telescope-fzf-native.nvim", run = "make",
+      "tyru/open-browser.vim",
+      "benfowler/telescope-luasnip.nvim",
+      "dhruvmanila/telescope-bookmarks.nvim",
     },
     config = [[require "conf.telescope"]],
   })
@@ -109,29 +108,36 @@ packer.startup(function(use)
       "kristijanhusak/vim-dadbod-ui",
       "kristijanhusak/vim-dadbod-completion",
     },
+    ft = { "sql", "mysql", "plsql" },
     config = [[require "conf.dadbod"]],
   })
 
-  use({ "sbdchd/neoformat", config = [[require "conf.format"]] })
-  use({ "mfussenegger/nvim-lint", config = [[require "conf.lint"]] })
-  use({ "kyazdani42/nvim-tree.lua", config = [[require "conf.nvim-tree"]] })
-  use({ "nvim-lualine/lualine.nvim", config = [[require "conf.lualine"]] })
-  use({ "lukas-reineke/indent-blankline.nvim", config = [[require "conf.indent"]] })
-
+  use({ "h-hg/fcitx.nvim", event = "BufRead" })
+  use({ "tpope/vim-surround", event = "BufRead" })
+  use({ "mg979/vim-visual-multi", event = "BufRead" })
   use({ "voldikss/vim-translator", event = "BufRead" })
+  use({ "sbdchd/neoformat", event = "BufRead", config = [[require "conf.format"]] })
   use({ "kevinhwang91/rnvimr", event = "BufRead", config = [[require "conf.rnvimr"]] })
   use({ "chentoast/marks.nvim", event = "BufRead", config = [[require "conf.marks"]] })
+  use({ "mfussenegger/nvim-lint", event = "BufRead", config = [[require "conf.lint"]] })
+  use({ "folke/zen-mode.nvim", event = "BufRead", config = [[require "conf.zen-mode"]] })
   use({ "numToStr/Comment.nvim", event = "BufRead", config = [[require "conf.comment"]] })
   use({ "folke/todo-comments.nvim", event = "BufRead", config = [[require "conf.todo"]] })
   use({ "kdheepak/lazygit.nvim", event = "BufRead", config = [[require "conf.lazygit"]] })
   use({ "lewis6991/gitsigns.nvim", event = "BufRead", config = [[require "conf.gitsigns"]] })
   use({ "akinsho/toggleterm.nvim", event = "BufRead", config = [[require "conf.toggleterm"]] })
   use({ "norcalli/nvim-colorizer.lua", event = "BufRead", config = [[require "conf.colorizer"]] })
+  use({ "lukas-reineke/indent-blankline.nvim", event = "BufRead", config = [[require "conf.indent"]] })
+
   use({ "max397574/better-escape.nvim", event = "InsertCharPre", config = [[require "conf.escape"]] })
 
   use({ "mechatroner/rainbow_csv", ft = "csv" })
   use({ "baskerville/vim-sxhkdrc", ft = "sxhkdrc" })
-  use({ "lervag/vimtex", ft = "tex", config = [[require "conf.vimtex"]] })
+  use({
+    "lervag/vimtex",
+    ft = "tex",
+    config = [[require "conf.vimtex"]]
+  })
   use({
     "vuki656/package-info.nvim",
     requires = "MunifTanjim/nui.nvim",
@@ -142,7 +148,16 @@ packer.startup(function(use)
     "iamcco/markdown-preview.nvim",
     run = "cd app && yarn install",
     ft = "markdown",
-    config = [[require 'conf.mkdp']],
+    config = [[require "conf.mkdp"]],
+  })
+  use({
+    "nvim-neorg/neorg",
+    requires = {
+      "max397574/neorg-kanban",
+      "nvim-neorg/neorg-telescope",
+    },
+    ft = "norg",
+    config = [[require "conf.neorg"]],
   })
 end)
 
