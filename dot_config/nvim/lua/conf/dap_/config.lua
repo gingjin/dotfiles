@@ -14,17 +14,17 @@ sign("DapStopped", { text = "", texthl = "", numhl = "" })
 sign("DapBreakpointRejected", { text = "", texthl = "", numhl = "" })
 
 -- c/c++/rust
-dap.adapters.cppdbg = require("conf.dap_.adapters").cpp.cppdbg()
-dap.configurations.cpp = require("conf.dap_.adapters").cpp.config()
+dap.adapters.cppdbg = require("conf.dap_.adapters").cpp.cppdbg
+dap.configurations.cpp = require("conf.dap_.adapters").cpp.config
 dap.configurations.c = dap.configurations.cpp
 dap.configurations.rust = dap.configurations.cpp
 
 -- go
-dap.adapters.go = require("conf.dap_.adapters").go.go()
-dap.configurations.go = require("conf.dap_.adapters").go.config()
+dap.adapters.go = require("conf.dap_.adapters").go.go
+dap.configurations.go = require("conf.dap_.adapters").go.config
 
 -- python
 -- local venv = os.getenv("VIRTUAL_ENV")
 -- local command = vim.fn.getcwd() .. string.format("%s/bin/python", venv)
-dap.adapters.python = require("conf.dap_.adapters").python.python()
-dap.configurations.python = require("conf.dap_.adapters").python.config()
+dap.adapters.python = require("conf.dap_.adapters").python.python
+dap.configurations.python = require("conf.dap_.adapters").python.config
