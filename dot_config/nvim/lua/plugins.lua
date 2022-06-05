@@ -26,7 +26,6 @@ packer.startup(function(use)
   use({ "dstein64/vim-startuptime" })
   use({ "kyazdani42/nvim-web-devicons" })
 
-  use({ "stevearc/aerial.nvim", config = [[require "conf.aerial"]] })
   use({ "nvim-lualine/lualine.nvim", config = [[require "conf.lualine"]] })
   use({ "kyazdani42/nvim-tree.lua", config = [[require "conf.nvim-tree"]] })
 
@@ -112,6 +111,12 @@ packer.startup(function(use)
     config = [[require "conf.dadbod"]],
   })
 
+  use({
+    "skywind3000/asynctasks.vim",
+    requires = "skywind3000/asyncrun.vim",
+    config = [[require "conf.tasks"]],
+  })
+
   use({ "h-hg/fcitx.nvim", event = "BufRead" })
   use({ "tpope/vim-surround", event = "BufRead" })
   use({ "mg979/vim-visual-multi", event = "BufRead" })
@@ -127,8 +132,8 @@ packer.startup(function(use)
   use({ "lewis6991/gitsigns.nvim", event = "BufRead", config = [[require "conf.gitsigns"]] })
   use({ "akinsho/toggleterm.nvim", event = "BufRead", config = [[require "conf.toggleterm"]] })
   use({ "norcalli/nvim-colorizer.lua", event = "BufRead", config = [[require "conf.colorizer"]] })
+  use({ "simrat39/symbols-outline.nvim", event = "BufRead", config = [[require "conf.outline"]] })
   use({ "lukas-reineke/indent-blankline.nvim", event = "BufRead", config = [[require "conf.indent"]] })
-
   use({ "max397574/better-escape.nvim", event = "InsertCharPre", config = [[require "conf.escape"]] })
 
   use({ "mechatroner/rainbow_csv", ft = "csv" })
