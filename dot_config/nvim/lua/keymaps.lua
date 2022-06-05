@@ -54,9 +54,6 @@ keymap('n', '<leader>tx', '<Plug>TranslateX', opts)
 -- vimtex
 keymap("n", "<leader>lw", ":VimtexCountWords<CR>", opts)
 
--- nvim aerial
-keymap("n", "<leader>at", ":AerialToggle<CR>", opts)
-
 -- nvim colorizer
 keymap("n", "<leader>ct", ":ColorizerToggle<CR>", opts)
 
@@ -97,6 +94,9 @@ keymap("t", "<A-i>", "<C-\\><C-n>:RnvimrResize<CR>", opts)
 keymap("n", "<A-r>", ":RnvimrToggle<CR>", opts)
 keymap("t", "<A-r>", "<C-\\><C-n>:RnvimrToggle<CR>", opts)
 
+-- nvim symbols-outline
+keymap("n", "<leader>so", ":SymbolsOutline<CR>", opts)
+
 -- nvim telescope
 keymap("n", "<leader><space>", ":Telescope<CR>", opts)
 keymap("n", "<leader>fk", ":Telescope keymaps<CR>", opts)
@@ -105,7 +105,6 @@ keymap("n", "<leader>fo", ":Telescope oldfiles<CR>", opts)
 keymap("n", "<leader>fw", ":Telescope live_grep<CR>", opts)
 keymap("n", "<leader>fh", ":Telescope help_tags<CR>", opts)
 keymap("n", "<leader>ff", ":Telescope find_files<CR>", opts)
-keymap("n", "<leader>fa", ":Telescope aerial<CR>", opts)
 keymap("n", "<leader>fp", ":Telescope packer<CR>", opts)
 keymap("n", "<leader>fs", ":Telescope symbols<CR>", opts)
 keymap("n", "<leader>fl", ":Telescope luasnip<CR>", opts)
