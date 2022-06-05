@@ -169,7 +169,7 @@ require("lualine").setup({
   extensions = {
     "nvim-tree",
     "toggleterm",
-    "aerial",
     "quickfix",
+    "symbols-outline",
   },
 })
