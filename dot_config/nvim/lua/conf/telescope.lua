@@ -33,7 +33,6 @@ tele.setup({
 
 tele.load_extension("dap")
 tele.load_extension("fzf")
-tele.load_extension('aerial')
 tele.load_extension("packer")
 tele.load_extension("luasnip")
 tele.load_extension("bookmarks")
