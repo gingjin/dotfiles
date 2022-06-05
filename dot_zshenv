@@ -1,8 +1,14 @@
 # go
-export GOROOT=$HOME/go
-export GOMODCACHE=$HOME/go/pkg/mod
-export PATH=$PATH:$GOROOT/bin
+export GO111MODULE=auto
 export GOPROXY=https://mirrors.aliyun.com/goproxy/
+# go root path
+export GOROOT=/lib/go
+export PATH="$GOROOT/bin:$PATH"
+# go work path
+export GOPATH=$HOME/go/src
+export PATH="$GOPATH/bin:$PATH"
+export GOPATH=$HOME/test_lsp/go
+export PATH="$GOPATH/bin:$PATH"
 
 # Ruby
 export PATH=/usr/lib/ruby/gems/3.0.0:$PATH
