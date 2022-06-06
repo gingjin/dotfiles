@@ -107,7 +107,6 @@ packer.startup(function(use)
       "kristijanhusak/vim-dadbod-ui",
       "kristijanhusak/vim-dadbod-completion",
     },
-    ft = { "sql", "mysql", "plsql" },
     config = [[require "conf.dadbod"]],
   })
 
