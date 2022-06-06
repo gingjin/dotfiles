@@ -36,6 +36,10 @@ keymap("n", "<C-s>", ":wa<CR>", opts)
 -- save and close the file
 keymap("n", "<C-q>", ":wq<CR>", opts)
 
+-- asynctasks
+keymap("n", "<F9>", ":AsyncTask file-build<CR>", opts)
+keymap("n", "<F10>", ":AsyncTask file-run<CR>", opts)
+
 -- dadbod
 keymap("n", "<leader>dt", ":DBUIToggle<CR>", opts)
 
