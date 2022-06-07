@@ -35,7 +35,7 @@ require("nvim-tree").setup({
     add_trailing = true,
     group_empty = true,
     highlight_git = true,
-    highlight_opened_files = "all",
+    highlight_opened_files = "icon",
     root_folder_modifier = ":~",
     indent_markers = {
       enable = true,
@@ -70,11 +70,11 @@ require("nvim-tree").setup({
           symlink_open = "",
         },
         git = {
-          unstaged = "",
-          staged = "",
+          unstaged = "✗",
+          staged = "✓",
           unmerged = "",
-          renamed = "ﱴ",
-          untracked = "",
+          renamed = "➜",
+          untracked = "★",
           deleted = "",
           ignored = "ﱤ",
         },
@@ -119,7 +119,7 @@ require("nvim-tree").setup({
     use_system_clipboard = true,
     change_dir = {
       enable = true,
-      global = true,
+      global = false,
       restrict_above_cwd = false,
     },
     open_file = {
@@ -136,7 +136,7 @@ require("nvim-tree").setup({
     },
   },
   trash = {
-    cmd = "trash",
+    cmd = "gio trash",
     require_confirm = true,
   },
   live_filter = {
