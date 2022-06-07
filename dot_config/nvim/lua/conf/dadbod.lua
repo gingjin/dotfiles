@@ -34,10 +34,4 @@ g.db_ui_icons = {
   ["connection_error"] = '✕',
 }
 
-g.completion_chain_complete_list = {
-  ["sql"] = {
-    ["complete_items"] = { "vim-dadbod-completion" },
-  },
-}
-g.completion_matching_strategy_list = { "exact", "substring" }
 g.completion_matching_ignore_case = 1
