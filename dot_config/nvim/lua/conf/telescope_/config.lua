@@ -36,7 +36,7 @@ tele.setup({
       case_mode = "smart_case",
     },
     bookmarks = {
-      selected_browser = "edge",
+      selected_browser = "chrome",
       url_open_command = "open",
       url_open_plugin = "open_browser",
       full_path = true,
