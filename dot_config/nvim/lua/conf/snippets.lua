@@ -25,9 +25,10 @@ local conds = require("luasnip.extras.expand_conditions")
 ls.add_snippets("tex", {
   s("ctex", {
     t({
+      "% !TEX program = xelatex",
+      "",
       "\\documentclass{article}",
       "\\usepackage[UTF8]{ctex}",
-      "",
       "",
       "\\begin{document}",
       "  ",i(1),
