@@ -1,11 +1,12 @@
--- sonokai espresso
+-- gruvbox material
 --
 local g = vim.g
-g.sonokai_style = "espresso"
-g.sonokai_enable_italic = 1
-g.sonokai_transparent_background = 0
-g.sonokai_menu_selection_background = "red"
-g.sonokai_diagnostic_text_highlight = 1
-g.sonokai_better_performance = 1
-
-vim.cmd("colorscheme sonokai")
+g.gruvbox_material_better_performance = 1
+g.gruvbox_material_enable_bold = 1
+g.gruvbox_material_enable_italic = 1
+g.gruvbox_material_transparent_background = 1
+g.gruvbox_material_sign_column_background = "none"
+g.gruvbox_material_ui_contrast = "high"
+g.gruvbox_material_diagnostic_virtual_text = "colored"
+g.gruvbox_material_better_performance = 1
+vim.cmd("colorscheme gruvbox-material")
