@@ -1,13 +1,14 @@
--- nvim-lsp-installer
---
-require("nvim-lsp-installer").setup({
-  ensure_installed = require("conf.lsp_.servers").servers,
-  automatic_installation = true,
+require("mason").setup({
   ui = {
     icons = {
-      server_installed = "",
-      server_pending = "",
-      server_uninstalled = "",
+      package_installed = "",
+      package_pending = "",
+      package_uninstalled = "",
     },
   },
+})
+
+require("mason-lspconfig").setup({
+  ensure_installed = require("conf.lsp_.servers").servers,
+  automatic_installation = true,
 })

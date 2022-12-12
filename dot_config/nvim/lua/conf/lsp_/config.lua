@@ -14,32 +14,26 @@ vim.diagnostic.config({
   severity_sort = true,
 })
 
-local signs = { Error = "", Warn = "", Hint = "", Info = "" }
+local signs = { Error = "", Warn = "", Hint = "ﴞ", Info = "" }
 for type, icon in pairs(signs) do
   local hl = "DiagnosticSign" .. type
-  vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+  vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
 end
 
 local on_attach = function(_, bufnr)
-  local function bufmap(...)
-    vim.api.nvim_buf_set_keymap(bufnr, ...)
-  end
-
-  require("keymaps").lsp(bufmap)
+  require("conf.lsp_.keymaps").lsp(bufnr)
 end
 
 local handlers = {
-  ["textDocument/hover"] =  vim.lsp.with(
+  ["textDocument/hover"] = vim.lsp.with(
     vim.lsp.handlers.hover, { border = "double" }
   ),
-  ["textDocument/signatureHelp"] =  vim.lsp.with(
+  ["textDocument/signatureHelp"] = vim.lsp.with(
     vim.lsp.handlers.signature_help, { border = "double" }
   ),
 }
 
-local capabilities = require("cmp_nvim_lsp").update_capabilities(
-  vim.lsp.protocol.make_client_capabilities()
-)
+local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
 for _, lsp in ipairs(require("conf.lsp_.servers").servers) do
   require("lspconfig")[lsp].setup({
