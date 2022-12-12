@@ -3,6 +3,12 @@
 local cmp = require("cmp")
 local luasnip = require("luasnip")
 cmp.setup({
+  -- enabled = function()
+  --   return vim.api.nvim_buf_get_option(0, "buftype") ~= "prompt" or require("cmp_dap").is_dap_buffer()
+  -- end,
+  -- view = { -- 当光标在屏幕底下时，自下而上选择
+  --   entries = { name = "custom", selection_order = "near_cursor" }
+  -- },
   sorting = {
     comparators = {
       cmp.config.compare.offset,
@@ -20,53 +26,55 @@ cmp.setup({
       luasnip.lsp_expand(args.body)
     end,
   },
-  enabled = function()
-    return vim.api.nvim_buf_get_option(0, "buftype") ~= "prompt" or require("cmp_dap").is_dap_buffer()
-  end,
   sources = cmp.config.sources({
-    { name = "dap" },
     { name = "calc" },
     { name = "path" },
-    { name = "buffer" },
-    { name = "luasnip" },
-    { name = "nvim_lua" },
     { name = "nvim_lsp" },
-    { name = "treesitter" },
+    { name = "nvim_lua" },
+    { name = "color_names" },
+    { name = "luasnip_choice" },
     { name = "npm", keyword_length = 4 },
     { name = "nvim_lsp_signature_help" },
+    { name = "luasnip", option = { show_autosnippets = true } },
+    { name = "buffer", option = { get_bufnrs = function() return vim.api.nvim_list_bufs() end } },
   }),
-  buffer = {
-    sources = {
-      { name = "vim-dadbod-completion" },
-    },
-  },
-  mapping = cmp.mapping.preset.insert(require("keymaps").cmp(cmp, luasnip)),
+  mapping = cmp.mapping.preset.insert(require("conf.cmp_.keymaps").keymap(cmp, luasnip)),
   formatting = {
     fields = { "kind", "abbr", "menu" },
     format = function(entry, vim_item)
-      vim_item.kind = require("conf.cmp_.icon").kinds[vim_item.kind]
-      vim_item.menu = require("conf.cmp_.icon").menus[entry.source.name]
+      vim_item.kind = require("conf.cmp_.icon").cmp_kinds[vim_item.kind] or ""
+      vim_item.menu = ({
+        buffer = "[Buffer]",
+        nvim_lsp = "[LSP]",
+        luasnip = "[LuaSnip]",
+        nvim_lua = "[Lua]",
+        latex_symbols = "[LaTeX]",
+      })[entry.source.name]
       return vim_item
     end,
   },
 })
+-- require("cmp").setup.filetype({ "dap-repl", "dapui_watches", "dapui_hover" }, {
+--   sources = {
+--     { name = "dap" },
+--   },
+-- })
 
 local sources = { "/", "?" }
 for _, source in pairs(sources) do
   cmp.setup.cmdline(source, {
     mapping = cmp.mapping.preset.cmdline(),
     sources = cmp.config.sources({
-      { name = "nvim_lsp_document_symbol" },
       { name = "buffer" },
-    }),
+      { name = "nvim_lsp_document_symbol" }
+    })
   })
 end
 
 cmp.setup.cmdline(":", {
   mapping = cmp.mapping.preset.cmdline(),
   sources = cmp.config.sources({
-    { name = "cmdline" },
     { name = "path" },
-    { name = "buffer" },
-  }),
+    { name = "cmdline" },
+  })
 })

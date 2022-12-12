@@ -1,2 +1,2 @@
 require("conf.cmp_.config")
-require("conf.cmp_.pairs")
+require("conf.cmp_.highlight")
