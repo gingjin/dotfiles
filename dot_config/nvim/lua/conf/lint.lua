@@ -1,10 +1,18 @@
 -- nvim lint
 --
 require("lint").linters_by_ft = {
-  cpp = { "cpplint" },
-  python = { "flake8" },
-  bash = { "shellcheck" },
-  go = { "golangcilint" },
+  cpp = { "cpplint", },
+  lua = { "luacheck", },
+  markdown = { "markdownlint", }
 }
 
-vim.cmd("autocmd TextChanged * lua require('lint').try_lint()")
+local cpplint = require("lint").linters.cpplint
+cpplint.args = {}
+
+local luacheck = require("lint").linters.luacheck
+luacheck.args = {}
+
+local markdownlint = require("lint").linters.markdownlint
+markdownlint.args = {}
+
+vim.cmd("au BufWritePost lua require('lint').try_lint()")
