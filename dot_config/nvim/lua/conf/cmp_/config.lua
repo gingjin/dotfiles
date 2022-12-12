@@ -3,9 +3,6 @@
 local cmp = require("cmp")
 local luasnip = require("luasnip")
 cmp.setup({
-  -- enabled = function()
-  --   return vim.api.nvim_buf_get_option(0, "buftype") ~= "prompt" or require("cmp_dap").is_dap_buffer()
-  -- end,
   -- view = { -- 当光标在屏幕底下时，自下而上选择
   --   entries = { name = "custom", selection_order = "near_cursor" }
   -- },
@@ -54,11 +51,6 @@ cmp.setup({
     end,
   },
 })
--- require("cmp").setup.filetype({ "dap-repl", "dapui_watches", "dapui_hover" }, {
---   sources = {
---     { name = "dap" },
---   },
--- })
 
 local sources = { "/", "?" }
 for _, source in pairs(sources) do
