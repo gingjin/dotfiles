@@ -3,11 +3,10 @@
 local packer = require("packer")
 packer.init({
   auto_reload_compiled = true,
-  git = { default_url_format = "https://github.com/%s" },
+  git = { default_url_format = "git@github.com:%s" },
+  profile = { enable = true, threshold = 1 },
   display = {
-    open_fn = function()
-      return require("packer.util").float()
-    end,
+    open_fn = function() return require("packer.util").float() end,
     working_sym = "",
     error_sym = "",
     done_sym = "",
@@ -16,55 +15,32 @@ packer.init({
     header_sym = "━",
     prompt_border = "double",
   },
-  profile = { enable = true, threshold = 1 },
 })
 
 packer.startup(function(use)
-  use({ "sainnhe/sonokai" })
-
-  use({ "jghauser/mkdir.nvim" })
   use({ "dstein64/vim-startuptime" })
+  use({ "sainnhe/gruvbox-material" })
+
+  use({ "nvim-lua/popup.nvim" })
+  use({ "jghauser/mkdir.nvim" })
+  use({ "nvim-lua/plenary.nvim" })
   use({ "kyazdani42/nvim-web-devicons" })
 
-  use({ "nvim-lualine/lualine.nvim", config = [[require "conf.lualine"]] })
-  use({ "kyazdani42/nvim-tree.lua", config = [[require "conf.nvim-tree"]] })
-
-  use({
-    "nvim-treesitter/nvim-treesitter",
-    run = ":TSUpdate",
-    requires = {
-      "p00f/nvim-ts-rainbow",
-      "windwp/nvim-ts-autotag",
-      "JoosepAlviste/nvim-ts-context-commentstring",
-    },
-    config = [[require "conf.treesitter"]],
-  })
-
-  use({
-    "L3MON4D3/LuaSnip",
-    requires = "rafamadriz/friendly-snippets",
-    config = [[require "conf.snippets"]],
-  })
+  use({ "rcarriga/nvim-notify", config = [[require "conf.notify"]] })
+  use({ "kevinhwang91/rnvimr", config = [[require "conf.rnvimr.init"]] })
+  use({ "kyazdani42/nvim-tree.lua", config = [[require "conf.nvim-tree.init"]] })
+  use({ "nvim-lualine/lualine.nvim", config = [[require "conf.lualine_.init"]] })
+  use({ "L3MON4D3/LuaSnip", requires = { "rafamadriz/friendly-snippets" }, config = [[require "conf.snippets"]] })
 
   use({
     "neovim/nvim-lspconfig",
-    requires = {
-      "williamboman/nvim-lsp-installer",
-    },
     config = [[require "conf.lsp_.init"]],
-  })
-
-  use({
-    "mfussenegger/nvim-dap",
-    requires = {
-      "rcarriga/nvim-dap-ui",
-      "theHamsta/nvim-dap-virtual-text",
-    },
-    config = [[require "conf.dap_.init"]],
+    requires = { "glepnir/lspsaga.nvim", "williamboman/mason.nvim", "williamboman/mason-lspconfig.nvim" },
   })
 
   use({
     "hrsh7th/nvim-cmp",
+    config = [[require "conf.cmp_.init"]],
     requires = {
       "hrsh7th/cmp-calc",
       "hrsh7th/cmp-path",
@@ -74,102 +50,131 @@ packer.startup(function(use)
       "hrsh7th/cmp-nvim-lsp",
       "hrsh7th/cmp-nvim-lsp-signature-help",
       "hrsh7th/cmp-nvim-lsp-document-symbol",
-      "rcarriga/cmp-dap",
       "David-Kunz/cmp-npm",
-      "ray-x/cmp-treesitter",
-      "windwp/nvim-autopairs",
       "saadparwaiz1/cmp_luasnip",
       "lukas-reineke/cmp-under-comparator",
     },
-    config = [[require "conf.cmp_.init"]],
+  })
+
+  use({
+    "doxnit/cmp-luasnip-choice",
+    config = function() require("cmp_luasnip_choice").setup({ auto_open = true, }) end,
+    after = "nvim-cmp",
+  })
+  use({ "windwp/nvim-autopairs", config = function() require("conf.pairs") end, after = "nvim-cmp" })
+  use({ "nat-418/cmp-color-names.nvim", config = function() require("cmp-color-names").setup() end, after = "nvim-cmp" })
+
+  use({
+    "nvim-treesitter/nvim-treesitter",
+    config = [[require "conf.treesitter.init"]],
+    requires = {
+      { "p00f/nvim-ts-rainbow", after = "nvim-treesitter" },
+      { "windwp/nvim-ts-autotag", after = "nvim-treesitter" },
+      { "nvim-treesitter/nvim-treesitter-textobjects", after = "nvim-treesitter" },
+      { "JoosepAlviste/nvim-ts-context-commentstring", after = "nvim-treesitter" },
+    },
+    run = function()
+      local ts_update = require("nvim-treesitter.install").update(--[[{ with_sync = true }]] )
+      ts_update()
+    end,
+  })
+
+  use({
+    "m-demare/hlargs.nvim",
+    after = "nvim-treesitter",
+    config = function()
+      require("hlargs").setup()
+      require("hlargs").enable()
+    end,
   })
 
   use({
     "nvim-telescope/telescope.nvim",
+    config = [[require "conf.telescope_.init"]],
     requires = {
-      "nvim-lua/popup.nvim",
-      "nvim-lua/plenary.nvim",
-      "nvim-telescope/telescope-dap.nvim",
       "nvim-telescope/telescope-packer.nvim",
       "nvim-telescope/telescope-symbols.nvim",
       "nvim-telescope/telescope-node-modules.nvim",
-      "nvim-telescope/telescope-fzf-native.nvim", run = "make",
       "tyru/open-browser.vim",
       "benfowler/telescope-luasnip.nvim",
       "dhruvmanila/telescope-bookmarks.nvim",
+      { "nvim-telescope/telescope-fzf-native.nvim", run = "make" },
     },
-    config = [[require "conf.telescope"]],
-  })
-
-  use({
-    "tpope/vim-dadbod",
-    requires = {
-      "kristijanhusak/vim-dadbod-ui",
-      "kristijanhusak/vim-dadbod-completion",
-    },
-    config = [[require "conf.dadbod"]],
-  })
-
-  use({
-    "skywind3000/asynctasks.vim",
-    requires = "skywind3000/asyncrun.vim",
-    config = [[require "conf.tasks"]],
   })
 
   use({ "h-hg/fcitx.nvim", event = "BufRead" })
-  use({ "tpope/vim-surround", event = "BufRead" })
   use({ "mg979/vim-visual-multi", event = "BufRead" })
-  use({ "voldikss/vim-translator", event = "BufRead" })
-  use({ "sbdchd/neoformat", event = "BufRead", config = [[require "conf.format"]] })
-  use({ "kevinhwang91/rnvimr", event = "BufRead", config = [[require "conf.rnvimr"]] })
-  use({ "chentoast/marks.nvim", event = "BufRead", config = [[require "conf.marks"]] })
   use({ "mfussenegger/nvim-lint", event = "BufRead", config = [[require "conf.lint"]] })
-  use({ "folke/zen-mode.nvim", event = "BufRead", config = [[require "conf.zen-mode"]] })
+  use({ "chentoast/marks.nvim", event = "BufRead", config = [[require "conf.marks"]] })
   use({ "numToStr/Comment.nvim", event = "BufRead", config = [[require "conf.comment"]] })
-  use({ "folke/todo-comments.nvim", event = "BufRead", config = [[require "conf.todo"]] })
-  use({ "kdheepak/lazygit.nvim", event = "BufRead", config = [[require "conf.lazygit"]] })
-  use({ "lewis6991/gitsigns.nvim", event = "BufRead", config = [[require "conf.gitsigns"]] })
-  use({ "akinsho/toggleterm.nvim", event = "BufRead", config = [[require "conf.toggleterm"]] })
-  use({ "norcalli/nvim-colorizer.lua", event = "BufRead", config = [[require "conf.colorizer"]] })
-  use({ "simrat39/symbols-outline.nvim", event = "BufRead", config = [[require "conf.outline"]] })
-  use({ "lukas-reineke/indent-blankline.nvim", event = "BufRead", config = [[require "conf.indent"]] })
+  use({ "stevearc/aerial.nvim", event = "BufRead", config = [[require "conf.aerial.init"]] })
+  use({ "folke/zen-mode.nvim", event = "BufRead", config = [[require "conf.zen-mode.init"]] })
+  use({ "kdheepak/lazygit.nvim", event = "BufRead", config = [[require "conf.lazygit.init"]] })
+  use({ "folke/todo-comments.nvim", event = "BufRead", config = [[require "conf.todo.init"]] })
+  use({ "lewis6991/gitsigns.nvim", event = "BufRead", config = [[require "conf.gitsigns.init"]] })
+  use({ "voldikss/vim-translator", event = "BufRead", config = [[require "conf.translator.init"]] })
+  use({ "akinsho/toggleterm.nvim", event = "BufRead", config = [[require "conf.toggleterm.init"]] })
+  use({ "mhartington/formatter.nvim", event = "BufRead", config = [[require "conf.formatter.init"]] })
   use({ "max397574/better-escape.nvim", event = "InsertCharPre", config = [[require "conf.escape"]] })
+  use({ "norcalli/nvim-colorizer.lua", event = "BufRead", config = [[require "conf.colorizer.init"]] })
+  use({ "lukas-reineke/indent-blankline.nvim", event = "BufRead", config = [[require "conf.indent"]] })
+  use({ "kylechui/nvim-surround", event = "BufRead", config = function() require("nvim-surround").setup() end })
+  use({
+    "skywind3000/asynctasks.vim",
+    event = "BufRead",
+    config = [[require "conf.tasks.init"]],
+    requires = { { "skywind3000/asyncrun.vim", event = "BufRead" } },
+  })
+
+  use({
+    "mfussenegger/nvim-dap",
+    config = [[require "conf.dap_.init"]],
+    requires = { "rcarriga/nvim-dap-ui", "theHamsta/nvim-dap-virtual-text", },
+  })
 
   use({ "mechatroner/rainbow_csv", ft = "csv" })
-  use({ "baskerville/vim-sxhkdrc", ft = "sxhkdrc" })
-  use({
-    "lervag/vimtex",
-    ft = "tex",
-    config = [[require "conf.vimtex"]]
-  })
+  use({ "lervag/vimtex", config = [[require "conf.vimtex.init"]], ft = "tex" })
   use({
     "vuki656/package-info.nvim",
-    requires = "MunifTanjim/nui.nvim",
+    config = [[require "conf.package-info.init"]],
+    requires = { "MunifTanjim/nui.nvim" },
     ft = "json",
-    config = [[require "conf.package-info"]],
   })
   use({
     "iamcco/markdown-preview.nvim",
-    run = "cd app && yarn install",
-    ft = "markdown",
-    config = [[require "conf.mkdp"]],
-  })
-  use({
-    "nvim-neorg/neorg",
-    requires = {
-      "max397574/neorg-kanban",
-      "nvim-neorg/neorg-telescope",
-    },
-    ft = "norg",
-    config = [[require "conf.neorg"]],
+    config = [[require "conf.mkdp.init"]],
+    run = "cd app && npm install",
+    setup = function()
+      vim.g.mkdp_filetypes = { "markdown" }
+    end,
+    ft = { "markdown" },
   })
 end)
 
 local cmd = vim.api.nvim_create_autocmd
-local group = vim.api.nvim_create_augroup
-local packer_group = group("Packer", { clear = true })
+local augroup = vim.api.nvim_create_augroup
+local Packer = augroup("Packer", { clear = true })
 cmd("BufWritePost", {
-  group = packer_group,
+  group = Packer,
   pattern = "plugins.lua",
   command = "source <afile> | PackerCompile",
 })
+
+-- local ensure_packer = function()
+--   local fn = vim.fn
+--   local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
+--   if fn.empty(fn.glob(install_path)) > 0 then
+--     fn.system({ 'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path })
+--     vim.cmd [[packadd packer.nvim]]
+--     return true
+--   end
+--   return false
+-- end
+-- local packer = require("packer")
+-- packer.startup(function(use)
+--   use({ "wbthomason/packer.nvim" })
+--
+--   if ensure_packer() then
+--     require('packer').sync()
+--   end
+-- end)
