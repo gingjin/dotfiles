@@ -1,10 +1,10 @@
 local M = {}
 M.cpp = {
-  cppdbg = {
+  adapter = {
     id = "cppdbg",
     type = "executable",
     command = vim.fn.getenv("HOME")
-      .. "/.config/nvim/adapters/cpptools/extension/debugAdapters/bin/OpenDebugAD7",
+        .. "/.local/share/nvim/mason/packages/cpptools/extension/debugAdapters/bin/OpenDebugAD7",
   },
   config = {
     {
@@ -47,10 +47,10 @@ M.cpp = {
 }
 
 M.go = {
-  go = {
+  adapter = {
     type = "executable",
     command = "node",
-    args = { os.getenv("HOME") .. "/.config/nvim/adapters/vscode-go/dist/debugAdapter.js" },
+    args = { os.getenv("HOME") .. "/.local/share/nvim/mason/packages/go-debug-adapter/extension/dist/debugAdapter.js" },
   },
   config = {
     {
@@ -65,7 +65,7 @@ M.go = {
 }
 
 M.python = {
-  python = {
+  adapter = {
     type = "executable",
     command = "python",
     args = { "-m", "debugpy.adapter" }, -- Adjust to where debugpy is installed
@@ -76,16 +76,16 @@ M.python = {
       request = "launch",
       name = "Launch file",
       program = "${file}",
-      pythonPath = function()
-        local cwd = vim.fn.getcwd()
-        if vim.fn.executable(cwd .. "/venv/bin/python") == 1 then
-          return cwd .. "/venv/bin/python"
-        elseif vim.fn.executable(cwd .. "/.venv/bin/python") == 1 then
-          return cwd .. "/.venv/bin/python"
-        else
-          return "/usr/bin/python"
-        end
-      end,
+      -- pythonPath = function()
+      --   local cwd = vim.fn.getcwd()
+      --   if vim.fn.executable(cwd .. "/venv/bin/python") == 1 then
+      --     return cwd .. "/venv/bin/python"
+      --   elseif vim.fn.executable(cwd .. "/.venv/bin/python") == 1 then
+      --     return cwd .. "/.venv/bin/python"
+      --   else
+      --     return "/usr/bin/python"
+      --   end
+      -- end,
     },
   },
 }

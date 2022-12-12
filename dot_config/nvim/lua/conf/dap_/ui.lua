@@ -2,7 +2,7 @@
 --
 local dapui = require("dapui")
 dapui.setup({
-  icons = { expanded = "▾", collapsed = "▸" },
+  icons = { expanded = "", collapsed = "", current_frame = "" },
   mappings = {
     expand = { "<CR>", "<2-LeftMouse>" },
     open = "o",
@@ -11,43 +11,43 @@ dapui.setup({
     repl = "r",
     toggle = "t",
   },
-  expand_lines = vim.fn.has("nvim-0.7"),
-  sidebar = {
-    elements = {
-      { id = "scopes", size = 0.25 },
-      { id = "breakpoints", size = 0.25 },
-      { id = "stacks", size = 0.25 },
-      { id = "watches", size = 0.25 },
+  layouts = {
+    {
+      elements = {
+        { id = "scopes", size = 0.25 },
+        "breakpoints",
+        "stacks",
+        "watches",
+      },
+      size = 30,
+      position = "left",
     },
-    size = 30,
-    position = "left",
-  },
-  tray = {
-    elements = { "repl" },
-    size = 10,
-    position = "bottom",
-  },
-  floating = {
-    max_height = nil,
-    max_width = nil,
-    border = "double",
-    mappings = {
-      close = { "q", "<Esc>" },
+    {
+      elements = {
+        "repl",
+        "console",
+      },
+      size = 10,
+      position = "bottom",
     },
   },
-  windows = { indent = 1 },
-  render = {
-    max_type_length = nil,
+  controls = {
+    enabled = true,
+    element = "repl",
+    icons = {
+      pause = "",
+      play = "",
+      step_into = "",
+      step_over = "",
+      step_out = "",
+      step_back = "",
+      run_last = "",
+      terminate = "",
+    },
   },
 })
 
 local dap = require("dap")
-dap.listeners.after.event_initialized["dapui_config"] = function()
-  dapui.open()
-end
-dap.listeners.before.event_terminated["dapui_config"] = function()
-  dapui.close()
-end
-dap.listeners.before.event_exited["dapui_config"] = function()
-  dapui.close()
-end
+dap.listeners.after.event_initialized["dapui_config"] = function() dapui.open() end
+dap.listeners.before.event_terminated["dapui_config"] = function() dapui.close() end
+dap.listeners.before.event_exited["dapui_config"] = function() dapui.close() end

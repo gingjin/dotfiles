@@ -6,7 +6,7 @@ require("nvim-dap-virtual-text").setup({
   highlight_changed_variables = true,
   highlight_new_as_changed = false,
   show_stop_reason = false,
-  commented = false,
+  commented = true,
   only_first_definition = true,
   all_references = false,
   filter_references_pattern = "<module",
