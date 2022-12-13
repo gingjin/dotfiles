@@ -16,9 +16,6 @@ npairs.setup({
   },
 })
 
-local Rule = require("nvim-autopairs.rule")
-npairs.add_rule(Rule("$", "$", { "markdown" }))
-
 local cmp = require("cmp")
 local cmp_autopairs = require("nvim-autopairs.completion.cmp")
 local handlers = require('nvim-autopairs.completion.handlers')
@@ -39,3 +36,6 @@ cmp.event:on(
     }
   })
 )
+
+local Rule = require("nvim-autopairs.rule")
+npairs.add_rule(Rule("$", "$", { "markdown" }))
