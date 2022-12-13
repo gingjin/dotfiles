@@ -54,7 +54,7 @@ packer.startup(function(use)
       "saadparwaiz1/cmp_luasnip",
       "lukas-reineke/cmp-under-comparator",
       { "doxnit/cmp-luasnip-choice", after = "nvim-cmp",
-        config = [[require("cmp_luasnip_choice").setup({ auto_open = true, })]],
+        config = function() require("cmp_luasnip_choice").setup({ auto_open = true, }) end,
       },
       { "nat-418/cmp-color-names.nvim", after = "nvim-cmp",
         config = function() require("cmp-color-names").setup() end,
