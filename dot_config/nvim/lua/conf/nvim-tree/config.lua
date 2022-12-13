@@ -9,8 +9,11 @@ require("nvim-tree").setup({
   ignore_buffer_on_setup = false,
   open_on_setup = false,
   open_on_setup_file = false,
-  open_on_tab = false,
   sort_by = "name",
+  root_dirs = {},
+  prefer_startup_root = true,
+  sync_root_with_cwd = true,
+  reload_on_bufenter = true,
   update_cwd = true,
   respect_buf_cwd = true,
   view = {
@@ -28,7 +31,7 @@ require("nvim-tree").setup({
       },
     },
     float = {
-      enable = true,
+      enable = false,
       quit_on_focus_loss = true,
       open_win_config = {
         relative = "editor",
@@ -46,7 +49,11 @@ require("nvim-tree").setup({
     highlight_git = true,
     highlight_opened_files = "icon",
     root_folder_modifier = ":~",
-    indent_markers = { enable = true, icons = { corner = "└ ", edge = "│ ", none = "  ", }, },
+    indent_markers = {
+      enable = false,
+      icons = { corner = "└ ", edge = "│ ", item = "│", bottom = "─",
+        none = "  ", },
+    },
     icons = {
       webdev_colors = true,
       git_placement = "before",
@@ -56,6 +63,7 @@ require("nvim-tree").setup({
       glyphs = {
         default = "",
         symlink = "",
+        bookmark = "",
         folder = {
           arrow_open = "",
           arrow_closed = "",
@@ -77,6 +85,8 @@ require("nvim-tree").setup({
         },
       },
     },
+    special_files = { "Cargo.toml", "Makefile", "README.md", "readme.md" },
+    symlink_destination = true,
   },
   hijack_directories = { enable = true, auto_open = true, },
   update_focused_file = { enable = true, update_cwd = true, ignore_list = {}, },
