@@ -52,11 +52,31 @@ require("nvim-treesitter.configs").setup({
         ["ic"] = { query = "@class.inner", desc = "Select inner part of a class region" },
       },
       selection_modes = {
-        ['@parameter.outer'] = 'v', -- charwise
-        ['@function.outer'] = 'V', -- linewise
-        ['@class.outer'] = '<c-v>', -- blockwise
+        ['@parameter.outer'] = 'v',
+        ['@function.outer'] = 'V',
+        ['@class.outer'] = '<c-v>',
       },
       include_surrounding_whitespace = true,
+    },
+    move = {
+      enable = true,
+      set_jumps = true,
+      goto_next_start = {
+        ["]m"] = "@function.outer",
+        ["]]"] = { query = "@class.outer", desc = "Next class start" },
+      },
+      goto_next_end = {
+        ["]M"] = "@function.outer",
+        ["]["] = "@class.outer",
+      },
+      goto_previous_start = {
+        ["[m"] = "@function.outer",
+        ["[["] = "@class.outer",
+      },
+      goto_previous_end = {
+        ["[M"] = "@function.outer",
+        ["[]"] = "@class.outer",
+      },
     },
   },
 })
