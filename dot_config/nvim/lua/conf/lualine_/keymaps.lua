@@ -1,8 +1,5 @@
 local keymap = vim.api.nvim_set_keymap
 local opts = { noremap = true, silent = true }
-keymap("n", "<Tab>", ":bnext<CR>", opts)
-keymap("n", "<S-Tab>", ":bprevious<CR>", opts)
-keymap("n", "<leader>bd", ":bdelete<CR>", opts)
 
 keymap("n", "<leader>1", ":LualineBuffersJump 1<CR>", opts)
 keymap("n", "<leader>2", ":LualineBuffersJump 2<CR>", opts)
