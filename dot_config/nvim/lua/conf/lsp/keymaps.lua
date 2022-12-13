@@ -4,8 +4,7 @@ M.lsp = function(bufnr)
 
   local opts = { noremap = true, silent = true, }
 
-  -- bufmap("n", '<leader>i', ":lua vim.lsp.buf.formatting()<CR>", opt)
-  vim.keymap.set("n", '<leader>i', function() vim.lsp.buf.format { async = true } end, opts)
+  -- vim.keymap.set("n", '<leader>i', function() vim.lsp.buf.format { async = true } end, opts)
 
   local function bufmap(...)
     vim.api.nvim_buf_set_keymap(bufnr, ...)

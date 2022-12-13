@@ -4,8 +4,13 @@ vim.diagnostic.config({
   virtual_text = {
     spacing = 2,
     prefix = "",
+    severity = {
+      max = vim.diagnostic.severity.ERROR,
+      min = vim.diagnostic.severity.WARN,
+    },
   },
   float = {
+    source = "always",
     border = "double",
   },
   signs = true,
@@ -20,7 +25,12 @@ for type, icon in pairs(signs) do
   vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
 end
 
-local on_attach = function(_, bufnr)
+local util = require("vim.lsp.util")
+local on_attach = function(client, bufnr)
+  vim.keymap.set("n", "<leader>i", function()
+    local params = util.make_formatting_params({})
+    client.request("textDocument/formatting", params, nil, bufnr)
+  end, { buffer = bufnr })
   require("conf.lsp.keymaps").lsp(bufnr)
 end
 
