@@ -1,6 +1,11 @@
 local keymap = vim.api.nvim_set_keymap
 local opts = { noremap = true, silent = true }
 
+-- buffer
+keymap("n", "<Tab>", ":bnext<CR>", opts)
+keymap("n", "<S-Tab>", ":bprevious<CR>", opts)
+keymap("n", "<leader>bd", ":bdelete<CR>", opts)
+
 -- indent code
 keymap("v", "<", "<gv", opts)
 keymap("v", ">", ">gv", opts)
