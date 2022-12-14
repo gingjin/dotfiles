@@ -27,7 +27,6 @@ packer.startup(function(use)
 
   use({ "kevinhwang91/rnvimr", config = [[require "conf.rnvimr.init"]] })
   use({ "rcarriga/nvim-notify", config = [[require "conf.notify.init"]] })
-  use({ "p00f/clangd_extensions.nvim", config = [[require "conf.clangd.init"]] })
   use({ "kyazdani42/nvim-tree.lua", config = [[require "conf.nvim-tree.init"]] })
   use({ "nvim-lualine/lualine.nvim", config = [[require "conf.lualine_.init"]],
     requires = { "kyazdani42/nvim-web-devicons" } })
