@@ -10,7 +10,7 @@ M.lsp = function(bufnr)
     vim.api.nvim_buf_set_keymap(bufnr, ...)
   end
 
-  bufmap("n", "<leader>o", ":LSoutlineToggle<CR>", opts)
+  bufmap("n", "<leader>o", ":Lspsaga outline<CR>", opts)
   bufmap("n", "<leader>q", ":lua vim.diagnostic.setloclist()<CR>", opts)
   -- bufmap("n", "[e", ":lua vim.diagnostic.goto_prev()<CR>", opt)
   -- bufmap("n", "]e", ":lua vim.diagnostic.goto_next()<CR>", opt)
