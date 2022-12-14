@@ -36,7 +36,7 @@ cmp.setup({
     { name = "luasnip", option = { show_autosnippets = true } },
     { name = "buffer", option = { get_bufnrs = function() return vim.api.nvim_list_bufs() end } },
   }),
-  mapping = cmp.mapping.preset.insert(require("conf.cmp_.keymaps").keymap(cmp, luasnip)),
+  mapping = cmp.mapping.preset.insert(require("conf.cmp_.keymaps").insert(cmp, luasnip)),
   formatting = {
     fields = { "kind", "abbr", "menu" },
     format = function(entry, vim_item)
@@ -57,7 +57,7 @@ cmp.setup({
 local sources = { "/", "?" }
 for _, source in pairs(sources) do
   cmp.setup.cmdline(source, {
-    mapping = cmp.mapping.preset.cmdline(),
+    mapping = cmp.mapping.preset.cmdline(require("conf.cmp_.keymaps").cmdline(cmp)),
     sources = cmp.config.sources({
       { name = "buffer" },
       { name = "nvim_lsp_document_symbol" }
@@ -66,7 +66,7 @@ for _, source in pairs(sources) do
 end
 
 cmp.setup.cmdline(":", {
-  mapping = cmp.mapping.preset.cmdline(),
+  mapping = cmp.mapping.preset.cmdline(require("conf.cmp_.keymaps").cmdline(cmp)),
   sources = cmp.config.sources({
     { name = "path" },
     { name = "cmdline" },
