@@ -47,7 +47,6 @@ require("lualine").setup({
         symbols = { modified = "[+]", readonly = "[]", unnamed = "[-]" },
         cond = func.buffer_not_empty,
       },
-      { "aerial", dense_sep = '.', colored = true, },
     },
     lualine_x = {
       func.mi,
@@ -93,7 +92,6 @@ require("lualine").setup({
         mode = 2,
         filetype_names = {
           mason = "Mason",
-          aerial = "Aerial",
           packer = "Packer",
           lspinfo = "LspInfo",
           toggleterm = "Toggleterm",

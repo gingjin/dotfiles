@@ -10,7 +10,6 @@ keymap("n", "<leader>fw", ":Telescope live_grep<CR>", opts)
 keymap("n", "<leader>fh", ":Telescope help_tags<CR>", opts)
 keymap("n", "<leader>ff", ":Telescope find_files<CR>", opts)
 
-keymap("n", "<leader>fa", ":Telescope aerial<CR>", opts)
 keymap("n", "<leader>fp", ":Telescope packer<CR>", opts)
 keymap("n", "<leader>fs", ":Telescope symbols<CR>", opts)
 keymap("n", "<leader>fl", ":Telescope luasnip<CR>", opts)
