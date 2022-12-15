@@ -14,7 +14,7 @@ require("formatter").setup({
           args = {
             "-assume-filename",
             util.escape_path(util.get_current_buffer_file_name()),
-            "--style='{BasedOnStyle: Google, AlignConsecutiveAssignments: Consecutive}'",
+            "--style='{BasedOnStyle: Google, AlignArrayOfStructures: Right, AlignConsecutiveAssignments: Consecutive, ContinuationIndentWidth: 2}'",
           },
           stdin = true,
         }
