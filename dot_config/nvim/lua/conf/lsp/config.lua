@@ -1,18 +1,9 @@
 -- nvim lspconfig
 --
+require("lspconfig.ui.windows").default_options.border = "double"
 vim.diagnostic.config({
-  virtual_text = {
-    spacing = 2,
-    prefix = "",
-    severity = {
-      max = vim.diagnostic.severity.ERROR,
-      min = vim.diagnostic.severity.WARN,
-    },
-  },
-  float = {
-    source = "always",
-    border = "double",
-  },
+  virtual_text = { spacing = 2, prefix = "", },
+  float = { border = "double", },
   signs = true,
   underline = true,
   update_in_insert = false,
