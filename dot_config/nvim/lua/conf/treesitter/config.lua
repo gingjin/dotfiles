@@ -18,7 +18,7 @@ require("nvim-treesitter.configs").setup({
       scope_incremental = "<TAB>",
     },
   },
-  indent = { enable = true },
+  indent = { enable = true, disable = { "python", } },
   autotag = { enable = true },
   rainbow = { enable = true, extended_mode = true, max_file_lines = nil, },
   context_commentstring = {
