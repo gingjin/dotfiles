@@ -7,10 +7,10 @@ require("lualine").setup({
   options = {
     theme = luna,
     icons_enabled = true,
-    section_separators = { left = "", right = "" },
-    component_separators = { left = "", right = "" },
     disabled_filetypes = {},
     always_divide_middle = false,
+    section_separators = { left = "", right = "" },
+    component_separators = { left = "", right = "" },
   },
   sections = {
     lualine_a = { { "mode", } },
@@ -27,8 +27,8 @@ require("lualine").setup({
           hint = { fg = lsp_colors.green },
         },
         colored = true,
-        update_in_insert = false,
         always_visible = false,
+        update_in_insert = false,
       },
     },
     lualine_c = {
@@ -36,16 +36,15 @@ require("lualine").setup({
         "filetype",
         colored = true,
         icon_only = true,
-        -- icon = { align = "right" },
         padding = { left = 1, right = 0 }
       },
       {
         "filename",
-        file_status = true,
         path = 0,
+        file_status = true,
         shorting_target = 40,
-        symbols = { modified = "[+]", readonly = "[]", unnamed = "[-]" },
         cond = func.buffer_not_empty,
+        symbols = { modified = "[+]", readonly = "[]", unnamed = "[-]" },
       },
     },
     lualine_x = {
