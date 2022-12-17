@@ -21,25 +21,25 @@ packer.startup(function(use)
   use({ "dstein64/vim-startuptime" })
   use({ "sainnhe/gruvbox-material" })
 
-  use({ "nvim-lua/popup.nvim" })
   use({ "jghauser/mkdir.nvim" })
+  use({ "nvim-lua/popup.nvim" })
   use({ "nvim-lua/plenary.nvim" })
 
-  use({ "kevinhwang91/rnvimr", config = [[require "conf.rnvimr.init"]] })
-  use({ "rcarriga/nvim-notify", config = [[require "conf.notify.init"]] })
-  use({ "kyazdani42/nvim-tree.lua", config = [[require "conf.nvim-tree.init"]] })
-  use({ "nvim-lualine/lualine.nvim", config = [[require "conf.lualine_.init"]],
-    requires = { "kyazdani42/nvim-web-devicons" } })
-  use({ "L3MON4D3/LuaSnip", config = [[require "conf.snippets.init"]],
+  use({ "kevinhwang91/rnvimr", config = function() require("conf.rnvimr.init") end })
+  use({ "rcarriga/nvim-notify", config = function() require("conf.notify_.init") end })
+  use({ "kyazdani42/nvim-tree.lua", config = function() require("conf.nvim-tree_.init") end })
+  use({ "L3MON4D3/LuaSnip", config = function() require("conf.snippets.init") end,
     requires = { "rafamadriz/friendly-snippets" } })
-  use({ "mfussenegger/nvim-dap", config = [[require "conf.dap_.init"]],
+  use({ "nvim-lualine/lualine.nvim", config = function() require("conf.lualine_.init") end,
+    requires = { "kyazdani42/nvim-web-devicons" } })
+  use({ "mfussenegger/nvim-dap", config = function() require("conf.dap_.init") end,
     requires = { "rcarriga/nvim-dap-ui", "theHamsta/nvim-dap-virtual-text", }, })
-  use({ "neovim/nvim-lspconfig", config = [[require "conf.lsp.init"]],
+  use({ "neovim/nvim-lspconfig", config = function() require("conf.lsp.init") end,
     requires = { "glepnir/lspsaga.nvim", "williamboman/mason.nvim", "williamboman/mason-lspconfig.nvim" }, })
 
   use({
     "hrsh7th/nvim-cmp",
-    config = [[require "conf.cmp_.init"]],
+    config = function() require("conf.cmp_.init") end,
     requires = {
       "hrsh7th/cmp-calc",
       "hrsh7th/cmp-path",
@@ -49,22 +49,19 @@ packer.startup(function(use)
       "hrsh7th/cmp-nvim-lsp",
       "hrsh7th/cmp-nvim-lsp-signature-help",
       "hrsh7th/cmp-nvim-lsp-document-symbol",
-      "David-Kunz/cmp-npm",
+      "uga-rosa/cmp-dictionary",
       "saadparwaiz1/cmp_luasnip",
       "lukas-reineke/cmp-under-comparator",
-      { "doxnit/cmp-luasnip-choice", after = "nvim-cmp",
-        config = function() require("cmp_luasnip_choice").setup({ auto_open = true, }) end,
-      },
       { "nat-418/cmp-color-names.nvim", after = "nvim-cmp",
         config = function() require("cmp-color-names").setup() end,
       },
     },
   })
-  use({ "windwp/nvim-autopairs", after = "nvim-cmp", config = [[require "conf.pairs.init"]] })
+  use({ "windwp/nvim-autopairs", after = "nvim-cmp", config = function() require("conf.pairs.init") end })
 
   use({
     "nvim-treesitter/nvim-treesitter",
-    config = [[require "conf.treesitter.init"]],
+    config = function() require("conf.treesitter.init") end,
     requires = {
       "p00f/nvim-ts-rainbow",
       "windwp/nvim-ts-autotag",
@@ -82,11 +79,10 @@ packer.startup(function(use)
 
   use({
     "nvim-telescope/telescope.nvim",
-    config = [[require "conf.telescope_.init"]],
+    config = function() require("conf.telescope_.init") end,
     requires = {
       "nvim-telescope/telescope-packer.nvim",
       "nvim-telescope/telescope-symbols.nvim",
-      "nvim-telescope/telescope-node-modules.nvim",
       "tyru/open-browser.vim",
       "benfowler/telescope-luasnip.nvim",
       "dhruvmanila/telescope-bookmarks.nvim",
@@ -96,27 +92,26 @@ packer.startup(function(use)
 
   use({ "h-hg/fcitx.nvim", event = "BufRead" })
   use({ "mg979/vim-visual-multi", event = "BufRead" })
-  use({ "chentoast/marks.nvim", event = "BufRead", config = [[require "conf.marks.init"]] })
-  use({ "mfussenegger/nvim-lint", event = "BufRead", config = [[require "conf.lint.init"]] })
-  use({ "folke/zen-mode.nvim", event = "BufRead", config = [[require "conf.zen-mode.init"]] })
-  use({ "numToStr/Comment.nvim", event = "BufRead", config = [[require "conf.comment.init"]] })
-  use({ "folke/todo-comments.nvim", event = "BufRead", config = [[require "conf.todo.init"]] })
-  use({ "lewis6991/gitsigns.nvim", event = "BufRead", config = [[require "conf.gitsigns.init"]] })
-  use({ "voldikss/vim-translator", event = "BufRead", config = [[require "conf.translator.init"]] })
-  use({ "akinsho/toggleterm.nvim", event = "BufRead", config = [[require "conf.toggleterm.init"]] })
-  use({ "mhartington/formatter.nvim", event = "BufRead", config = [[require "conf.formatter.init"]] })
-  use({ "norcalli/nvim-colorizer.lua", event = "BufRead", config = [[require "conf.colorizer.init"]] })
-  use({ "max397574/better-escape.nvim", event = "InsertCharPre", config = [[require "conf.escape.init"]] })
-  use({ "lukas-reineke/indent-blankline.nvim", event = "BufRead", config = [[require "conf.indent.init"]] })
+  use({ "chentoast/marks.nvim", event = "BufRead", config = function() require("conf.marks_.init") end })
+  use({ "mfussenegger/nvim-lint", event = "BufRead", config = function() require("conf.lint_.init") end })
+  use({ "folke/zen-mode.nvim", event = "BufRead", config = function() require("conf.zen-mode_.init") end })
+  use({ "numToStr/Comment.nvim", event = "BufRead", config = function() require("conf.comment.init") end })
+  use({ "folke/todo-comments.nvim", event = "BufRead", config = function() require("conf.todo.init") end })
+  use({ "lewis6991/gitsigns.nvim", event = "BufRead", config = function() require("conf.gitsigns_.init") end })
+  use({ "voldikss/vim-translator", event = "BufRead", config = function() require("conf.translator.init") end })
+  use({ "akinsho/toggleterm.nvim", event = "BufRead", config = function() require("conf.toggleterm_.init") end })
+  use({ "mhartington/formatter.nvim", event = "BufRead", config = function() require("conf.formatter_.init") end })
+  use({ "norcalli/nvim-colorizer.lua", event = "BufRead", config = function() require("conf.colorizer_.init") end })
+  use({ "max397574/better-escape.nvim", event = "InsertCharPre", config = function() require("conf.escape.init") end })
+  use({ "lukas-reineke/indent-blankline.nvim", event = "BufRead", config = function() require("conf.indent.init") end })
   use({ "kylechui/nvim-surround", event = "BufRead", config = function() require("nvim-surround").setup() end })
-  use({ "skywind3000/asynctasks.vim", event = "BufRead", config = [[require "conf.tasks.init"]],
+  use({ "skywind3000/asynctasks.vim", event = "BufRead", config = function() require("conf.tasks.init") end,
     requires = { { "skywind3000/asyncrun.vim", event = "BufRead" } }, })
 
   use({ "mechatroner/rainbow_csv", ft = "csv" })
-  use({ "lervag/vimtex", config = [[require "conf.vimtex.init"]], ft = "tex" })
-  use({ "vuki656/package-info.nvim", config = [[require "conf.package-info.init"]],
-    requires = { "MunifTanjim/nui.nvim" }, ft = "json", })
-  use({ "iamcco/markdown-preview.nvim", config = [[require "conf.mkdp.init"]],
+  use({ "nanotee/sqls.nvim", ft = { "sql", "mysql" } })
+  use({ "lervag/vimtex", config = function() require("conf.vimtex.init") end, ft = "tex" })
+  use({ "iamcco/markdown-preview.nvim", config = function() require("conf.mkdp.init") end,
     run = "cd app && npm install", ft = { "markdown" },
     setup = function() vim.g.mkdp_filetypes = { "markdown" } end, })
 end)
