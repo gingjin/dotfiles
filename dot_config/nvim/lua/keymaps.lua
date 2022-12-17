@@ -1,14 +1,27 @@
 local keymap = vim.api.nvim_set_keymap
 local opts = { noremap = true, silent = true }
 
+-- roll
+keymap("n", "<C-u>", "9k", opts)
+keymap("n", "<C-d>", "9j", opts)
+
 -- buffer
 keymap("n", "<Tab>", ":bnext<CR>", opts)
 keymap("n", "<S-Tab>", ":bprevious<CR>", opts)
 keymap("n", "<leader>bd", ":bdelete<CR>", opts)
 
+-- split
+keymap("n", "<leader>sh", ":sp<CR>", opts)
+keymap("n", "<leader>sv", ":vsp<CR>", opts)
+
 -- indent code
 keymap("v", "<", "<gv", opts)
 keymap("v", ">", ">gv", opts)
+
+-- close the current window
+keymap("n", "<leader>sc", "<C-w>c", opts)
+-- close other windows
+keymap("n", "<leader>so", "<C-w>o", opts)
 
 -- jump window
 keymap("n", "<A-h>", "<C-w>h", opts)
