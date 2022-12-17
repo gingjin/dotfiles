@@ -14,7 +14,6 @@ M.servers = {
   "marksman",
   "pyright",
   "rust_analyzer",
-  "sqlls",
   "sumneko_lua",
   "texlab",
   "tsserver",

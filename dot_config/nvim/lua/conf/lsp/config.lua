@@ -43,3 +43,16 @@ for _, server in ipairs(require("conf.lsp.servers").servers) do
     capabilities = capabilities,
   })
 end
+
+require("lspconfig")["sqls"].setup({
+  handlers = handlers,
+  on_attach = function(client, bufnr)
+    require('sqls').on_attach(client, bufnr)
+    vim.keymap.set("n", "<leader>i", function()
+      local params = util.make_formatting_params({})
+      client.request("textDocument/formatting", params, nil, bufnr)
+    end, { buffer = bufnr })
+    require("conf.lsp.keymaps").lsp(bufnr)
+  end,
+  capabilities = capabilities,
+})
