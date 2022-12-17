@@ -7,11 +7,11 @@ g.maplocalleader = " "
 g.python3_host_prog = "~/.pyenv/versions/py37env/bin/python"
 
 local opt = vim.opt
+opt.autoread = true
 opt.autowrite = true
 opt.clipboard:append("unnamedplus")
 opt.completeopt = "menu,menuone,noselect"
 opt.cursorline = true
-opt.encoding = "UTF-8"
 opt.expandtab = true
 opt.fileencodings = "ucs-bom,utf-8,gbk"
 opt.foldenable = false
@@ -19,6 +19,7 @@ opt.foldlevel = 99
 opt.ignorecase = true
 opt.mouse = "a"
 opt.number = true
+opt.pumheight = 10
 opt.relativenumber = true
 opt.scrolloff = 8
 opt.shiftround = true
