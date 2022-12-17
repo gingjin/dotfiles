@@ -1,5 +1,10 @@
 -- nvim cmp
 --
+require("cmp_dictionary").setup({
+  dic = {
+    ["*"] = "~/.config/nvim/lua/conf/cmp_/en.dict",
+  }
+})
 local cmp = require("cmp")
 local luasnip = require("luasnip")
 cmp.setup({
@@ -29,9 +34,8 @@ cmp.setup({
     { name = "nvim_lsp" },
     { name = "nvim_lua" },
     { name = "color_names" },
-    { name = "luasnip_choice" },
-    { name = "npm", keyword_length = 4 },
     { name = "nvim_lsp_signature_help" },
+    { name = "dictionary", keyword_length = 2 },
     { name = "luasnip", option = { show_autosnippets = true } },
     { name = "buffer", option = { get_bufnrs = function() return vim.api.nvim_list_bufs() end } },
   }),
@@ -41,12 +45,13 @@ cmp.setup({
     format = function(entry, vim_item)
       vim_item.kind = require("conf.cmp_.icon").cmp_kinds[vim_item.kind] or ""
       vim_item.menu = ({
-        buffer = "[Buffer]",
+        luasnip = "[LS]",
+        buffer = "[Buf]",
         nvim_lsp = "[LSP]",
-        luasnip = "[LuaSnip]",
         nvim_lua = "[Lua]",
-        latex_symbols = "[LaTeX]",
+        dictionary = "[Dic]",
         color_names = "[Color]",
+        npm = "[NPM]",
       })[entry.source.name]
       return vim_item
     end,
