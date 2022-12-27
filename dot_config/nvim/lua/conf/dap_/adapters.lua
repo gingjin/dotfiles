@@ -1,10 +1,11 @@
 local M = {}
+local path = vim.fn.stdpath("data")
 M.cpp = {
   adapter = {
     id = "cppdbg",
     type = "executable",
-    command = vim.fn.getenv("HOME")
-        .. "/.local/share/nvim/mason/packages/cpptools/extension/debugAdapters/bin/OpenDebugAD7",
+    command = path ..
+        "/mason/packages/cpptools/extension/debugAdapters/bin/OpenDebugAD7",
   },
   config = {
     {
@@ -16,6 +17,8 @@ M.cpp = {
       end,
       cwd = "${workspaceFolder}",
       stopOnEntry = true,
+      args = {},
+      runInTerminal = true,
       setupCommands = {
         {
           text = "-enable-pretty-printing",
@@ -50,7 +53,7 @@ M.go = {
   adapter = {
     type = "executable",
     command = "node",
-    args = { os.getenv("HOME") .. "/.local/share/nvim/mason/packages/go-debug-adapter/extension/dist/debugAdapter.js" },
+    args = { path .. "/mason/packages/go-debug-adapter/extension/dist/debugAdapter.js" },
   },
   config = {
     {
@@ -76,16 +79,7 @@ M.python = {
       request = "launch",
       name = "Launch file",
       program = "${file}",
-      -- pythonPath = function()
-      --   local cwd = vim.fn.getcwd()
-      --   if vim.fn.executable(cwd .. "/venv/bin/python") == 1 then
-      --     return cwd .. "/venv/bin/python"
-      --   elseif vim.fn.executable(cwd .. "/.venv/bin/python") == 1 then
-      --     return cwd .. "/.venv/bin/python"
-      --   else
-      --     return "/usr/bin/python"
-      --   end
-      -- end,
+      console = "internalConsole",
     },
   },
 }
