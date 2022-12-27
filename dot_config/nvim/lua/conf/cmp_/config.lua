@@ -33,8 +33,6 @@ cmp.setup({
     { name = "path" },
     { name = "nvim_lsp" },
     { name = "nvim_lua" },
-    { name = "color_names" },
-    { name = "nvim_lsp_signature_help" },
     { name = "dictionary", keyword_length = 2 },
     { name = "luasnip", option = { show_autosnippets = true } },
     { name = "buffer", option = { get_bufnrs = function() return vim.api.nvim_list_bufs() end } },
@@ -50,8 +48,6 @@ cmp.setup({
         nvim_lsp = "[LSP]",
         nvim_lua = "[Lua]",
         dictionary = "[Dic]",
-        color_names = "[Color]",
-        npm = "[NPM]",
       })[entry.source.name]
       return vim_item
     end,
