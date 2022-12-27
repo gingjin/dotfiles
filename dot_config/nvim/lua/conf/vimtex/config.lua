@@ -51,17 +51,15 @@ g.vimtex_compiler_latexmk_engines = {
   ["context (xetex)"] = "-pdf -pdflatex=''texexec --xtx''"
 }
 
-local cmd = vim.api.nvim_create_autocmd
-local augroup = vim.api.nvim_create_augroup
-local vimtex_config = augroup("vimtex_config", { clear = true })
-cmd("User", {
-  group = vimtex_config,
-  pattern = "VimtexEventQuit",
-  command = "call vimtex#compiler#clean(0)",
-})
-local VimTeX = augroup("VimTeX", { clear = true })
-cmd("BufWritePost", {
-  group = VimTeX,
-  pattern = "*.tex",
-  command = "call vimtex#toc#refresh()",
-})
+vim.cmd([[
+  augroup vimtex_config
+    autocmd!
+    autocmd User VimtexEventQuit call vimtex#compiler#clean(0)
+  augroup end
+]])
+vim.cmd([[
+  augroup VimTex
+    autocmd!
+    autocmd BufWritePost *.tex call vimtex#toc#refresh()
+  augroup end
+]])
