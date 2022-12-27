@@ -1,3 +1,40 @@
 set synctex true
-set synctex-editor-command "nvr --remote-silent %{input} -c %{line}"
-set selection-clipboard clipboard
+set synctex-editor-command "nvr -- remote-silent %{input}"
+
+set notification-error-bg       "#af5f5f" # Red
+set notification-error-fg       "#ddd0c0" # Foreground
+set notification-warning-bg     "#e1ab98" # Orange
+set notification-warning-fg     "#262220" # Selection
+set notification-bg             "#262220" # Background
+set notification-fg             "#ddd0c0" # Foreground
+
+set completion-bg               "#262220" # Background
+set completion-fg               "#666c7f" # Comment
+set completion-group-bg         "#262220" # Background
+set completion-group-fg         "#666c7f" # Comment
+set completion-highlight-bg     "#494e4e" # Selection
+set completion-highlight-fg     "#ddd0c0" # Foreground
+
+set index-bg                    "#262220" # Background
+set index-fg                    "#ddd0c0" # Foreground
+set index-active-bg             "#494e4e" # Current Line
+set index-active-fg             "#ddd0c0" # Foreground
+
+set inputbar-bg                 "#262220" # Background
+set inputbar-fg                 "#ddd0c0" # Foreground
+set statusbar-bg                "#262220" # Background
+set statusbar-fg                "#ddd0c0" # Foreground
+
+set highlight-color             "#e1ab98" # Orange
+set highlight-active-color      "#c987a0" # Pink
+
+set default-bg                  "#262220" # Background
+set default-fg                  "#ddd0c0" # Foreground
+
+set render-loading              true
+set render-loading-fg           "#262220" # Background
+set render-loading-bg           "#ddd0c0" # Foreground
+
+set recolor-lightcolor          "#262220" # Background
+set recolor-darkcolor           "#ddd0c0" # Foreground
+

@@ -1,5 +1,4 @@
 local colors = {
-  color13 = '#b8cc52',
   tab     = "#32302f",
   fg      = "#ffffff",
   r       = "#450000",

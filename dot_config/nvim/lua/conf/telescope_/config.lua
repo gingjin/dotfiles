@@ -35,13 +35,6 @@ tele.setup({
       override_file_sorter = true,
       case_mode = "smart_case",
     },
-    bookmarks = {
-      selected_browser = "chrome",
-      url_open_command = "open",
-      url_open_plugin = "open_browser",
-      full_path = true,
-      firefox_profile_name = nil,
-    },
     symbols = {
       sources = { "emoji", "kaomoji", "gitmoji", "latex", "math" },
     },
@@ -51,4 +44,3 @@ tele.setup({
 tele.load_extension("fzf")
 tele.load_extension("packer")
 tele.load_extension("luasnip")
-tele.load_extension("bookmarks")

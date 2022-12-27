@@ -18,7 +18,6 @@ packer.init({
 })
 
 packer.startup(function(use)
-  use({ "dstein64/vim-startuptime" })
   use({ "sainnhe/gruvbox-material" })
 
   use({ "jghauser/mkdir.nvim" })
@@ -32,10 +31,17 @@ packer.startup(function(use)
     requires = { "rafamadriz/friendly-snippets" } })
   use({ "nvim-lualine/lualine.nvim", config = function() require("conf.lualine_.init") end,
     requires = { "kyazdani42/nvim-web-devicons" } })
-  use({ "mfussenegger/nvim-dap", config = function() require("conf.dap_.init") end,
-    requires = { "rcarriga/nvim-dap-ui", "theHamsta/nvim-dap-virtual-text", }, })
-  use({ "neovim/nvim-lspconfig", config = function() require("conf.lsp.init") end,
-    requires = { "glepnir/lspsaga.nvim", "williamboman/mason.nvim", "williamboman/mason-lspconfig.nvim" }, })
+
+  use({
+    "neovim/nvim-lspconfig",
+    config = function() require("conf.lsp.init") end,
+    requires = {
+      "glepnir/lspsaga.nvim",
+      "williamboman/mason.nvim",
+      "williamboman/mason-lspconfig.nvim",
+      "ray-x/lsp_signature.nvim"
+    },
+  })
 
   use({
     "hrsh7th/nvim-cmp",
@@ -47,17 +53,13 @@ packer.startup(function(use)
       "hrsh7th/cmp-cmdline",
       "hrsh7th/cmp-nvim-lua",
       "hrsh7th/cmp-nvim-lsp",
-      "hrsh7th/cmp-nvim-lsp-signature-help",
       "hrsh7th/cmp-nvim-lsp-document-symbol",
       "uga-rosa/cmp-dictionary",
       "saadparwaiz1/cmp_luasnip",
       "lukas-reineke/cmp-under-comparator",
-      { "nat-418/cmp-color-names.nvim", after = "nvim-cmp",
-        config = function() require("cmp-color-names").setup() end,
-      },
+      { "windwp/nvim-autopairs", config = function() require("conf.pairs.init") end },
     },
   })
-  use({ "windwp/nvim-autopairs", after = "nvim-cmp", config = function() require("conf.pairs.init") end })
 
   use({
     "nvim-treesitter/nvim-treesitter",
@@ -65,7 +67,6 @@ packer.startup(function(use)
     requires = {
       "p00f/nvim-ts-rainbow",
       "windwp/nvim-ts-autotag",
-      "nvim-treesitter/nvim-treesitter-textobjects",
       "JoosepAlviste/nvim-ts-context-commentstring",
       { "m-demare/hlargs.nvim", after = "nvim-treesitter",
         config = function() require("hlargs").setup() require("hlargs").enable() end,
@@ -83,9 +84,7 @@ packer.startup(function(use)
     requires = {
       "nvim-telescope/telescope-packer.nvim",
       "nvim-telescope/telescope-symbols.nvim",
-      "tyru/open-browser.vim",
       "benfowler/telescope-luasnip.nvim",
-      "dhruvmanila/telescope-bookmarks.nvim",
       { "nvim-telescope/telescope-fzf-native.nvim", run = "make" },
     },
   })
@@ -107,9 +106,11 @@ packer.startup(function(use)
   use({ "kylechui/nvim-surround", event = "BufRead", config = function() require("nvim-surround").setup() end })
   use({ "skywind3000/asynctasks.vim", event = "BufRead", config = function() require("conf.tasks.init") end,
     requires = { { "skywind3000/asyncrun.vim", event = "BufRead" } }, })
+  use({ "mfussenegger/nvim-dap", config = function() require("conf.dap_.init") end, event = "BufRead",
+    requires = { "rcarriga/nvim-dap-ui", "theHamsta/nvim-dap-virtual-text", } })
 
+  use({ "mkitcc/nvim-cmake", ft = "txt" })
   use({ "mechatroner/rainbow_csv", ft = "csv" })
-  use({ "nanotee/sqls.nvim", ft = { "sql", "mysql" } })
   use({ "lervag/vimtex", config = function() require("conf.vimtex.init") end, ft = "tex" })
   use({ "iamcco/markdown-preview.nvim", config = function() require("conf.mkdp.init") end,
     run = "cd app && npm install", ft = { "markdown" },
@@ -119,11 +120,11 @@ end)
 local cmd = vim.api.nvim_create_autocmd
 local augroup = vim.api.nvim_create_augroup
 local Packer = augroup("Packer", { clear = true })
-cmd("BufWritePost", {
+cmd({
   group = Packer,
   pattern = "plugins.lua",
   command = "source <afile> | PackerCompile",
-})
+}, "BufWritePost")
 
 -- local ensure_packer = function()
 --   local fn = vim.fn
