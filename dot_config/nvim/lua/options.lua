@@ -1,34 +1,35 @@
-local cmd = vim.cmd
-cmd("filetype plugin indent on")
+vim.cmd("filetype plugin indent on")
 
 local g = vim.g
 g.mapleader = " "
 g.maplocalleader = " "
-g.python3_host_prog = "~/.pyenv/versions/py37env/bin/python"
+g.python3_host_prog = os.getenv("HOME")  .. "/.pyenv/versions/pyenv-3.8/bin/python"
 
-local opt = vim.opt
-opt.autoread = true
-opt.autowrite = true
-opt.clipboard:append("unnamedplus")
-opt.completeopt = "menu,menuone,noselect"
-opt.cursorline = true
-opt.expandtab = true
-opt.fileencodings = "ucs-bom,utf-8,gbk"
-opt.foldenable = false
-opt.foldlevel = 99
-opt.ignorecase = true
-opt.mouse = "a"
-opt.number = true
-opt.pumheight = 10
-opt.relativenumber = true
-opt.scrolloff = 8
-opt.shiftround = true
-opt.shiftwidth = 2
-opt.signcolumn = "yes"
-opt.smartcase = true
-opt.smartindent = true
-opt.softtabstop = 2
-opt.splitbelow = true
-opt.splitright = true
-opt.tabstop = 2
-opt.termguicolors = true
+local o = vim.opt
+o.autoread = true
+o.autowrite = true
+o.clipboard:append("unnamedplus")
+o.completeopt = { "menu", "menuone", "noselect" }
+o.cursorline = true
+o.expandtab = true
+o.fileencodings = { "ucs-bom", "utf-8", "gbk" }
+o.foldenable = false
+o.foldlevel = 99
+o.ignorecase = true
+o.mouse = "a"
+o.number = true
+o.pumheight = 10
+o.relativenumber = true
+o.scrolloff = 5
+o.shiftround = true
+o.shiftwidth = 2
+o.showmode = false
+o.signcolumn = "yes"
+o.smartcase = true
+o.smartindent = true
+o.softtabstop = 2
+o.splitbelow = true
+o.splitright = true
+o.tabstop = 2
+o.termguicolors = true
+o.timeoutlen = 800
