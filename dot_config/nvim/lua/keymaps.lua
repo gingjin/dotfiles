@@ -1,52 +1,47 @@
-local keymap = vim.api.nvim_set_keymap
-local opts = { noremap = true, silent = true }
+local G = require("G")
+G.map({
+  -- 删除当前缓冲区
+  { "n", "<leader>bd", ":bdelete<CR>" },
 
--- roll
-keymap("n", "<C-u>", "9k", opts)
-keymap("n", "<C-d>", "9j", opts)
+  -- 上下滚屏
+  { "n", "<C-u>", "9k" },
+  { "n", "<C-d>", "9j" },
 
--- buffer
-keymap("n", "<Tab>", ":bnext<CR>", opts)
-keymap("n", "<S-Tab>", ":bprevious<CR>", opts)
-keymap("n", "<leader>bd", ":bdelete<CR>", opts)
+  -- 缩进代码
+  { "v", "<", "<gv" },
+  { "v", ">", ">gv" },
 
--- split
-keymap("n", "<leader>sh", ":sp<CR>", opts)
-keymap("n", "<leader>sv", ":vsp<CR>", opts)
+  -- 跳转窗口
+  { "n", "<A-h>", "<C-w>h" },
+  { "n", "<A-j>", "<C-w>j" },
+  { "n", "<A-k>", "<C-w>k" },
+  { "n", "<A-l>", "<C-w>l" },
 
--- indent code
-keymap("v", "<", "<gv", opts)
-keymap("v", ">", ">gv", opts)
+  -- 将窗口移动到指定位置
+  { "n", "<A-H>", "<C-w>H" },
+  { "n", "<A-J>", "<C-w>J" },
+  { "n", "<A-K>", "<C-w>K" },
+  { "n", "<A-L>", "<C-w>L" },
 
--- close the current window
-keymap("n", "<leader>sc", "<C-w>c", opts)
--- close other windows
-keymap("n", "<leader>so", "<C-w>o", opts)
+  -- 调整窗口大小
+  { "n", "<A-up>", "<C-w>10+" },
+  { "n", "<A-down>", "<C-w>10-" },
+  { "n", "<A-left>", "<C-w>10<" },
+  { "n", "<A-right>", "<C-w>10>" },
 
--- jump window
-keymap("n", "<A-h>", "<C-w>h", opts)
-keymap("n", "<A-j>", "<C-w>j", opts)
-keymap("n", "<A-k>", "<C-w>k", opts)
-keymap("n", "<A-l>", "<C-w>l", opts)
+  -- 在插入模式下移动光标
+  { "i", "<A-h>", "<left>" },
+  { "i", "<A-j>", "<down>" },
+  { "i", "<A-k>", "<up>" },
+  { "i", "<A-l>", "<right>" },
 
--- resize window
-keymap("n", "<A-up>", "<C-w>10+", opts)
-keymap("n", "<A-down>", "<C-w>10-", opts)
-keymap("n", "<A-left>", "<C-w>10<", opts)
-keymap("n", "<A-right>", "<C-w>10>", opts)
+  -- 快速跳转到一行的开头或结尾
+  { "n", "L", "$" },
+  { "n", "H", "^" },
 
--- move the cursor in insert mode
-keymap("i", "<A-h>", "<left>", opts)
-keymap("i", "<A-j>", "<down>", opts)
-keymap("i", "<A-k>", "<up>", opts)
-keymap("i", "<A-l>", "<right>", opts)
+  -- 保存当前文件
+  { "n", "<leader>w", ":w<CR>" },
 
--- quickly jump to the beginning and end of a line
-keymap("n", "L", "$", opts)
-keymap("n", "H", "^", opts)
-
--- save the file
-keymap("n", "<leader>w", ":wa<CR>", opts)
-
--- save and close the file
-keymap("n", "<leader>Q", ":wq<CR>", opts)
+  -- 保存当前文件并退出
+  { "n", "<leader>Q", ":wq<CR>" },
+})
