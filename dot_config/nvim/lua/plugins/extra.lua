@@ -75,13 +75,6 @@ return {
     end,
   },
   {
-    "kdheepak/lazygit.nvim",
-    cmd = "LazyGit",
-    keys = {
-      { "<leader>lg", ":LazyGit<CR>", desc = "LazyGit", silent = true },
-    },
-  },
-  {
     "iamcco/markdown-preview.nvim",
     keys = {
       { "<leader>mp", ":MarkdownPreviewToggle<CR>", desc = "Toggle Preview", silent = true },
@@ -148,42 +141,59 @@ return {
     end,
   },
   {
-    "akinsho/toggleterm.nvim",
-    cmd = "ToggleTerm",
+    "kdheepak/lazygit.nvim",
     keys = {
-      { "<M-t>", ":ToggleTerm<CR>", desc = "ToggleTerm", silent = true },
+      { "<M-g>", ":lua _lazygit_toggle()<CR>", desc = "LazyGit", silent = true },
     },
-    init = function()
-      function _G.set_terminal_keymaps()
-        local opts = { buffer = 0 }
-        vim.keymap.set("t", "<esc>", [[<C-\><C-n>]], opts)
-        vim.keymap.set("t", "<M-h>", [[<Cmd>wincmd h<CR>]], opts)
-        vim.keymap.set("t", "<M-j>", [[<Cmd>wincmd j<CR>]], opts)
-        vim.keymap.set("t", "<M-k>", [[<Cmd>wincmd k<CR>]], opts)
-        vim.keymap.set("t", "<M-l>", [[<Cmd>wincmd l<CR>]], opts)
-      end
-
-      vim.cmd("autocmd! TermOpen term://* lua set_terminal_keymaps()")
-    end,
-    opts = function()
-      return {
-        size = 10,
-        open_mapping = [[<M-t>]],
-        shade_terminals = false,
-        start_in_insert = true,
-        insert_mappings = true,
-        persist_size = true,
-        shell = vim.o.shell,
-        direction = "float",
-        float_opts = { border = "double" },
-        highlights = {
-          Normal = {
-            guibg = "NONE",
-            ctermbg = "NONE",
-          },
+    dependencies = {
+      {
+        "akinsho/toggleterm.nvim",
+        cmd = "ToggleTerm",
+        keys = {
+          { "<M-t>", ":ToggleTerm<CR>", desc = "ToggleTerm", silent = true },
         },
-      }
-    end,
+        opts = function()
+          return {
+            size = 10,
+            open_mapping = [[<M-t>]],
+            shade_terminals = false,
+            start_in_insert = true,
+            insert_mappings = true,
+            persist_size = true,
+            shell = vim.o.shell,
+            direction = "float",
+            float_opts = { border = "double" },
+            highlights = {
+              Normal = {
+                guibg = "NONE",
+                ctermbg = "NONE",
+              },
+            },
+          }
+        end,
+        config = function(_, opts)
+          require("toggleterm").setup(opts)
+
+          function _G.set_terminal_keymaps()
+            local term_opts = { buffer = 0 }
+            vim.keymap.set("t", "<esc>", [[<C-\><C-n>]], term_opts)
+            vim.keymap.set("t", "<M-h>", [[<Cmd>wincmd h<CR>]], term_opts)
+            vim.keymap.set("t", "<M-j>", [[<Cmd>wincmd j<CR>]], term_opts)
+            vim.keymap.set("t", "<M-k>", [[<Cmd>wincmd k<CR>]], term_opts)
+            vim.keymap.set("t", "<M-l>", [[<Cmd>wincmd l<CR>]], term_opts)
+          end
+          vim.cmd("autocmd! TermOpen term://* lua set_terminal_keymaps()")
+
+          local Terminal = require("toggleterm.terminal").Terminal
+          local lazygit = Terminal:new({ cmd = "lazygit", hidden = true })
+
+          function _G._lazygit_toggle()
+            lazygit:toggle()
+          end
+          vim.keymap.set("n", "<M-g>", "<cmd>lua _lazygit_toggle()<CR>", { noremap = true, silent = true })
+        end,
+      },
+    },
   },
   {
     "folke/trouble.nvim",
