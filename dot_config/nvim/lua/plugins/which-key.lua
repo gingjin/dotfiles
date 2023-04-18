@@ -23,10 +23,7 @@ return {
         D = { name = "+Diffview" },
         f = { name = "+Telescope" },
         h = { name = "+Gitsings" },
-        l = {
-          name = "+Lazy",
-          y = { ":Lazy<CR>", "Plugin Manager" },
-        },
+        l = { name = "+Lazy" },
         m = { name = "+MarkdownPreview" },
         t = { name = "+Traslate" },
         v = { name = "+VimTex" },

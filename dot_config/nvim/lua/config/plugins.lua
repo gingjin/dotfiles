@@ -1,3 +1,8 @@
+local G = require("G")
+G.map({
+  { "n", "<leader>ly", ":Lazy<CR>", "Plugin Manager" },
+})
+
 require("lazy").setup("plugins", {
   checker = {
     enabled = true,
