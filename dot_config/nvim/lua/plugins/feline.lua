@@ -58,9 +58,6 @@ components.active[2] = {
       hl = { fg = G.colors.yellow, bg = G.colors.bg0 },
     },
     hl = { fg = G.colors.fg1, bg = G.colors.bg0, style = "bold" },
-    enabled = function()
-      return vim.b.gitsigns_status_dict ~= nil
-    end,
     right_sep = { str = " ", hl = { bg = G.colors.bg0 } },
   },
   {

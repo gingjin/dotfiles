@@ -5,10 +5,10 @@ function M.insert(cmp, luasnip)
     ["<C-e>"] = cmp.mapping.abort(),
     ["<C-x>"] = cmp.mapping.complete(),
     ["<C-c>"] = cmp.mapping.close(),
-    ["<C-f>"] = cmp.mapping.scroll_docs(4),
-    ["<C-b>"] = cmp.mapping.scroll_docs(-4),
-    ["<A-p>"] = cmp.mapping.select_prev_item(),
-    ["<A-n>"] = cmp.mapping.select_next_item(),
+    ["<C-d>"] = cmp.mapping.scroll_docs(4),
+    ["<C-u>"] = cmp.mapping.scroll_docs(-4),
+    ["<M-p>"] = cmp.mapping.select_prev_item(),
+    ["<M-n>"] = cmp.mapping.select_next_item(),
     ["<Up>"] = cmp.mapping.select_prev_item(),
     ["<Down>"] = cmp.mapping.select_next_item(),
     ["<CR>"] = cmp.mapping.confirm({
@@ -34,14 +34,14 @@ end
 
 function M.cmdline(cmp)
   return {
-    ["<A-p>"] = cmp.mapping(function(fallback)
+    ["<M-p>"] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_prev_item()
       else
         fallback()
       end
     end, { "c" }),
-    ["<A-n>"] = cmp.mapping(function(fallback)
+    ["<M-n>"] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_next_item()
       else

@@ -2,14 +2,14 @@ return {
   {
     "mfussenegger/nvim-dap",
     keys = {
-      { "<leader>dt", ":lua require'dap'.toggle_breakpoint()<CR>", desc = "Toggle Breakpoint" },
+      { "<leader>dt", ":lua require'dap'.toggle_breakpoint()<CR>", desc = "Toggle Breakpoint", silent = true },
       {
-        "<leader>db",
+        "<leader>dc",
         ":lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>",
         desc = "Breakpoint Condition",
       },
       {
-        "<leader>dl",
+        "<leader>dm",
         ":lua require'dap'.set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<CR>",
         desc = "Log Point Message",
       },
@@ -17,13 +17,13 @@ return {
     init = function()
       local G = require("G")
       G.map({
-        { "n", "<F5>", ":lua require'dap'.continue()<CR>" },
-        { "n", "<F6>", ":lua require'dap'.step_over()<CR>" },
-        { "n", "<F7>", ":lua require'dap'.step_into()<CR>" },
-        { "n", "<F8>", ":lua require'dap'.step_out()<CR>" },
+        { "n", "<F5>", ":lua require'dap'.continue()<CR>", "Continue" },
+        { "n", "<F6>", ":lua require'dap'.step_over()<CR>", "Step Over" },
+        { "n", "<F7>", ":lua require'dap'.step_into()<CR>", "Step Into" },
+        { "n", "<F8>", ":lua require'dap'.step_out()<CR>", "Step Out" },
         { "n", "<leader>dr", ":lua require'dap'.repl_toggle()<CR>", "Toggle Repl" },
         { "n", "<leader>dR", ":lua require'dap'.run_last()<CR>", "Run Last" },
-        { "n", "<leader>de", ":lua require'dapui'.eval()<CR>", "Eval" },
+        { "n", "<leader>dk", ":lua require'dapui'.eval()<CR>", "Eval" },
       })
 
       local sign = vim.fn.sign_define
@@ -49,17 +49,17 @@ return {
       -- python
       dap.adapters.python = require("extra.nvim-dap.adapter").python.adapter
       dap.configurations.python = require("extra.nvim-dap.adapter").python.config
-
-      -- go
-      -- dap.adapters.go = require("extra.nvim-dap.adapter").go.adapter
-      -- dap.configurations.go = require("extra.nvim-dap.adapter").go.config
     end,
     dependencies = {
       {
         "rcarriga/nvim-dap-ui",
         opts = function()
           return {
-            icons = { expanded = "", collapsed = "", current_frame = "" },
+            icons = {
+              expanded = "",
+              collapsed = "",
+              current_frame = "",
+            },
             mappings = {
               expand = { "<CR>", "<2-LeftMouse>" },
               open = "o",

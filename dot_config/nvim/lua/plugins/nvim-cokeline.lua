@@ -1,5 +1,4 @@
 local G = require("G")
-
 return {
   {
     "willothy/nvim-cokeline",

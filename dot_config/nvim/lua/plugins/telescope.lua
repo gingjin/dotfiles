@@ -35,11 +35,11 @@ return {
           },
           mappings = {
             n = {
-              ["<A-p>"] = action_layout.toggle_preview,
+              ["<M-p>"] = action_layout.toggle_preview,
             },
             i = {
               ["<C-u>"] = false,
-              ["<A-p>"] = action_layout.toggle_preview,
+              ["<M-p>"] = action_layout.toggle_preview,
             },
           },
         },

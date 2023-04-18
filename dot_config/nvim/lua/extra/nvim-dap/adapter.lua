@@ -1,5 +1,6 @@
-local M = {}
 local path = vim.fn.stdpath("data")
+local M = {}
+
 M.cpp = {
   adapter = {
     id = "cppdbg",
@@ -47,24 +48,6 @@ M.cpp = {
       },
     },
   }
-}
-
-M.go = {
-  adapter = {
-    type = "executable",
-    command = "node",
-    args = { path .. "/mason/packages/go-debug-adapter/extension/dist/debugAdapter.js" },
-  },
-  config = {
-    {
-      type = "go",
-      name = "Debug",
-      request = "launch",
-      showLog = false,
-      program = "${file}",
-      dlvToolPath = vim.fn.exepath("dlv"), -- Adjust to where delve is installed
-    },
-  },
 }
 
 M.python = {

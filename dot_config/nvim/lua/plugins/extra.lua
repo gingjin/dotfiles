@@ -21,15 +21,20 @@ return {
     "skywind3000/asynctasks.vim",
     cmd = "AsyncTask",
     keys = {
-      { "<F9>", ":AsyncTask file-build<CR>", desc = "AsyncTask file-build" },
-      { "<F10>", ":AsyncTask file-run<CR>", desc = "AsyncTask file-run" },
+      { "<F3>", ":AsyncTask file-build<CR>", desc = "AsyncTask file-build" },
+      { "<F4>", ":AsyncTask file-run<CR>", desc = "AsyncTask file-run" },
+      { "<F9>", ":AsyncTask project-init<CR>", desc = "AsyncTask project-init" },
+      { "<F10>", ":AsyncTask project-build<CR>", desc = "AsyncTask project-build" },
+      { "<F11>", ":AsyncTask project-run<CR>", desc = "AsyncTask project-run" },
     },
     init = function()
       local g = vim.g
       g.asyncrun_open = 10
+      g.asyncrun_rootmarks = { ".git", ".svn", ".root", ".project", ".hg" }
+      g.asynctasks_term_pos = "bottom"
       g.asynctasks_term_rows = 10
-      g.asynctasks_term_cols = 80
-      g.asynctasks_config_name = "tasks.ini"
+      g.asynctasks_term_focus = 1
+      g.asynctasks_config_name = { ".tasks", ".git/tasks.ini", ".svn/tasks.ini" }
       g.asynctasks_extra_config = {
         os.getenv("HOME") .. "/.config/nvim/lua/extra/asynctasks/tasks.ini",
       }
@@ -65,7 +70,7 @@ return {
     end,
     opts = function()
       return {
-        char = "▏",
+        char = "▎", -- ▏
       }
     end,
   },
@@ -78,7 +83,6 @@ return {
   },
   {
     "iamcco/markdown-preview.nvim",
-    cmd = "MarkdownPreviewToggle",
     keys = {
       { "<leader>mp", ":MarkdownPreviewToggle<CR>", desc = "Toggle Preview", silent = true },
     },
@@ -153,11 +157,10 @@ return {
       function _G.set_terminal_keymaps()
         local opts = { buffer = 0 }
         vim.keymap.set("t", "<esc>", [[<C-\><C-n>]], opts)
-        vim.keymap.set("t", "<C-h>", [[<Cmd>wincmd h<CR>]], opts)
-        vim.keymap.set("t", "<C-j>", [[<Cmd>wincmd j<CR>]], opts)
-        vim.keymap.set("t", "<C-k>", [[<Cmd>wincmd k<CR>]], opts)
-        vim.keymap.set("t", "<C-l>", [[<Cmd>wincmd l<CR>]], opts)
-        vim.keymap.set("t", "<C-w>", [[<C-\><C-n><C-w>]], opts)
+        vim.keymap.set("t", "<M-h>", [[<Cmd>wincmd h<CR>]], opts)
+        vim.keymap.set("t", "<M-j>", [[<Cmd>wincmd j<CR>]], opts)
+        vim.keymap.set("t", "<M-k>", [[<Cmd>wincmd k<CR>]], opts)
+        vim.keymap.set("t", "<M-l>", [[<Cmd>wincmd l<CR>]], opts)
       end
 
       vim.cmd("autocmd! TermOpen term://* lua set_terminal_keymaps()")

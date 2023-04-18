@@ -22,7 +22,7 @@ return {
             disable_filetype = { "TelescopePrompt", "vim" },
             enable_check_bracket_line = false,
             fast_wrap = {
-              map = "<A-i>",
+              map = "<M-i>",
               chars = { "{", "[", "(", '"', "'" },
               pattern = [=[[%'%"%)%>%]%)%}%,]]=],
               end_key = "$",
@@ -44,21 +44,12 @@ return {
       },
       {
         "L3MON4D3/LuaSnip",
-        dependencies = {
-          {
-            "rafamadriz/friendly-snippets",
-            config = function()
-              require("luasnip.loaders.from_vscode").lazy_load()
-            end,
-          },
-        },
         config = function()
-          local ls = require("luasnip")
-          local s = ls.snippet
-          local t = ls.text_node
-          local i = ls.insert_node
+          local s = require("luasnip").snippet
+          local t = require("luasnip").text_node
+          local i = require("luasnip").insert_node
 
-          ls.add_snippets("tex", {
+          require("luasnip").add_snippets("tex", {
             s("ctex", {
               t({
                 "% !TEX program = xelatex",
@@ -77,6 +68,14 @@ return {
             key = "tex",
           })
         end,
+        dependencies = {
+          {
+            "rafamadriz/friendly-snippets",
+            config = function()
+              require("luasnip.loaders.from_vscode").lazy_load()
+            end,
+          },
+        },
       },
     },
   },
