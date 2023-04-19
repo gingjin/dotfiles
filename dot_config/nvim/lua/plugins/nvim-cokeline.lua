@@ -88,7 +88,7 @@ return {
           {
             text = function(buffer)
               local errors = buffer.diagnostics.errors
-              return (errors ~= 0 and " " .. G.signs.Error .. errors .. " ") or ""
+              return (errors ~= 0 and " " .. G.signs.Error .. " " .. errors) or ""
             end,
             fg = function(buffer)
               local errors = buffer.diagnostics.errors
@@ -101,7 +101,7 @@ return {
           {
             text = function(buffer)
               local warnings = buffer.diagnostics.warnings
-              return (warnings ~= 0 and " " .. G.signs.Warn .. warnings .. " ") or ""
+              return (warnings ~= 0 and " " .. G.signs.Warn .. " " .. warnings) or ""
             end,
             fg = function(buffer)
               local warnings = buffer.diagnostics.warnings
@@ -114,7 +114,7 @@ return {
           {
             text = function(buffer)
               local infos = buffer.diagnostics.infos
-              return (infos ~= 0 and " " .. G.signs.Info .. infos .. " ") or ""
+              return (infos ~= 0 and " " .. G.signs.Info .. " " .. infos) or ""
             end,
             fg = function(buffer)
               local infos = buffer.diagnostics.infos
@@ -127,7 +127,7 @@ return {
           {
             text = function(buffer)
               local hints = buffer.diagnostics.hints
-              return (hints ~= 0 and " " .. G.signs.Hint .. hints .. " ") or ""
+              return (hints ~= 0 and " " .. G.signs.Hint .. " " .. hints) or ""
             end,
             fg = function(buffer)
               local hints = buffer.diagnostics.hints

@@ -1,6 +1,7 @@
 return {
   {
     "sindrets/diffview.nvim",
+    cmd = { "DiffviewFileHistory", "DiffviewOpen" },
     keys = {
       { "<leader>Do", ":DiffviewOpen<CR>", desc = "Open" },
       { "<leader>Dc", ":DiffviewClose<CR>", desc = "Close" },
@@ -9,7 +10,7 @@ return {
     opts = function()
       local actions = require("diffview.actions")
       return {
-        diff_binaries = false,
+        diff_binaries = true,
         enhanced_diff_hl = true,
         git_cmd = { "git" },
         hg_cmd = { "hg" },
@@ -28,7 +29,7 @@ return {
         view = {
           default = {
             layout = "diff2_horizontal",
-            winbar_info = true,
+            winbar_info = false,
           },
           merge_tool = {
             layout = "diff3_horizontal",
@@ -37,7 +38,7 @@ return {
           },
           file_history = {
             layout = "diff2_horizontal",
-            winbar_info = true,
+            winbar_info = false,
           },
         },
         file_panel = {
@@ -48,7 +49,7 @@ return {
           },
           win_config = {
             position = "left",
-            width = 30,
+            width = 25,
             win_opts = {},
           },
         },

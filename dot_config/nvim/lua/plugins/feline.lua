@@ -15,17 +15,13 @@ local components = {
 
 components.active[1] = {
   {
-    provider = " ",
-    hl = { bg = G.colors.bg0 },
-  },
-  {
     provider = {
       name = "vi_mode",
       opts = {
         show_mode_name = true,
       },
     },
-    icon = "",
+    icon = "▊ ",
     hl = function()
       local vi_mode_utils = require("feline.providers.vi_mode")
       return {
