@@ -74,8 +74,6 @@ return {
       require("telescope").load_extension("luasnip")
     end,
     dependencies = {
-      "nvim-lua/popup.nvim",
-      "nvim-lua/plenary.nvim",
       "tsakirist/telescope-lazy.nvim",
       "benfowler/telescope-luasnip.nvim",
       "nvim-telescope/telescope-symbols.nvim",

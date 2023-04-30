@@ -11,16 +11,12 @@ return {
   {
     "neovim/nvim-lspconfig",
     event = "BufReadPre",
-    init = function()
-      local G = require("G")
-      for type, icon in pairs(G.signs) do
+    config = function()
+      require("lspconfig.ui.windows").default_options.border = "double"
+      for type, icon in pairs(require("G").signs) do
         local hl = "DiagnosticSign" .. type
         vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
       end
-    end,
-    config = function()
-      require("lspconfig.ui.windows").default_options.border = "double"
-
       for _, server in ipairs(servers) do
         if server == "lua_ls" then
           require("extra.nvim-lspconfig.providers.lua_ls")
@@ -39,26 +35,22 @@ return {
       {
         "williamboman/mason.nvim",
         cmd = "Mason",
-        opts = function()
-          return {
-            ui = {
-              icons = {
-                package_pending = "",
-                package_installed = "",
-                package_uninstalled = "ﮊ",
-              },
+        opts = {
+          ui = {
+            icons = {
+              package_pending = "",
+              package_installed = "",
+              package_uninstalled = "ﮊ",
             },
-          }
-        end,
+          },
+        },
       },
       {
         "williamboman/mason-lspconfig.nvim",
-        opts = function()
-          return {
-            ensure_installed = servers,
-            automatic_installation = true,
-          }
-        end,
+        opts = {
+          ensure_installed = servers,
+          automatic_installation = true,
+        },
       },
     },
   },

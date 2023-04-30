@@ -8,7 +8,7 @@ g.python3_host_prog = os.getenv("HOME") .. "/.pyenv/versions/pyenv-3.8/bin/pytho
 local o = vim.opt
 o.autoread = true
 o.autowrite = true
-o.clipboard:append("unnamedplus")
+o.clipboard = "unnamedplus"
 o.completeopt = { "menu", "menuone", "noselect" }
 o.cursorline = true
 o.expandtab = true

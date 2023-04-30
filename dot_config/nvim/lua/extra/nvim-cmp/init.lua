@@ -24,25 +24,12 @@ cmp.setup({
   },
   sources = cmp.config.sources({
     { name = "calc" },
+    { name = "buffer" },
+    { name = "luasnip" },
     { name = "nvim_lua" },
     { name = "nvim_lsp" },
     { name = "async_path" },
     { name = "nvim_lsp_signature_help" },
-    {
-      name = "luasnip",
-      option = {
-        use_show_condition = true,
-        show_autosnippets = true,
-      },
-    },
-    {
-      name = "buffer",
-      option = {
-        get_bufnrs = function()
-          return vim.api.nvim_list_bufs()
-        end,
-      },
-    },
   }),
   mapping = cmp.mapping.preset.insert(M.insert(cmp, luasnip)),
   formatting = {
@@ -51,11 +38,11 @@ cmp.setup({
       vim_item.kind = G.cmp_kinds[vim_item.kind] or ""
       vim_item.menu = ({
         calc = "[Calc]",
-        async_path = "[Path]",
         buffer = "[Buf]",
         nvim_lsp = "[LSP]",
         nvim_lua = "[Lua]",
         luasnip = "[Snip]",
+        async_path = "[Path]",
       })[entry.source.name]
       return vim_item
     end,

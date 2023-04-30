@@ -15,13 +15,8 @@ local components = {
 
 components.active[1] = {
   {
-    provider = {
-      name = "vi_mode",
-      opts = {
-        show_mode_name = true,
-      },
-    },
-    icon = "▊ ",
+    provider = "vi_mode",
+    icon = "",
     hl = function()
       local vi_mode_utils = require("feline.providers.vi_mode")
       return {
@@ -31,6 +26,7 @@ components.active[1] = {
         style = "bold",
       }
     end,
+    left_sep = { str = " ", hl = { bg = G.colors.bg0 } },
     right_sep = { str = " ", hl = { bg = G.colors.bg0 } },
   },
   {
@@ -43,6 +39,26 @@ components.active[1] = {
     enabled = getsize,
     hl = { fg = G.colors.fg1, bg = G.colors.bg0 },
     right_sep = { str = " ", hl = { bg = G.colors.bg0 } },
+  },
+  {
+    provider = "diagnostic_errors",
+    icon = " " .. G.signs.Error .. " ",
+    hl = { fg = G.colors.red, bg = G.colors.bg0 },
+  },
+  {
+    provider = "diagnostic_warnings",
+    icon = " " .. G.signs.Warn .. " ",
+    hl = { fg = G.colors.yellow, bg = G.colors.bg0 },
+  },
+  {
+    provider = "diagnostic_info",
+    icon = " " .. G.signs.Info .. " ",
+    hl = { fg = G.colors.blue, bg = G.colors.bg0 },
+  },
+  {
+    provider = "diagnostic_hints",
+    icon = " " .. G.signs.Hint .. " ",
+    hl = { fg = G.colors.green, bg = G.colors.bg0 },
   },
 }
 

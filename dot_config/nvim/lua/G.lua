@@ -9,7 +9,7 @@ G.signs = {
 }
 
 G.icons = {
-  branch = "󰊢",
+  branch = "",
   add = "",
   change = "",
   remove = "",
@@ -53,7 +53,7 @@ G.colors = {
   bg2 = "#1d3337",
   red = "#e85c51",
   yellow = "#fda47f",
-  blue = "#73a3b7",
+  blue = "#5a93aa",
   green = "#7aa4a1",
   orange = "#ff8349",
   oceanblue = "oceanblue",

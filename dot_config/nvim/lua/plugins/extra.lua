@@ -5,17 +5,13 @@ return {
   {
     "stevearc/aerial.nvim",
     cmd = "AerialToggle",
-    keys = {
-      { "<leader>at", ":AerialToggle!<CR>", desc = "Toggle Aerial", silent = true },
+    keys = { { "<M-a>", ":AerialToggle!<CR>", desc = "Aerial", silent = true } },
+    opts = {
+      on_attach = function(bufnr)
+        vim.keymap.set("n", "{", "<cmd>AerialPrev<CR>", { buffer = bufnr })
+        vim.keymap.set("n", "}", "<cmd>AerialNext<CR>", { buffer = bufnr })
+      end,
     },
-    opts = function()
-      return {
-        on_attach = function(bufnr)
-          vim.keymap.set("n", "{", "<cmd>AerialPrev<CR>", { buffer = bufnr })
-          vim.keymap.set("n", "}", "<cmd>AerialNext<CR>", { buffer = bufnr })
-        end,
-      }
-    end,
   },
   {
     "skywind3000/asynctasks.vim",
@@ -28,14 +24,13 @@ return {
       { "<F11>", ":AsyncTask project-run<CR>", desc = "AsyncTask project-run" },
     },
     init = function()
-      local g = vim.g
-      g.asyncrun_open = 10
-      g.asyncrun_rootmarks = { ".git", ".svn", ".root", ".project", ".hg" }
-      g.asynctasks_term_pos = "bottom"
-      g.asynctasks_term_rows = 10
-      g.asynctasks_term_focus = 1
-      g.asynctasks_config_name = { ".tasks", ".git/tasks.ini", ".svn/tasks.ini" }
-      g.asynctasks_extra_config = {
+      vim.g.asyncrun_open = 10
+      vim.g.asyncrun_rootmarks = { ".git", ".svn", ".root", ".project", ".hg" }
+      vim.g.asynctasks_term_pos = "bottom"
+      vim.g.asynctasks_term_rows = 10
+      vim.g.asynctasks_term_focus = 1
+      vim.g.asynctasks_config_name = { ".tasks", ".git/tasks.ini", ".svn/tasks.ini" }
+      vim.g.asynctasks_extra_config = {
         os.getenv("HOME") .. "/.config/nvim/lua/extra/asynctasks/tasks.ini",
       }
     end,
@@ -44,19 +39,17 @@ return {
   {
     "max397574/better-escape.nvim",
     event = "InsertCharPre",
-    opts = function()
-      return {
-        mapping = { "jk" },
-        timeout = vim.o.timeoutlen,
-        clear_empty_lines = true,
-        keys = "<Esc>",
-      }
-    end,
+    opts = {
+      mapping = { "jk" },
+      timeout = vim.o.timeoutlen,
+      clear_empty_lines = true,
+      keys = "<Esc>",
+    },
   },
   {
     "uga-rosa/ccc.nvim",
     keys = {
-      { "<leader>ct", ":CccHighlighterToggle<CR>", desc = "Toggle Highlight", silent = true },
+      { "<leader>ct", ":CccHighlighterToggle<CR>", desc = "Highlight", silent = true },
       { "<leader>cp", ":CccPick<CR>", desc = "Pick", silent = true },
       { "<leader>cc", ":CccConvert<CR>", desc = "Convert", silent = true },
     },
@@ -68,51 +61,49 @@ return {
       vim.opt.list = true
       vim.opt.listchars:append("tab:⇝ ")
     end,
-    opts = function()
-      return {
-        char = "▎", -- ▏
-      }
-    end,
+    opts = { char = "⎸" },
   },
   {
     "iamcco/markdown-preview.nvim",
-    keys = {
-      { "<leader>mp", ":MarkdownPreviewToggle<CR>", desc = "Toggle Preview", silent = true },
-    },
+    keys = { { "<leader>mp", ":MarkdownPreviewToggle<CR>", desc = "Preview", silent = true } },
     ft = { "markdown" },
-    init = function()
-      local g = vim.g
-      g.mkdp_filetypes = { "markdown" }
-      g.mkdp_auto_start = 0
-      g.mkdp_auto_close = 1
-      g.mkdp_refresh_slow = 1
-      g.mkdp_page_title = "『${name}』"
-    end,
     build = "cd app && npm install",
+    init = function()
+      vim.g.mkdp_filetypes = { "markdown" }
+      vim.g.mkdp_auto_start = 0
+      vim.g.mkdp_auto_close = 1
+      vim.g.mkdp_refresh_slow = 1
+      vim.g.mkdp_page_title = "『${name}』"
+    end,
   },
   {
     "chentoast/marks.nvim",
     event = "BufRead",
-    config = function()
-      require("marks").setup({
-        force_write_shada = true,
-      })
-    end,
+    opts = { force_write_shada = true },
+  },
+  {
+    "nacro90/numb.nvim",
+    event = "BufRead",
+    opts = {
+      show_numbers = true,
+      show_cursorline = true,
+      hide_relativenumbers = true,
+      number_only = false,
+      centered_peeking = true,
+    },
   },
   {
     "ethanholz/nvim-lastplace",
     event = "BufReadPre",
-    config = function()
-      require("nvim-lastplace").setup({
-        lastplace_ignore_buftype = { "quickfix", "nofile", "help" },
-        lastplace_ignore_filetype = { "gitcommit", "gitrebase", "svn", "hgcommit" },
-        lastplace_open_folds = true,
-      })
-    end,
+    opts = {
+      lastplace_ignore_buftype = { "quickfix", "nofile", "help" },
+      lastplace_ignore_filetype = { "gitcommit", "gitrebase", "svn", "hgcommit" },
+      lastplace_open_folds = true,
+    },
   },
   {
     "kylechui/nvim-surround",
-    event = "InsertCharPre",
+    event = "BufRead",
     config = function()
       require("nvim-surround").setup()
     end,
@@ -120,21 +111,16 @@ return {
   {
     "kevinhwang91/rnvimr",
     cmd = "RnvimrToggle",
-    keys = {
-      { "<M-r>", ":RnvimrToggle<CR>", desc = "Rnvimr", silent = true },
-    },
+    keys = { { "<M-r>", ":RnvimrToggle<CR>", desc = "Rnvimr", silent = true } },
     init = function()
-      local g = vim.g
-      g.rnvimr_enable_ex = 0
-      g.rnvimr_enable_picker = 1
-      g.rnvimr_hide_gitignore = 1
-      g.rnvimr_draw_border = 1
-      g.rnvimr_border_attr = { fg = 14, bg = -1 }
-      g.rnvimr_enable_bw = 1
+      vim.g.rnvimr_enable_ex = 0
+      vim.g.rnvimr_enable_picker = 1
+      vim.g.rnvimr_hide_gitignore = 1
+      vim.g.rnvimr_draw_border = 1
+      vim.g.rnvimr_border_attr = { fg = 14, bg = -1 }
+      vim.g.rnvimr_enable_bw = 1
       vim.cmd("highlight link RnvimrNormal CursorLine")
-
-      local G = require("G")
-      G.map({
+      require("G").map({
         { "t", "<M-r>", "<C-\\><C-n>:RnvimrToggle<CR>" },
         { "t", "<M-i>", "<C-\\><C-n>:RnvimrResize<CR>" },
       })
@@ -142,38 +128,31 @@ return {
   },
   {
     "kdheepak/lazygit.nvim",
-    keys = {
-      { "<M-g>", ":lua _lazygit_toggle()<CR>", desc = "LazyGit", silent = true },
-    },
+    keys = { { "<M-g>", ":lua _lazygit_toggle()<CR>", desc = "LazyGit", silent = true } },
     dependencies = {
       {
         "akinsho/toggleterm.nvim",
         cmd = "ToggleTerm",
-        keys = {
-          { "<M-t>", ":ToggleTerm<CR>", desc = "ToggleTerm", silent = true },
-        },
-        opts = function()
-          return {
-            size = 10,
-            open_mapping = [[<M-t>]],
-            shade_terminals = false,
-            start_in_insert = true,
-            insert_mappings = true,
-            persist_size = true,
-            shell = vim.o.shell,
-            direction = "float",
-            float_opts = { border = "double" },
-            highlights = {
-              Normal = {
-                guibg = "NONE",
-                ctermbg = "NONE",
-              },
+        keys = { { "<M-t>", ":ToggleTerm<CR>", desc = "ToggleTerm", silent = true } },
+        opts = {
+          size = 10,
+          open_mapping = [[<M-t>]],
+          shade_terminals = false,
+          start_in_insert = true,
+          insert_mappings = true,
+          persist_size = true,
+          shell = vim.o.shell,
+          direction = "float",
+          float_opts = { border = "double" },
+          highlights = {
+            Normal = {
+              guibg = "NONE",
+              ctermbg = "NONE",
             },
-          }
-        end,
+          },
+        },
         config = function(_, opts)
           require("toggleterm").setup(opts)
-
           function _G.set_terminal_keymaps()
             local term_opts = { buffer = 0 }
             vim.keymap.set("t", "<esc>", [[<C-\><C-n>]], term_opts)
@@ -186,13 +165,32 @@ return {
 
           local Terminal = require("toggleterm.terminal").Terminal
           local lazygit = Terminal:new({ cmd = "lazygit", hidden = true })
-
           function _G._lazygit_toggle()
             lazygit:toggle()
           end
           vim.keymap.set("n", "<M-g>", "<cmd>lua _lazygit_toggle()<CR>", { noremap = true, silent = true })
         end,
       },
+    },
+  },
+  {
+    "krivahtoo/silicon.nvim",
+    cmd = "Silicon",
+    build = "./install.sh build",
+    opts = {
+      font = "LXGW WenKai Mono=26",
+      pad_vert = 20,
+      pad_horiz = 20,
+      line_number = true,
+      line_pad = 1,
+      tab_width = 2,
+      watermark = {
+        text = "@gingjin",
+        style = "bold",
+      },
+      window_title = function()
+        return vim.fn.fnamemodify(vim.fn.bufname(vim.fn.bufnr()), ":~:.")
+      end,
     },
   },
   {
@@ -205,6 +203,9 @@ return {
     opts = function()
       local G = require("G")
       return {
+        padding = false,
+        indent_lines = false,
+        auto_close = true,
         signs = {
           error = G.signs.Error,
           warning = G.signs.Warn,
@@ -218,10 +219,9 @@ return {
     dependencies = {
       {
         "folke/todo-comments.nvim",
-        keys = {
-          { "<leader>xt", ":TroubleToggle todo<CR>", desc = "Todo Comments", silent = true },
-        },
-        init = function()
+        keys = { { "<leader>xt", ":TroubleToggle todo<CR>", desc = "Todo Comments", silent = true } },
+        config = function()
+          require("todo-comments").setup()
           vim.keymap.set("n", "]t", function()
             require("todo-comments").jump_next()
           end, { desc = "Next todo comment" })
@@ -229,10 +229,6 @@ return {
             require("todo-comments").jump_prev()
           end, { desc = "Previous todo comment" })
         end,
-        config = function()
-          require("todo-comments").setup()
-        end,
-        dependencies = { "nvim-lua/plenary.nvim" },
       },
     },
   },

@@ -1,5 +1,4 @@
-local G = require("G")
-G.map({
+require("G").map({
   { "i", "<M-h>", "<left>", "" },
   { "i", "<M-j>", "<down>", "" },
   { "i", "<M-k>", "<up>", "" },
@@ -20,10 +19,10 @@ G.map({
   { "n", "<M-down>", "<C-w>10-", "The window height decrease" },
   { "n", "<M-left>", "<C-w>10<", "The window width decrease" },
   { "n", "<M-right>", "<C-w>10>", "The window width increases" },
-  { "n", "<leader>bs", ":w<CR>", "Save Focus Buffer" },
-  { "n", "<leader>ba", ":wa<CR>", "Save All Buffer" },
-  { "n", "<leader>bq", ":wqa<CR>", "Save All and Quit" },
-  { "n", "<leader>bd", ":bdelete<CR>", "Delete Focus Buffer" },
-  { "n", "<Tab>", ":bnext<CR>", "Focus Next Buffer" },
-  { "n", "<S-Tab>", ":bprevious<CR>", "Focus Previous Buffer" },
+  { "n", "<leader>bs", ":w<CR>", "Save focus buffer" },
+  { "n", "<leader>ba", ":wa<CR>", "Save all buffer" },
+  { "n", "<leader>bq", ":wq<CR>", "Save and quit" },
+  { "n", "<leader>bd", ":bdelete<CR>", "Delete focus buffer" },
+  { "n", "<Tab>", ":bnext<CR>", "Focus next buffer" },
+  { "n", "<S-Tab>", ":bprevious<CR>", "Focus previous buffer" },
 })

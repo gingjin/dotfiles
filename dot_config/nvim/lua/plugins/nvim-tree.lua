@@ -1,34 +1,23 @@
-local function on_attach(bufnr)
-  local function opt(desc)
-    return {
-      desc = "nvim-tree: " .. desc,
-      buffer = bufnr,
-      noremap = true,
-      silent = true,
-      nowait = true,
-    }
-  end
-
-  local api = require("nvim-tree.api")
-  api.config.mappings.default_on_attach(bufnr)
-  vim.keymap.set("n", "d", api.fs.trash, opt("Trash"))
-  vim.keymap.set("n", "D", api.fs.remove, opt("Delete"))
-end
-
 return {
   {
     "kyazdani42/nvim-tree.lua",
-    init = function()
-      local G = require("G")
-      G.map({
-        { "n", "<M-e>", ":NvimTreeToggle<CR>", "Toggle NvimTree" },
-      })
-
-      vim.g.loaded_netrw = 1
-      vim.g.loaded_netrwPlugin = 1
-      vim.cmd("highlight NvimTreeWindowPicker guifg=#ededed guibg=#44cc41")
-    end,
     opts = function()
+      local function on_attach(bufnr)
+        local function opt(desc)
+          return {
+            desc = "nvim-tree: " .. desc,
+            buffer = bufnr,
+            noremap = true,
+            silent = true,
+            nowait = true,
+          }
+        end
+        local api = require("nvim-tree.api")
+        api.config.mappings.default_on_attach(bufnr)
+        vim.keymap.set("n", "d", api.fs.trash, opt("Trash"))
+        vim.keymap.set("n", "D", api.fs.remove, opt("Delete"))
+      end
+
       return {
         on_attach = on_attach,
         auto_reload_on_write = true,
@@ -76,16 +65,17 @@ return {
             enable = true,
             inline_arrows = false,
             icons = {
-              corner = "└ ",
-              edge = "│ ",
+              corner = "└",
+              edge = "│",
               item = "│",
               bottom = "─",
-              none = "  ",
+              none = " ",
             },
           },
           icons = {
             webdev_colors = true,
-            git_placement = "before",
+            -- git_placement = "before",
+            git_placement = "signcolumn",
             symlink_arrow = " ➛ ",
             padding = " ",
             show = {
@@ -150,8 +140,11 @@ return {
       }
     end,
     config = function(_, opts)
+      vim.g.loaded_netrw = 1
+      vim.g.loaded_netrwPlugin = 1
+      vim.cmd("highlight NvimTreeWindowPicker guifg=#ededed guibg=#44cc41")
+      require("G").map({ { "n", "<M-e>", ":NvimTreeToggle<CR>", "NvimTree" } })
       require("nvim-tree").setup(opts)
-
       local function open_nvim_tree(data)
         local directory = vim.fn.isdirectory(data.file) == 1
         if not directory then
@@ -165,12 +158,13 @@ return {
       vim.api.nvim_create_autocmd({ "VimEnter" }, { callback = open_nvim_tree })
     end,
     dependencies = {
+      "nvim-lua/popup.nvim",
+      "nvim-lua/plenary.nvim",
       "nvim-tree/nvim-web-devicons",
       {
         "s1n7ax/nvim-window-picker",
         config = function()
           require("window-picker").setup()
-
           vim.keymap.set("n", "<leader>w", function()
             local picked_window_id = require("window-picker").pick_window() or vim.api.nvim_get_current_win()
             vim.api.nvim_set_current_win(picked_window_id)

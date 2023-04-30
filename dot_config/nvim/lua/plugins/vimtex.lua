@@ -1,34 +1,17 @@
 return {
   {
     "lervag/vimtex",
-    init = function()
-      local G = require("G")
-      G.map({
-        { "n", "<leader>vc", ":VimtexCountWords<CR>", "Count Words" },
-      })
-
-      vim.api.nvim_create_autocmd({ "User" }, {
-        pattern = { "VimtexEventQuit" },
-        group = vim.api.nvim_create_augroup("vimtex_config", {}),
-        command = "call b:vimtex#compiler#clean(0)",
-      })
-      vim.api.nvim_create_autocmd({ "BufReadPost" }, {
-        group = vim.api.nvim_create_augroup("VimTex", {}),
-        pattern = { "*.tex" },
-        command = "call b:vimtex#toc#refresh()",
-      })
-    end,
     config = function()
-      local g = vim.g
-      g.tex_flavor = "latex"
-      g.vimtex_view_method = "zathura"
-      g.vimtex_view_general_viewer = "zathura"
-      g.vimtex_quickfix_mode = 0
-      g.vimtex_quickfix_open_on_warning = 0
-      g.vimtex_texcount_custom_arg = " -ch -total"
-      g.vimtex_compiler_method = "latexmk"
-      g.vimtex_compiler_progname = "nvr"
-      g.vimtex_toc_config = {
+      require("G").map({ { "n", "<leader>vc", ":VimtexCountWords<CR>", "Count Words" } })
+      vim.g.tex_flavor = "latex"
+      vim.g.vimtex_view_method = "zathura"
+      vim.g.vimtex_view_general_viewer = "zathura"
+      vim.g.vimtex_quickfix_mode = 0
+      vim.g.vimtex_quickfix_open_on_warning = 0
+      vim.g.vimtex_texcount_custom_arg = " -ch -total"
+      vim.g.vimtex_compiler_method = "latexmk"
+      vim.g.vimtex_compiler_progname = "nvr"
+      vim.g.vimtex_toc_config = {
         name = "ToC",
         mode = 1,
         fold_enable = 0,
@@ -50,7 +33,7 @@ return {
         tocdepth = 3,
         todo_sorted = 0,
       }
-      g.vimtex_compiler_latexmk_engines = {
+      vim.g.vimtex_compiler_latexmk_engines = {
         _ = "-xelatex",
         pdflatex = "-pdf",
         dvipdfex = "-pdfdvi",
@@ -60,6 +43,16 @@ return {
         ["context (luatex)"] = "-pdf -pdflatex=context",
         ["context (xetex)"] = "-pdf -pdflatex=''texexec --xtx''",
       }
+      vim.api.nvim_create_autocmd({ "User" }, {
+        pattern = { "VimtexEventQuit" },
+        group = vim.api.nvim_create_augroup("vimtex_config", {}),
+        command = "call b:vimtex#compiler#clean(0)",
+      })
+      vim.api.nvim_create_autocmd({ "BufReadPost" }, {
+        group = vim.api.nvim_create_augroup("VimTex", {}),
+        pattern = { "*.tex" },
+        command = "call b:vimtex#toc#refresh()",
+      })
     end,
   },
 }

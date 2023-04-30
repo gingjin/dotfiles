@@ -17,56 +17,33 @@ return {
       "lukas-reineke/cmp-under-comparator",
       {
         "windwp/nvim-autopairs",
-        opts = function()
-          return {
-            disable_filetype = { "TelescopePrompt", "vim" },
-            enable_check_bracket_line = false,
-            fast_wrap = {
-              map = "<M-i>",
-              chars = { "{", "[", "(", '"', "'" },
-              pattern = [=[[%'%"%)%>%]%)%}%,]]=],
-              end_key = "$",
-              keys = "qwertyuiopzxcvbnmasdfghjkl",
-              check_comma = true,
-              highlight = "Search",
-              highlight_grey = "Comment",
-            },
-          }
-        end,
+        opts = {
+          disable_filetype = { "TelescopePrompt", "vim" },
+          enable_check_bracket_line = false,
+          fast_wrap = {
+            map = "<M-i>",
+            chars = { "{", "[", "(", '"', "'" },
+            pattern = [=[[%'%"%)%>%]%)%}%,]]=],
+            end_key = "$",
+            keys = "qwertyuiopzxcvbnmasdfghjkl",
+            check_comma = true,
+            highlight = "Search",
+            highlight_grey = "Comment",
+          },
+        },
         config = function(_, opts)
           require("nvim-autopairs").setup(opts)
           local cmp_autopairs = require("nvim-autopairs.completion.cmp")
           require("cmp").event:on("confirm_done", cmp_autopairs.on_confirm_done())
-
           local Rule = require("nvim-autopairs.rule")
           require("nvim-autopairs").add_rule(Rule("$", "$", { "markdown" }))
         end,
       },
       {
         "L3MON4D3/LuaSnip",
+        build = "make install_jsregexp",
         config = function()
-          local s = require("luasnip").snippet
-          local t = require("luasnip").text_node
-          local i = require("luasnip").insert_node
-
-          require("luasnip").add_snippets("tex", {
-            s("ctex", {
-              t({
-                "% !TEX program = xelatex",
-                "",
-                "\\documentclass{article}",
-                "\\usepackage[UTF8]{ctex}",
-                "",
-                "\\begin{document}",
-                "  ",
-                i(1),
-                "",
-                "\\end{document}",
-              }),
-            }),
-          }, {
-            key = "tex",
-          })
+          require("extra.nvim-cmp.snippets")
         end,
         dependencies = {
           {
@@ -75,6 +52,29 @@ return {
               require("luasnip.loaders.from_vscode").lazy_load()
             end,
           },
+        },
+      },
+      {
+        "abecodes/tabout.nvim",
+        opts = {
+          tabkey = "<Tab>",
+          backwards_tabkey = "<S-Tab>",
+          act_as_tab = true,
+          act_as_shift_tab = false,
+          default_tab = "<C-t>",
+          default_shift_tab = "<C-d>",
+          enable_backwards = true,
+          completion = true,
+          tabouts = {
+            { open = "'", close = "'" },
+            { open = '"', close = '"' },
+            { open = "`", close = "`" },
+            { open = "(", close = ")" },
+            { open = "[", close = "]" },
+            { open = "{", close = "}" },
+          },
+          ignore_beginning = true,
+          exclude = {},
         },
       },
     },

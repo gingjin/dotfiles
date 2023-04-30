@@ -1,20 +1,15 @@
 return {
   {
     "folke/which-key.nvim",
-    init = function()
+    opts = {
+      layout = {
+        height = { min = 4, max = 10 },
+      },
+    },
+    config = function(_, opts)
       vim.o.timeout = true
       vim.o.timeoutlen = 500
-    end,
-    opts = function()
-      return {
-        layout = {
-          height = { min = 4, max = 10 },
-        },
-      }
-    end,
-    config = function(_, opts)
       require("which-key").setup(opts)
-
       require("which-key").register({
         a = { name = "+Aerial" },
         b = { name = "+Buffer" },
@@ -25,6 +20,7 @@ return {
         h = { name = "+Gitsings" },
         l = { name = "+Lazy" },
         m = { name = "+MarkdownPreview" },
+        s = { name = "+Parameter" },
         t = { name = "+Traslate" },
         v = { name = "+VimTex" },
         x = { name = "+Trouble" },

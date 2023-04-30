@@ -1,6 +1,5 @@
-local G = require("G")
-G.map({
-  { "n", "<leader>ly", ":Lazy<CR>", "Plugin Manager" },
+require("G").map({
+  { "n", "<leader>ly", ":Lazy<CR>", "Plugin manager" },
 })
 
 require("lazy").setup("plugins", {
