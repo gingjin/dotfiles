@@ -7,10 +7,25 @@ local servers = {
   "rust_analyzer",
 }
 
+local tools = {
+  dap = { "debugpy" },
+  linter = {
+    "cmakelint",
+    "cpplint",
+    "flake8",
+  },
+  formatter = {
+    "clang-format",
+    "rustfmt",
+    "stylua",
+    "yapf",
+  },
+}
+
 return {
   {
     "neovim/nvim-lspconfig",
-    event = "BufReadPre",
+    event = { "BufReadPre", "BufNewFile" },
     config = function()
       require("lspconfig.ui.windows").default_options.border = "double"
       for type, icon in pairs(require("G").signs) do
@@ -50,6 +65,36 @@ return {
         opts = {
           ensure_installed = servers,
           automatic_installation = true,
+        },
+      },
+      {
+        "WhoIsSethDaniel/mason-tool-installer.nvim",
+        cmd = { "MasonToolsInstall", "MasonToolsUpdate" },
+        init = function()
+          vim.api.nvim_create_autocmd("User", {
+            pattern = "MasonToolsStartingInstall",
+            callback = function()
+              vim.schedule(function()
+                vim.notify("mason-tool-installer is starting", "info", {
+                  title = "Mason Tool Installer",
+                })
+              end)
+            end,
+          })
+          vim.api.nvim_create_autocmd("User", {
+            pattern = "MasonToolsUpdateCompleted",
+            callback = function()
+              vim.schedule(function()
+                vim.notify("mason-tool-installer has finished", "info", {
+                  title = "Mason Tool Installer",
+                })
+              end)
+            end,
+          })
+        end,
+        opts = {
+          ensure_installed = { tools.dap, tools.linter, tools.formatter },
+          auto_update = true,
         },
       },
     },

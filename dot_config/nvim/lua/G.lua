@@ -48,15 +48,15 @@ G.cmp_kinds = {
 G.colors = {
   fg1 = "#cbd9d8",
   fg2 = "#587b7b",
-  bg0 = "#0f1c1e",
-  bg1 = "#152528",
-  bg2 = "#1d3337",
+  bg1 = "#0f1c1e",
+  bg2 = "#152528",
+  bg3 = "#1d3337",
   red = "#e85c51",
   yellow = "#fda47f",
   blue = "#5a93aa",
   green = "#7aa4a1",
   orange = "#ff8349",
-  oceanblue = "oceanblue",
+  cyan = "#63cdcd",
 }
 
 function G.map(maps)

@@ -18,7 +18,7 @@ return {
           fg = function(buffer)
             return buffer.is_focused and G.colors.fg1 or G.colors.fg2
           end,
-          bg = G.colors.bg2,
+          bg = G.colors.bg3,
         },
         components = {
           {
@@ -34,10 +34,10 @@ return {
             fg = function(buffer)
               local focused = buffer.is_focused
               local first = buffer.is_first
-              return focused and G.colors.bg1 or first and G.colors.bg0
+              return focused and G.colors.bg2 or first and G.colors.bg1
             end,
             bg = function(buffer)
-              return buffer.is_first and G.colors.bg2 or G.colors.bg0
+              return buffer.is_first and G.colors.bg3 or G.colors.bg1
             end,
           },
           {
@@ -55,7 +55,7 @@ return {
                 or (buffer.is_focused and buffer.devicon.color)
             end,
             bg = function(buffer)
-              return buffer.is_focused and G.colors.bg1 or G.colors.bg0
+              return buffer.is_focused and G.colors.bg2 or G.colors.bg1
             end,
           },
           {
@@ -66,7 +66,7 @@ return {
               return buffer.is_focused and "bold"
             end,
             bg = function(buffer)
-              return buffer.is_focused and G.colors.bg1 or G.colors.bg0
+              return buffer.is_focused and G.colors.bg2 or G.colors.bg1
             end,
           },
           -- {
@@ -79,7 +79,7 @@ return {
           --     return errors ~= 0 and G.colors.red
           --   end,
           --   bg = function(buffer)
-          --     return buffer.is_focused and G.colors.bg1 or G.colors.bg0
+          --     return buffer.is_focused and G.colors.bg2 or G.colors.bg1
           --   end,
           -- },
           -- {
@@ -92,7 +92,7 @@ return {
           --     return warnings ~= 0 and G.colors.yellow
           --   end,
           --   bg = function(buffer)
-          --     return buffer.is_focused and G.colors.bg1 or G.colors.bg0
+          --     return buffer.is_focused and G.colors.bg2 or G.colors.bg1
           --   end,
           -- },
           -- {
@@ -105,7 +105,7 @@ return {
           --     return infos ~= 0 and G.colors.blue
           --   end,
           --   bg = function(buffer)
-          --     return buffer.is_focused and G.colors.bg1 or G.colors.bg0
+          --     return buffer.is_focused and G.colors.bg2 or G.colors.bg1
           --   end,
           -- },
           -- {
@@ -118,7 +118,7 @@ return {
           --     return hints ~= 0 and G.colors.green
           --   end,
           --   bg = function(buffer)
-          --     return buffer.is_focused and G.colors.bg1 or G.colors.bg0
+          --     return buffer.is_focused and G.colors.bg2 or G.colors.bg1
           --   end,
           -- },
           {
@@ -132,7 +132,7 @@ return {
               return modified and G.colors.orange or focused and G.colors.fg1
             end,
             bg = function(buffer)
-              return buffer.is_focused and G.colors.bg1 or G.colors.bg0
+              return buffer.is_focused and G.colors.bg2 or G.colors.bg1
             end,
             delete_buffer_on_left_click = true,
           },
@@ -141,10 +141,10 @@ return {
               return (buffer.is_focused or buffer.is_last) and "" or " "
             end,
             fg = function(buffer)
-              return buffer.is_focused and G.colors.bg1 or G.colors.bg0
+              return buffer.is_focused and G.colors.bg2 or G.colors.bg1
             end,
             bg = function(buffer)
-              return buffer.is_last and G.colors.bg2 or G.colors.bg0
+              return buffer.is_last and G.colors.bg3 or G.colors.bg1
             end,
           },
         },
@@ -154,7 +154,7 @@ return {
             {
               text = "",
               fg = function(buffer)
-                return buffer.is_focused and G.colors.bg1 or G.colors.bg0
+                return buffer.is_focused and G.colors.bg2 or G.colors.bg1
               end,
             },
             {
@@ -163,13 +163,13 @@ return {
                 return buffer.is_focused and "bold"
               end,
               bg = function(buffer)
-                return buffer.is_focused and G.colors.bg1 or G.colors.bg0
+                return buffer.is_focused and G.colors.bg2 or G.colors.bg1
               end,
             },
             {
               text = "",
               fg = function(buffer)
-                return buffer.is_focused and G.colors.bg1 or G.colors.bg0
+                return buffer.is_focused and G.colors.bg2 or G.colors.bg1
               end,
             },
           },

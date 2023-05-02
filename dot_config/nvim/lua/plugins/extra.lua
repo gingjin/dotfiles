@@ -56,7 +56,7 @@ return {
   },
   {
     "lukas-reineke/indent-blankline.nvim",
-    event = "BufRead",
+    event = {"BufReadPost", "BufNewFile"},
     init = function()
       vim.opt.list = true
       vim.opt.listchars:append("tab:⇝ ")
@@ -197,7 +197,6 @@ return {
     "folke/trouble.nvim",
     cmd = "TroubleToggle",
     keys = {
-      { "<leader>xw", ":TroubleToggle workspace_diagnostics<CR>", desc = "Workspace Diagnostics", silent = true },
       { "<leader>xx", ":TroubleToggle<CR>", desc = "Toggle Trouble", silent = true },
     },
     opts = function()

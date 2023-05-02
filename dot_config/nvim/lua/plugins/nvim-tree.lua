@@ -158,8 +158,6 @@ return {
       vim.api.nvim_create_autocmd({ "VimEnter" }, { callback = open_nvim_tree })
     end,
     dependencies = {
-      "nvim-lua/popup.nvim",
-      "nvim-lua/plenary.nvim",
       "nvim-tree/nvim-web-devicons",
       {
         "s1n7ax/nvim-window-picker",

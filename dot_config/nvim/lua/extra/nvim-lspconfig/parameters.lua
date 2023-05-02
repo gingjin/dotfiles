@@ -13,31 +13,32 @@ M.on_attach = function(client, bufnr)
     vim.keymap.set(mode, lhs, rhs, opts)
   end
 
-  bufmap("n", "<leader>i", function()
-    local util = require("vim.lsp.util")
-    local params = util.make_formatting_params({})
-    client.request("textDocument/formatting", params, nil, bufnr)
-  end, "Format at LSP")
-
   -- lspconfig
   bufmap("n", "[e", ":lua vim.diagnostic.goto_prev()<CR>", "Goto previous diagnostic")
   bufmap("n", "]e", ":lua vim.diagnostic.goto_next()<CR>", "Goto next diagnostic")
-
   bufmap("n", "K", ":lua vim.lsp.buf.hover()<CR>", "LSP hover")
   bufmap("n", "gn", ":lua vim.lsp.buf.rename()<CR>", "LSP rename")
   -- bufmap("n", "gr", ":lua vim.lsp.buf.references()<CR>", "LSP references")
   -- bufmap("n", "gd", ":lua vim.lsp.buf.definition()<CR>", "LSP definition")
   bufmap("n", "gD", ":lua vim.lsp.buf.declaration()<CR>", "LSP declaration")
-  bufmap("n", "gs", ":lua vim.lsp.buf.signature_help()<CR>", "LSP signature help")
+  bufmap("n", "gk", ":lua vim.lsp.buf.signature_help()<CR>", "LSP signature help")
   -- bufmap("n", "gI", ":lua vim.lsp.buf.implementation()<CR>", "LSP implementation")
   -- bufmap("n", "gt", ":lua vim.lsp.buf.type_definition()<CR>", "LSP type definition")
-  bufmap({ "n", "x" }, "ga", ":lua vim.lsp.buf.code_action()<CR>", "LSP code-action")
+  bufmap({ "n", "x" }, "ga", ":lua vim.lsp.buf.code_action()<CR>", "LSP code action")
+  bufmap("n", "gF", function()
+    local util = require("vim.lsp.util")
+    local params = util.make_formatting_params({})
+    client.request("textDocument/formatting", params, nil, bufnr)
+  end, "LSP format")
+  bufmap("i", "<C-k>", function()
+    vim.lsp.buf.signature_help()
+  end, "")
 
-  -- trouble
-  bufmap("n", "gr", ":TroubleToggle lsp_references<CR>", "LSP references")
-  bufmap("n", "gd", ":TroubleToggle lsp_definitions<CR>", "LSP definition")
-  bufmap("n", "gI", ":TroubleToggle lsp_implementations<CR>", "LSP implementation")
-  bufmap("n", "gt", ":TroubleToggle lsp_type_definitions<CR>", "LSP type definition")
+  -- telescope
+  bufmap("n", "gr", ":Telescope lsp_references<CR>", "LSP references")
+  bufmap("n", "gd", ":Telescope lsp_definitions<CR>", "LSP definition")
+  bufmap("n", "gI", ":Telescope lsp_implementations<CR>", "LSP implementation")
+  bufmap("n", "gt", ":Telescope lsp_type_definitions<CR>", "LSP type definition")
 end
 
 return M

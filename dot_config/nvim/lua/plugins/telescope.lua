@@ -1,6 +1,7 @@
 return {
   {
     "nvim-telescope/telescope.nvim",
+    cmd = "Telescope",
     keys = {
       { "<leader><space>", ":Telescope<CR>", desc = "Telescope", silent = true },
       { "<leader>fb", ":Telescope buffers<CR>", desc = "Find Buffers", silent = true },
