@@ -2,14 +2,25 @@ return {
   {
     "nvim-treesitter/nvim-treesitter",
     event = { "BufReadPost", "BufNewFile" },
+    cmd = { "TSInstall", "TSModuleInfo" },
     build = function()
       require("nvim-treesitter.install").update()
+    end,
+    init = function()
+      vim.api.nvim_create_autocmd({ "BufEnter", "BufAdd", "BufNew", "BufNewFile", "BufWinEnter" }, {
+        group = vim.api.nvim_create_augroup("TS_FOLD_WORKAROUND", {}),
+        callback = function()
+          vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
+          vim.opt.foldmethod = "expr"
+          vim.opt.foldminlines = 20
+        end,
+      })
     end,
     opts = function()
       return {
         ensure_installed = require("nvim-treesitter.parsers").available_parsers(),
         sync_install = false,
-        ignore_install = { "help" },
+        ignore_install = {},
         highlight = {
           enable = true,
           disable = { "latex" },
@@ -102,13 +113,6 @@ return {
     end,
     config = function(_, opts)
       require("nvim-treesitter.configs").setup(opts)
-      vim.api.nvim_create_autocmd({ "BufEnter", "BufAdd", "BufNew", "BufNewFile", "BufWinEnter" }, {
-        group = vim.api.nvim_create_augroup("TS_FOLD_WORKAROUND", {}),
-        callback = function()
-          vim.opt.foldmethod = "expr"
-          vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
-        end,
-      })
     end,
     dependencies = {
       "windwp/nvim-ts-autotag",

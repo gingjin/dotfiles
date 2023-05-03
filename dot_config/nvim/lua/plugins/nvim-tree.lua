@@ -1,6 +1,24 @@
 return {
   {
     "kyazdani42/nvim-tree.lua",
+    init = function()
+      vim.g.loaded_netrw = 1
+      vim.g.loaded_netrwPlugin = 1
+      vim.cmd("highlight NvimTreeWindowPicker guifg=#ededed guibg=#44cc41")
+      require("G").map({ { "n", "<M-e>", ":NvimTreeToggle<CR>", "NvimTree" } })
+
+      local function open_nvim_tree(data)
+        local directory = vim.fn.isdirectory(data.file) == 1
+        if not directory then
+          return
+        end
+        if directory then
+          vim.cmd.cd(data.file)
+        end
+        require("nvim-tree.api").tree.open()
+      end
+      vim.api.nvim_create_autocmd({ "VimEnter" }, { callback = open_nvim_tree })
+    end,
     opts = function()
       local function on_attach(bufnr)
         local function opt(desc)
@@ -138,24 +156,6 @@ return {
         },
         log = { enable = false },
       }
-    end,
-    config = function(_, opts)
-      vim.g.loaded_netrw = 1
-      vim.g.loaded_netrwPlugin = 1
-      vim.cmd("highlight NvimTreeWindowPicker guifg=#ededed guibg=#44cc41")
-      require("G").map({ { "n", "<M-e>", ":NvimTreeToggle<CR>", "NvimTree" } })
-      require("nvim-tree").setup(opts)
-      local function open_nvim_tree(data)
-        local directory = vim.fn.isdirectory(data.file) == 1
-        if not directory then
-          return
-        end
-        if directory then
-          vim.cmd.cd(data.file)
-        end
-        require("nvim-tree.api").tree.open()
-      end
-      vim.api.nvim_create_autocmd({ "VimEnter" }, { callback = open_nvim_tree })
     end,
     dependencies = {
       "nvim-tree/nvim-web-devicons",

@@ -9,17 +9,8 @@ local servers = {
 
 local tools = {
   dap = { "debugpy" },
-  linter = {
-    "cmakelint",
-    "cpplint",
-    "flake8",
-  },
-  formatter = {
-    "clang-format",
-    "rustfmt",
-    "stylua",
-    "yapf",
-  },
+  linter = { "cmakelint", "cpplint", "flake8" },
+  formatter = { "clang-format", "rustfmt", "stylua", "yapf" },
 }
 
 return {
@@ -32,6 +23,7 @@ return {
         local hl = "DiagnosticSign" .. type
         vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
       end
+
       for _, server in ipairs(servers) do
         if server == "lua_ls" then
           require("extra.nvim-lspconfig.providers.lua_ls")
@@ -70,12 +62,7 @@ return {
       {
         "WhoIsSethDaniel/mason-tool-installer.nvim",
         cmd = { "MasonToolsInstall", "MasonToolsUpdate" },
-        opts = {
-          ensure_installed = { tools.dap, tools.linter, tools.formatter },
-          auto_update = true,
-        },
-        config = function(_, opts)
-          require("mason-tool-installer").setup(opts)
+        init = function()
           vim.api.nvim_create_autocmd("User", {
             pattern = "MasonToolsStartingInstall",
             callback = function()
@@ -97,6 +84,10 @@ return {
             end,
           })
         end,
+        opts = {
+          ensure_installed = { tools.dap, tools.linter, tools.formatter },
+          auto_update = true,
+        },
       },
     },
   },
