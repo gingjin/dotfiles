@@ -2,8 +2,8 @@ return {
   {
     "mhartington/formatter.nvim",
     keys = {
-      { "<M-f>", ":Format<CR>", desc = "Format", silent = true },
-      { "<M-F>", ":FormatWrite<CR>", desc = "Format Write", silent = true },
+      { "<M-f>", ":Format<CR>", desc = "Format" },
+      { "<M-F>", ":FormatWrite<CR>", desc = "Format Write" },
     },
     opts = function()
       local util = require("formatter.util")

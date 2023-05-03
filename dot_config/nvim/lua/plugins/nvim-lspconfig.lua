@@ -70,7 +70,12 @@ return {
       {
         "WhoIsSethDaniel/mason-tool-installer.nvim",
         cmd = { "MasonToolsInstall", "MasonToolsUpdate" },
-        init = function()
+        opts = {
+          ensure_installed = { tools.dap, tools.linter, tools.formatter },
+          auto_update = true,
+        },
+        config = function(_, opts)
+          require("mason-tool-installer").setup(opts)
           vim.api.nvim_create_autocmd("User", {
             pattern = "MasonToolsStartingInstall",
             callback = function()
@@ -92,10 +97,6 @@ return {
             end,
           })
         end,
-        opts = {
-          ensure_installed = { tools.dap, tools.linter, tools.formatter },
-          auto_update = true,
-        },
       },
     },
   },

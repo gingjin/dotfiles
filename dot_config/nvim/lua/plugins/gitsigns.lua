@@ -7,14 +7,14 @@ return {
       local on_attach = function(bufnr)
         vim.keymap.set(
           "n",
-          "]c",
-          "&diff ? ']c' : ':Gitsigns next_hunk<CR>'",
+          "]h",
+          "&diff ? ']h' : ':Gitsigns next_hunk<CR>'",
           { expr = true, buffer = bufnr, noremap = true, silent = true, desc = "Next hunk" }
         )
         vim.keymap.set(
           "n",
-          "[c",
-          "&diff ? '[c' : ':Gitsigns prev_hunk<CR>'",
+          "[h",
+          "&diff ? '[h' : ':Gitsigns prev_hunk<CR>'",
           { expr = true, buffer = bufnr, noremap = true, silent = true, desc = "Previous hunk" }
         )
 

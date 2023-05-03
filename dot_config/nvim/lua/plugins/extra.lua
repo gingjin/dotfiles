@@ -197,7 +197,7 @@ return {
     "folke/trouble.nvim",
     cmd = "TroubleToggle",
     keys = {
-      { "<leader>xx", ":TroubleToggle<CR>", desc = "Toggle Trouble", silent = true },
+      { "<leader>xx", ":TroubleToggle<CR>", desc = "Trouble", silent = true },
     },
     opts = function()
       local G = require("G")
@@ -218,7 +218,7 @@ return {
     dependencies = {
       {
         "folke/todo-comments.nvim",
-        keys = { { "<leader>xt", ":TroubleToggle todo<CR>", desc = "Todo Comments", silent = true } },
+        keys = { { "<leader>xt", ":TroubleToggle todo<CR>", desc = "Todo comments", silent = true } },
         config = function()
           require("todo-comments").setup()
           vim.keymap.set("n", "]t", function()
@@ -234,9 +234,9 @@ return {
   {
     "voldikss/vim-translator",
     keys = {
-      { "<leader>tv", "<Plug>Translate", mode = "n", desc = "on cmdline" },
+      { "<leader>tv", "<Plug>Translate", mode = "n", desc = "On cmdline" },
       { "<leader>tv", "<Plug>TranslateV", mode = "v" },
-      { "<leader>tw", "<Plug>TranslateW", mode = "n", desc = "on windown" },
+      { "<leader>tw", "<Plug>TranslateW", mode = "n", desc = "On windown" },
       { "<leader>tw", "<Plug>TranslateWV", mode = "v" },
     },
     init = function()
