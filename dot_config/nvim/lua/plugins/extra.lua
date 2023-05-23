@@ -56,7 +56,7 @@ return {
   },
   {
     "lukas-reineke/indent-blankline.nvim",
-    event = {"BufReadPost", "BufNewFile"},
+    event = { "BufReadPre", "BufNewFile" },
     init = function()
       vim.opt.list = true
       vim.opt.listchars:append("tab:⇝ ")

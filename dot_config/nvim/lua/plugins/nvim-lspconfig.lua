@@ -5,12 +5,19 @@ local servers = {
   "lua_ls",
   "pyright",
   "rust_analyzer",
+  "texlab",
 }
 
 local tools = {
-  dap = { "debugpy" },
-  linter = { "cmakelint", "cpplint", "flake8" },
-  formatter = { "clang-format", "rustfmt", "stylua", "yapf" },
+  "debugpy",
+  "cmakelint",
+  "cpplint",
+  "flake8",
+  "clang-format",
+  "latexindent",
+  "rustfmt",
+  "stylua",
+  "yapf",
 }
 
 return {
@@ -27,6 +34,8 @@ return {
       for _, server in ipairs(servers) do
         if server == "lua_ls" then
           require("extra.nvim-lspconfig.providers.lua_ls")
+        elseif server == "texlab" then
+          require("extra.nvim-lspconfig.providers.texlab")
         else
           local M = require("extra.nvim-lspconfig.parameters")
           require("lspconfig")[server].setup({
@@ -62,31 +71,8 @@ return {
       {
         "WhoIsSethDaniel/mason-tool-installer.nvim",
         cmd = { "MasonToolsInstall", "MasonToolsUpdate" },
-        init = function()
-          vim.api.nvim_create_autocmd("User", {
-            pattern = "MasonToolsStartingInstall",
-            callback = function()
-              vim.schedule(function()
-                vim.notify("mason-tool-installer is starting", "info", {
-                  title = "Mason Tool Installer",
-                })
-              end)
-            end,
-          })
-          vim.api.nvim_create_autocmd("User", {
-            pattern = "MasonToolsUpdateCompleted",
-            callback = function()
-              vim.schedule(function()
-                vim.notify("mason-tool-installer has finished", "info", {
-                  title = "Mason Tool Installer",
-                })
-              end)
-            end,
-          })
-        end,
         opts = {
-          ensure_installed = { tools.dap, tools.linter, tools.formatter },
-          auto_update = true,
+          ensure_installed = tools,
         },
       },
     },

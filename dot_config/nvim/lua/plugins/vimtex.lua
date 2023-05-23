@@ -1,8 +1,11 @@
 return {
   {
     "lervag/vimtex",
-    init = function()
-      require("G").map({ { "n", "<leader>vc", ":VimtexCountWords<CR>", "Count Words" } })
+    config = function()
+      require("G").map({
+        { "n", "<leader>lw", ":VimtexCountWords<CR>", "Count words" },
+        { "n", "<leader>lr", ":call vimtex#toc#refresh()", "Refresh toc" },
+      })
       vim.g.tex_flavor = "latex"
       vim.g.vimtex_view_method = "zathura"
       vim.g.vimtex_view_general_viewer = "zathura"
@@ -29,30 +32,19 @@ return {
         show_help = 0,
         show_numbers = 1,
         split_pos = "vert leftabove",
-        split_width = 30,
+        split_width = 25,
         tocdepth = 3,
         todo_sorted = 0,
       }
       vim.g.vimtex_compiler_latexmk_engines = {
         _ = "-xelatex",
+        pdfdvi = "-pdfdvi",
+        pdfps = "-pdfps",
         pdflatex = "-pdf",
-        dvipdfex = "-pdfdvi",
+        luatex = "-lualatex",
         lualatex = "-lualatex",
         xelatex = "-xelatex",
-        ["context (pdftex)"] = "-pdf -pdflatex=texexec",
-        ["context (luatex)"] = "-pdf -pdflatex=context",
-        ["context (xetex)"] = "-pdf -pdflatex=''texexec --xtx''",
       }
-      vim.api.nvim_create_autocmd({ "User" }, {
-        pattern = { "VimtexEventQuit" },
-        group = vim.api.nvim_create_augroup("vimtex_config", {}),
-        command = "call b:vimtex#compiler#clean(0)",
-      })
-      vim.api.nvim_create_autocmd({ "BufReadPost" }, {
-        group = vim.api.nvim_create_augroup("VimTex", {}),
-        pattern = { "*.tex" },
-        command = "call b:vimtex#toc#refresh()",
-      })
     end,
   },
 }

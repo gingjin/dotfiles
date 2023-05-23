@@ -22,7 +22,6 @@ return {
         m = { name = "+MarkdownPreview" },
         s = { name = "+Parameter" },
         t = { name = "+Traslate" },
-        v = { name = "+VimTex" },
         x = { name = "+Trouble" },
       }, { prefix = "<leader>" })
     end,

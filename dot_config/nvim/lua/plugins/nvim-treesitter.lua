@@ -12,7 +12,7 @@ return {
         callback = function()
           vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
           vim.opt.foldmethod = "expr"
-          vim.opt.foldminlines = 20
+          vim.opt.foldlevel = 99
         end,
       })
     end,
