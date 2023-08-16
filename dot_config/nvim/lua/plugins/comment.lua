@@ -15,5 +15,6 @@ return {
         post_hook = nil,
       }
     end,
+    dependencies = { "JoosepAlviste/nvim-ts-context-commentstring" },
   },
 }

@@ -148,32 +148,6 @@ return {
             end,
           },
         },
-        sidebar = {
-          filetype = "NvimTree",
-          components = {
-            {
-              text = "",
-              fg = function(buffer)
-                return buffer.is_focused and G.colors.bg2 or G.colors.bg1
-              end,
-            },
-            {
-              text = "NvimTree",
-              style = function(buffer)
-                return buffer.is_focused and "bold"
-              end,
-              bg = function(buffer)
-                return buffer.is_focused and G.colors.bg2 or G.colors.bg1
-              end,
-            },
-            {
-              text = "",
-              fg = function(buffer)
-                return buffer.is_focused and G.colors.bg2 or G.colors.bg1
-              end,
-            },
-          },
-        },
       }
     end,
   },

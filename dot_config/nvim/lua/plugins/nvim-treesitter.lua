@@ -35,23 +35,11 @@ return {
             scope_incremental = "<TAB>",
           },
         },
-        autotag = { enable = true },
         indent = {
           enable = true,
           disable = { "python" },
         },
-        rainbow = {
-          enable = true,
-          query = {
-            "rainbow-parens",
-            tsx = "rainbow-tags",
-            vue = "rainbow-tags",
-            html = "rainbow-tags",
-            latex = "rainbow-blocks",
-            javascript = "rainbow-parens-react",
-          },
-          strategy = require("ts-rainbow").strategy.global,
-        },
+        autotag = { enable = true },
         context_commentstring = {
           enable = true,
           enable_autocmd = false,
@@ -112,11 +100,14 @@ return {
       }
     end,
     config = function(_, opts)
+      for _, config in pairs(require("nvim-treesitter.parsers").get_parser_configs()) do
+        config.install_info.url =
+          config.install_info.url:gsub("https://github.com/", "https://ghproxy.com/https://github.com/")
+      end
       require("nvim-treesitter.configs").setup(opts)
     end,
     dependencies = {
       "windwp/nvim-ts-autotag",
-      "HiPhish/nvim-ts-rainbow2",
       "JoosepAlviste/nvim-ts-context-commentstring",
       "nvim-treesitter/nvim-treesitter-textobjects",
     },

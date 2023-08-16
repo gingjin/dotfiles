@@ -3,7 +3,7 @@ vim.cmd("filetype plugin indent on")
 local g = vim.g
 g.mapleader = " "
 g.maplocalleader = " "
-g.python3_host_prog = os.getenv("HOME") .. "/.pyenv/versions/pyenv-3.8/bin/python"
+g.python3_host_prog = os.getenv("HOME") .. "/.pyenv/versions/nvim_env38/bin/python"
 
 local o = vim.opt
 o.autoread = true

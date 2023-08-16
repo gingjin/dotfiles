@@ -148,10 +148,7 @@ return {
       return {
         components = components,
         disable = {
-          filetypes = {
-            "^NvimTree$",
-            "^aerial$",
-          },
+          filetypes = { "^aerial$" },
         },
         force_inactive = {
           filetypes = {
@@ -172,6 +169,5 @@ return {
         },
       }
     end,
-    dependencies = { "nvim-lua/popup.nvim", "nvim-lua/plenary.nvim" },
   },
 }

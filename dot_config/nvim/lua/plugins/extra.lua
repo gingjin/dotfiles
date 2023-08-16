@@ -109,96 +109,42 @@ return {
     end,
   },
   {
-    "kevinhwang91/rnvimr",
-    cmd = "RnvimrToggle",
-    keys = { { "<M-r>", ":RnvimrToggle<CR>", desc = "Rnvimr", silent = true } },
+    "akinsho/toggleterm.nvim",
+    cmd = "ToggleTerm",
+    keys = { { "<M-t>", ":ToggleTerm<CR>", desc = "ToggleTerm", silent = true } },
     init = function()
-      vim.g.rnvimr_enable_ex = 0
-      vim.g.rnvimr_enable_picker = 1
-      vim.g.rnvimr_hide_gitignore = 1
-      vim.g.rnvimr_draw_border = 1
-      vim.g.rnvimr_border_attr = { fg = 14, bg = -1 }
-      vim.g.rnvimr_enable_bw = 1
-      vim.cmd("highlight link RnvimrNormal CursorLine")
-      require("G").map({
-        { "t", "<M-r>", "<C-\\><C-n>:RnvimrToggle<CR>" },
-        { "t", "<M-i>", "<C-\\><C-n>:RnvimrResize<CR>" },
-      })
+      function _G.set_terminal_keymaps()
+        local term_opts = { buffer = 0 }
+        vim.keymap.set("t", "<esc>", [[<C-\><C-n>]], term_opts)
+        vim.keymap.set("t", "<M-h>", [[<Cmd>wincmd h<CR>]], term_opts)
+        vim.keymap.set("t", "<M-j>", [[<Cmd>wincmd j<CR>]], term_opts)
+        vim.keymap.set("t", "<M-k>", [[<Cmd>wincmd k<CR>]], term_opts)
+        vim.keymap.set("t", "<M-l>", [[<Cmd>wincmd l<CR>]], term_opts)
+      end
+      vim.cmd("autocmd! TermOpen term://* lua set_terminal_keymaps()")
     end,
-  },
-  {
-    "kdheepak/lazygit.nvim",
-    keys = { { "<M-g>", ":lua _lazygit_toggle()<CR>", desc = "LazyGit", silent = true } },
-    dependencies = {
-      {
-        "akinsho/toggleterm.nvim",
-        cmd = "ToggleTerm",
-        keys = { { "<M-t>", ":ToggleTerm<CR>", desc = "ToggleTerm", silent = true } },
-        opts = {
-          size = 10,
-          open_mapping = [[<M-t>]],
-          shade_terminals = false,
-          start_in_insert = true,
-          insert_mappings = true,
-          persist_size = true,
-          shell = vim.o.shell,
-          direction = "float",
-          float_opts = { border = "double" },
-          highlights = {
-            Normal = {
-              guibg = "NONE",
-              ctermbg = "NONE",
-            },
-          },
-        },
-        config = function(_, opts)
-          require("toggleterm").setup(opts)
-          function _G.set_terminal_keymaps()
-            local term_opts = { buffer = 0 }
-            vim.keymap.set("t", "<esc>", [[<C-\><C-n>]], term_opts)
-            vim.keymap.set("t", "<M-h>", [[<Cmd>wincmd h<CR>]], term_opts)
-            vim.keymap.set("t", "<M-j>", [[<Cmd>wincmd j<CR>]], term_opts)
-            vim.keymap.set("t", "<M-k>", [[<Cmd>wincmd k<CR>]], term_opts)
-            vim.keymap.set("t", "<M-l>", [[<Cmd>wincmd l<CR>]], term_opts)
-          end
-          vim.cmd("autocmd! TermOpen term://* lua set_terminal_keymaps()")
-
-          local Terminal = require("toggleterm.terminal").Terminal
-          local lazygit = Terminal:new({ cmd = "lazygit", hidden = true })
-          function _G._lazygit_toggle()
-            lazygit:toggle()
-          end
-          vim.keymap.set("n", "<M-g>", "<cmd>lua _lazygit_toggle()<CR>", { noremap = true, silent = true })
-        end,
-      },
-    },
-  },
-  {
-    "krivahtoo/silicon.nvim",
-    cmd = "Silicon",
-    build = "./install.sh build",
     opts = {
-      font = "LXGW WenKai Mono=26",
-      pad_vert = 20,
-      pad_horiz = 20,
-      line_number = true,
-      line_pad = 1,
-      tab_width = 2,
-      watermark = {
-        text = "@gingjin",
-        style = "bold",
+      size = 10,
+      open_mapping = [[<M-t>]],
+      shade_terminals = false,
+      start_in_insert = true,
+      insert_mappings = true,
+      persist_size = true,
+      shell = vim.o.shell,
+      direction = "float",
+      float_opts = { border = "double" },
+      highlights = {
+        Normal = {
+          guibg = "NONE",
+          ctermbg = "NONE",
+        },
       },
-      window_title = function()
-        return vim.fn.fnamemodify(vim.fn.bufname(vim.fn.bufnr()), ":~:.")
-      end,
     },
   },
   {
     "folke/trouble.nvim",
     cmd = "TroubleToggle",
-    keys = {
-      { "<leader>xx", ":TroubleToggle<CR>", desc = "Trouble", silent = true },
-    },
+    keys = { { "<leader>xx", ":TroubleToggle<CR>", desc = "Trouble", silent = true } },
     opts = function()
       local G = require("G")
       return {
@@ -240,7 +186,7 @@ return {
       { "<leader>tw", "<Plug>TranslateWV", mode = "v" },
     },
     init = function()
-      vim.g.translator_default_engines = { "bing", "haici" }
+      vim.g.translator_default_engines = { "haici" }
     end,
   },
 }

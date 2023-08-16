@@ -8,18 +8,6 @@ local servers = {
   "texlab",
 }
 
-local tools = {
-  "debugpy",
-  "cmakelint",
-  "cpplint",
-  "flake8",
-  "clang-format",
-  "latexindent",
-  "rustfmt",
-  "stylua",
-  "yapf",
-}
-
 return {
   {
     "neovim/nvim-lspconfig",
@@ -66,13 +54,6 @@ return {
         opts = {
           ensure_installed = servers,
           automatic_installation = true,
-        },
-      },
-      {
-        "WhoIsSethDaniel/mason-tool-installer.nvim",
-        cmd = { "MasonToolsInstall", "MasonToolsUpdate" },
-        opts = {
-          ensure_installed = tools,
         },
       },
     },

@@ -3,6 +3,12 @@ require("G").map({
 })
 
 require("lazy").setup("plugins", {
+  git = {
+    log = { "-8" },
+    timeout = 120,
+    url_format = "https://ghproxy.com/https://github.com/%s.git",
+    filter = true,
+  },
   checker = {
     enabled = true,
     concurrency = 1,
