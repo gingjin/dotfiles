@@ -1,6 +1,5 @@
 return {
   { "jghauser/mkdir.nvim" },
-  { "h-hg/fcitx.nvim", event = "InsertCharPre" },
   { "mg979/vim-visual-multi", event = "BufRead" },
   {
     "stevearc/aerial.nvim",
@@ -186,7 +185,7 @@ return {
       { "<leader>tw", "<Plug>TranslateWV", mode = "v" },
     },
     init = function()
-      vim.g.translator_default_engines = { "haici" }
+      vim.g.translator_default_engines = { "bing","haici" }
     end,
   },
 }

@@ -2,8 +2,7 @@ return {
   {
     "nvim-neo-tree/neo-tree.nvim",
     keys = { { "<M-e>", ":Neotree toggle<CR>", desc = "NeoTree", silent = true } },
-    opts = function()
-      return {
+    opts = {
         event_handlers = {
           {
             event = "file_opened",
@@ -209,11 +208,7 @@ return {
             },
           },
         },
-      }
-    end,
-    config = function(_, opts)
-      require("neo-tree").setup(opts)
-    end,
+      } ,
     dependencies = {
       "nvim-lua/popup.nvim",
       "MunifTanjim/nui.nvim",
