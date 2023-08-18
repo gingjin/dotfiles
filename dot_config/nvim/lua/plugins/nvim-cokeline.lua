@@ -148,7 +148,42 @@ return {
             end,
           },
         },
+        sidebar = {
+          filetype = "NvimTree",
+          components = {
+            {
+              text = function()
+                return ""
+              end,
+              fg = function(buffer)
+                return buffer.is_focused and G.colors.bg2 or G.colors.bg1
+              end,
+              bg = function(buffer)
+                return buffer.is_focused and G.colors.bg3 or G.colors.bg1
+              end,
+            },
+            {
+              text = "NvimTree",
+              style = "bold",
+              bg = function(buffer)
+                return buffer.is_focused and G.colors.bg2 or G.colors.bg1
+              end,
+            },
+            {
+              text = function()
+                return ""
+              end,
+              fg = function(buffer)
+                return buffer.is_focused and G.colors.bg2 or G.colors.bg1
+              end,
+              bg = function(buffer)
+                return buffer.is_focused and G.colors.bg3 or G.colors.bg1
+              end,
+            },
+          },
+        },
       }
     end,
+    dependencies = { "nvim-tree/nvim-web-devicons" },
   },
 }

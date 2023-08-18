@@ -1,6 +1,7 @@
 return {
   {
     "nvim-treesitter/nvim-treesitter",
+    version = false,
     event = { "BufReadPost", "BufNewFile" },
     cmd = { "TSInstall", "TSModuleInfo" },
     build = function()
@@ -18,7 +19,7 @@ return {
     end,
     opts = function()
       return {
-        ensure_installed = require("nvim-treesitter.parsers").available_parsers(),
+        ensure_installed = "all",
         sync_install = false,
         ignore_install = {},
         highlight = {
