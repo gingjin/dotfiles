@@ -4,7 +4,7 @@ G.signs = {
   Error = "",
   Warn = "",
   Info = "",
-  Hint = "ﴞ",
+  Hint = "",
   Other = "",
 }
 

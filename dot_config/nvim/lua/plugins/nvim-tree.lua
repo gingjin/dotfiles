@@ -106,14 +106,14 @@ return {
           },
           icons = {
             webdev_colors = true,
-            git_placement = "after",
+            git_placement = "before",
             modified_placement = "after",
             padding = " ",
             symlink_arrow = " ➛ ",
             show = {
               file = true,
               folder = true,
-              folder_arrow = true,
+              folder_arrow = false,
               git = true,
               modified = true,
             },

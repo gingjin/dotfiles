@@ -1,7 +1,6 @@
 return {
   {
     "nvim-treesitter/nvim-treesitter",
-    version = false,
     event = { "BufReadPost", "BufNewFile" },
     cmd = { "TSInstall", "TSModuleInfo" },
     build = function()

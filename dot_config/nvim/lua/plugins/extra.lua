@@ -185,7 +185,7 @@ return {
       { "<leader>tw", "<Plug>TranslateWV", mode = "v" },
     },
     init = function()
-      vim.g.translator_default_engines = { "bing","haici" }
+      vim.g.translator_default_engines = { "bing", "haici" }
     end,
   },
 }

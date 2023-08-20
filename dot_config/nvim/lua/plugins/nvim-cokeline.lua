@@ -45,9 +45,8 @@ return {
               local picking = is_picking_focus() or is_picking_close()
               return picking and buffer.pick_letter .. " " or buffer.devicon.icon
             end,
-            style = function()
-              local picking = is_picking_focus() or is_picking_close()
-              return picking and "bold"
+            bold = function(buffer)
+              return buffer.is_focused
             end,
             fg = function(buffer)
               return (is_picking_focus() and G.colors.orange)
@@ -62,8 +61,8 @@ return {
             text = function(buffer)
               return buffer.unique_prefix .. buffer.filename
             end,
-            style = function(buffer)
-              return buffer.is_focused and "bold"
+            bold = function(buffer)
+              return buffer.is_focused
             end,
             bg = function(buffer)
               return buffer.is_focused and G.colors.bg2 or G.colors.bg1
@@ -152,9 +151,7 @@ return {
           filetype = "NvimTree",
           components = {
             {
-              text = function()
-                return ""
-              end,
+              text = "",
               fg = function(buffer)
                 return buffer.is_focused and G.colors.bg2 or G.colors.bg1
               end,
@@ -164,15 +161,15 @@ return {
             },
             {
               text = "NvimTree",
-              style = "bold",
+              bold = function(buffer)
+                return buffer.is_focused
+              end,
               bg = function(buffer)
                 return buffer.is_focused and G.colors.bg2 or G.colors.bg1
               end,
             },
             {
-              text = function()
-                return ""
-              end,
+              text = "",
               fg = function(buffer)
                 return buffer.is_focused and G.colors.bg2 or G.colors.bg1
               end,
