@@ -26,12 +26,12 @@ return {
             return {
               name = vi_mode_utils.get_mode_highlight_name(),
               fg = vi_mode_utils.get_mode_color(),
-              bg = G.colors.bg1,
+              bg = G.colors.bg3,
               style = "bold",
             }
           end,
-          left_sep = { str = " ", hl = { bg = G.colors.bg1 } },
-          right_sep = { str = " ", hl = { bg = G.colors.bg1 } },
+          left_sep = { str = " ", hl = { bg = G.colors.bg3 } },
+          right_sep = { str = " ", hl = { bg = G.colors.bg3 } },
         },
         {
           provider = {
@@ -41,28 +41,28 @@ return {
             },
           },
           enabled = getsize,
-          hl = { fg = G.colors.fg1, bg = G.colors.bg1 },
-          right_sep = { str = " ", hl = { bg = G.colors.bg1 } },
+          hl = { fg = G.colors.fg1, bg = G.colors.bg3 },
+          right_sep = { str = " ", hl = { bg = G.colors.bg3 } },
         },
         {
           provider = "diagnostic_errors",
           icon = " " .. G.signs.Error .. " ",
-          hl = { fg = G.colors.red, bg = G.colors.bg1 },
+          hl = { fg = G.colors.red, bg = G.colors.bg3 },
         },
         {
           provider = "diagnostic_warnings",
           icon = " " .. G.signs.Warn .. " ",
-          hl = { fg = G.colors.yellow, bg = G.colors.bg1 },
+          hl = { fg = G.colors.yellow, bg = G.colors.bg3 },
         },
         {
           provider = "diagnostic_info",
           icon = " " .. G.signs.Info .. " ",
-          hl = { fg = G.colors.blue, bg = G.colors.bg1 },
+          hl = { fg = G.colors.blue, bg = G.colors.bg3 },
         },
         {
           provider = "diagnostic_hints",
           icon = " " .. G.signs.Hint .. " ",
-          hl = { fg = G.colors.green, bg = G.colors.bg1 },
+          hl = { fg = G.colors.green, bg = G.colors.bg3 },
         },
       }
 
@@ -71,27 +71,27 @@ return {
           provider = "git_branch",
           icon = {
             str = G.icons.branch .. " ",
-            hl = { fg = G.colors.yellow, bg = G.colors.bg1 },
+            hl = { fg = G.colors.yellow, bg = G.colors.bg3 },
           },
-          hl = { fg = G.colors.fg1, bg = G.colors.bg1, style = "bold" },
-          right_sep = { str = " ", hl = { bg = G.colors.bg1 } },
+          hl = { fg = G.colors.fg1, bg = G.colors.bg3, style = "bold" },
+          right_sep = { str = " ", hl = { bg = G.colors.bg3 } },
         },
         {
           provider = "git_diff_added",
           icon = G.icons.add .. " ",
-          hl = { fg = G.colors.green, bg = G.colors.bg1 },
-          right_sep = { str = " ", hl = { bg = G.colors.bg1 } },
+          hl = { fg = G.colors.green, bg = G.colors.bg3 },
+          right_sep = { str = " ", hl = { bg = G.colors.bg3 } },
         },
         {
           provider = "git_diff_changed",
           icon = G.icons.change .. " ",
-          hl = { fg = G.colors.yellow, bg = G.colors.bg1 },
-          right_sep = { str = " ", hl = { bg = G.colors.bg1 } },
+          hl = { fg = G.colors.yellow, bg = G.colors.bg3 },
+          right_sep = { str = " ", hl = { bg = G.colors.bg3 } },
         },
         {
           provider = "git_diff_removed",
           icon = G.icons.remove .. " ",
-          hl = { fg = G.colors.red, bg = G.colors.bg1 },
+          hl = { fg = G.colors.red, bg = G.colors.bg3 },
         },
       }
 
@@ -111,25 +111,25 @@ return {
           icon = function()
             return require("nvim-web-devicons").get_icon(".py") .. " "
           end,
-          hl = { fg = G.colors.fg1, bg = G.colors.bg1 },
-          right_sep = { str = " ", hl = { bg = G.colors.bg1 } },
+          hl = { fg = G.colors.fg1, bg = G.colors.bg3 },
+          right_sep = { str = " ", hl = { bg = G.colors.bg3 } },
         },
         {
           provider = "file_size",
           enabled = hide,
-          hl = { fg = G.colors.fg1, bg = G.colors.bg1, style = "bold" },
-          right_sep = { str = " ", hl = { bg = G.colors.bg1 } },
+          hl = { fg = G.colors.fg1, bg = G.colors.bg3, style = "bold" },
+          right_sep = { str = " ", hl = { bg = G.colors.bg3 } },
         },
         {
           provider = "position",
           enabled = hide,
-          hl = { fg = G.colors.fg1, bg = G.colors.bg1, style = "bold" },
-          right_sep = { str = " ", hl = { bg = G.colors.bg1 } },
+          hl = { fg = G.colors.fg1, bg = G.colors.bg3, style = "bold" },
+          right_sep = { str = " ", hl = { bg = G.colors.bg3 } },
         },
         {
           provider = "scroll_bar",
           enabled = hide,
-          hl = { fg = G.colors.cyan, bg = G.colors.bg1 },
+          hl = { fg = G.colors.cyan, bg = G.colors.bg3 },
         },
       }
 
@@ -139,31 +139,34 @@ return {
             name = "file_info",
             opts = { file_modified_icon = G.icons.file_modified },
           },
-          hl = { fg = G.colors.fg1, bg = G.colors.bg1 },
-          left_sep = { str = " ", hl = { bg = G.colors.bg1 } },
-          right_sep = { str = " ", hl = { bg = G.colors.bg1 } },
+          icon = "",
+          hl = { fg = G.colors.fg1, bg = G.colors.bg3 },
+          left_sep = { str = " ", hl = { bg = G.colors.bg3 } },
+          right_sep = { str = " ", hl = { bg = G.colors.bg3 } },
         },
       }
 
       return {
         components = components,
         disable = {
-          filetypes = { "^aerial$" },
+          filetypes = { "^aerial" },
         },
         force_inactive = {
           filetypes = {
             "^Trouble$",
+            "^NvimTree",
+            "^Diffview",
             "^dapui_console$",
             "^dapui_breakpoints$",
             "^dapui_scopes$",
             "^dapui_stacks$",
             "^dapui_watches$",
-            "^dapui_repl$",
+            "repl$",
           },
           buftypes = {
-            "^quickfix$",
-            "^help$",
-            "^terminal$",
+            "^quickfix",
+            "^help",
+            "^terminal",
           },
           bufnames = {},
         },

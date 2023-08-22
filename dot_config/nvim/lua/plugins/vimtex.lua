@@ -3,8 +3,8 @@ return {
     "lervag/vimtex",
     config = function()
       require("G").map({
-        { "n", "<leader>lw", ":VimtexCountWords<CR>", "Count words" },
-        { "n", "<leader>lr", ":call vimtex#toc#refresh()", "Refresh toc" },
+        { "n", "<leader>vw", ":VimtexCountWords<CR>", "Count words" },
+        { "n", "<leader>vr", ":call vimtex#toc#refresh()", "Refresh toc" },
       })
       vim.g.tex_flavor = "latex"
       vim.g.vimtex_view_method = "zathura"

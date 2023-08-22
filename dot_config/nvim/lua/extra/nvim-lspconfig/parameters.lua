@@ -14,25 +14,29 @@ M.on_attach = function(client, bufnr)
   end
 
   -- lspconfig
-  bufmap("n", "[e", ":lua vim.diagnostic.goto_prev()<CR>", "Goto previous diagnostic")
-  bufmap("n", "]e", ":lua vim.diagnostic.goto_next()<CR>", "Goto next diagnostic")
-  bufmap("n", "K", ":lua vim.lsp.buf.hover()<CR>", "LSP hover")
-  bufmap("n", "gn", ":lua vim.lsp.buf.rename()<CR>", "LSP rename")
-  bufmap("n", "gr", ":lua vim.lsp.buf.references()<CR>", "LSP references")
-  bufmap("n", "gd", ":lua vim.lsp.buf.definition()<CR>", "LSP definition")
-  bufmap("n", "gD", ":lua vim.lsp.buf.declaration()<CR>", "LSP declaration")
-  bufmap("n", "gs", ":lua vim.lsp.buf.signature_help()<CR>", "LSP signature help")
-  bufmap("n", "gI", ":lua vim.lsp.buf.implementation()<CR>", "LSP implementation")
-  bufmap("n", "gt", ":lua vim.lsp.buf.type_definition()<CR>", "LSP type definition")
-  bufmap({ "n", "x" }, "ga", ":lua vim.lsp.buf.code_action()<CR>", "LSP code action")
+  bufmap("n", "<leader>e", vim.diagnostic.open_float, "Open float diagnostic")
+  bufmap("n", "gq", vim.diagnostic.setqflist, "Open setqflist")
+  bufmap("n", "[e", vim.diagnostic.goto_prev, "Goto previous diagnostic")
+  bufmap("n", "]e", vim.diagnostic.goto_next, "Goto next diagnostic")
+  bufmap("n", "K", vim.lsp.buf.hover, "LSP hover")
+  bufmap("n", "gn", vim.lsp.buf.rename, "LSP rename")
+  -- bufmap("n", "gr", vim.lsp.buf.references, "LSP references")
+  bufmap("n", "gd", vim.lsp.buf.definition, "LSP definition")
+  bufmap("n", "gD", vim.lsp.buf.declaration, "LSP declaration")
+  bufmap("n", "gs", vim.lsp.buf.signature_help, "LSP signature help")
+  bufmap("n", "gI", vim.lsp.buf.implementation, "LSP implementation")
+  bufmap("n", "gt", vim.lsp.buf.type_definition, "LSP type definition")
+  bufmap({ "n", "x" }, "ga", vim.lsp.buf.code_action, "LSP code action")
   bufmap("n", "gF", function()
-    local util = require("vim.lsp.util")
-    local params = util.make_formatting_params({})
+    local params = require("vim.lsp.util").make_formatting_params({})
     client.request("textDocument/formatting", params, nil, bufnr)
   end, "LSP format")
   bufmap("i", "<C-k>", function()
     vim.lsp.buf.signature_help()
   end, "")
+
+  -- Trouble
+  bufmap("n", "gr", ":TroubleToggle lsp_references<CR>", "LSP references")
 end
 
 return M

@@ -155,9 +155,6 @@ return {
               fg = function(buffer)
                 return buffer.is_focused and G.colors.bg2 or G.colors.bg1
               end,
-              bg = function(buffer)
-                return buffer.is_focused and G.colors.bg3 or G.colors.bg1
-              end,
             },
             {
               text = "NvimTree",
@@ -172,9 +169,6 @@ return {
               text = "",
               fg = function(buffer)
                 return buffer.is_focused and G.colors.bg2 or G.colors.bg1
-              end,
-              bg = function(buffer)
-                return buffer.is_focused and G.colors.bg3 or G.colors.bg1
               end,
             },
           },

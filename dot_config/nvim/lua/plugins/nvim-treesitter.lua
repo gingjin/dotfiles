@@ -1,7 +1,7 @@
 return {
   {
     "nvim-treesitter/nvim-treesitter",
-    event = { "BufReadPost", "BufNewFile" },
+    event = { "BufRead", "BufNewFile" },
     cmd = { "TSInstall", "TSModuleInfo" },
     build = function()
       require("nvim-treesitter.install").update()
@@ -16,89 +16,87 @@ return {
         end,
       })
     end,
-    opts = function()
-      return {
-        ensure_installed = "all",
-        sync_install = false,
-        ignore_install = {},
-        highlight = {
-          enable = true,
-          disable = { "latex" },
-          additional_vim_regex_highlighting = false,
+    opts = {
+      ensure_installed = "all",
+      sync_install = false,
+      ignore_install = {},
+      highlight = {
+        enable = true,
+        disable = { "latex" },
+        additional_vim_regex_highlighting = false,
+      },
+      incremental_selection = {
+        enable = true,
+        keymaps = {
+          init_selection = "<CR>",
+          node_incremental = "<CR>",
+          node_decremental = "<BS>",
+          scope_incremental = "<TAB>",
         },
-        incremental_selection = {
+      },
+      indent = {
+        enable = true,
+        disable = { "python" },
+      },
+      autotag = { enable = true },
+      context_commentstring = {
+        enable = true,
+        enable_autocmd = false,
+      },
+      textobjects = {
+        select = {
           enable = true,
           keymaps = {
-            init_selection = "<CR>",
-            node_incremental = "<CR>",
-            node_decremental = "<BS>",
-            scope_incremental = "<TAB>",
+            ["af"] = "@function.outer",
+            ["if"] = "@function.inner",
+            ["ac"] = "@class.outer",
+            ["ic"] = "@class.inner",
           },
         },
-        indent = {
+        selection_modes = {
+          ["@parameter.outer"] = "v",
+          ["@function.outer"] = "V",
+          ["@class.outer"] = "<c-v>",
+        },
+        swap = {
           enable = true,
-          disable = { "python" },
+          swap_next = {
+            ["<leader>sn"] = "@parameter.inner",
+          },
+          swap_previous = {
+            ["<leader>sp"] = "@parameter.inner",
+          },
         },
-        autotag = { enable = true },
-        context_commentstring = {
+        move = {
           enable = true,
-          enable_autocmd = false,
-        },
-        textobjects = {
-          select = {
-            enable = true,
-            keymaps = {
-              ["af"] = "@function.outer",
-              ["if"] = "@function.inner",
-              ["ac"] = "@class.outer",
-              ["ic"] = "@class.inner",
-            },
+          set_jumps = true,
+          goto_next_start = {
+            ["]f"] = "@function.outer",
+            ["]c"] = { query = "@class.outer", desc = "Next class start" },
+            ["]l"] = "@loop.*",
+            ["]z"] = { query = "@fold", query_group = "folds", desc = "Next fold" },
           },
-          selection_modes = {
-            ["@parameter.outer"] = "v",
-            ["@function.outer"] = "V",
-            ["@class.outer"] = "<c-v>",
+          goto_next_end = {
+            ["]F"] = "@function.outer",
+            ["]C"] = "@class.outer",
           },
-          swap = {
-            enable = true,
-            swap_next = {
-              ["<leader>sn"] = "@parameter.inner",
-            },
-            swap_previous = {
-              ["<leader>sN"] = "@parameter.inner",
-            },
+          goto_previous_start = {
+            ["[f"] = "@function.outer",
+            ["[c"] = "@class.outer",
           },
-          move = {
-            enable = true,
-            set_jumps = true,
-            goto_next_start = {
-              ["]f"] = "@function.outer",
-              ["]c"] = { query = "@class.outer", desc = "Next class start" },
-              ["]l"] = "@loop.*",
-              ["]z"] = { query = "@fold", query_group = "folds", desc = "Next fold" },
-            },
-            goto_next_end = {
-              ["]F"] = "@function.outer",
-              ["]C"] = "@class.outer",
-            },
-            goto_previous_start = {
-              ["[f"] = "@function.outer",
-              ["[c"] = "@class.outer",
-            },
-            goto_previous_end = {
-              ["[F"] = "@function.outer",
-              ["[C"] = "@class.outer",
-            },
-            goto_next = {
-              ["]d"] = "@conditional.outer",
-            },
-            goto_previous = {
-              ["[d"] = "@conditional.outer",
-            },
+          goto_previous_end = {
+            ["[F"] = "@function.outer",
+            ["[C"] = "@class.outer",
+          },
+          goto_next = {
+            ["]d"] = "@conditional.outer",
+          },
+          goto_previous = {
+            ["[d"] = "@conditional.outer",
           },
         },
-      }
-    end,
+      },
+    },
     config = function(_, opts)
       for _, config in pairs(require("nvim-treesitter.parsers").get_parser_configs()) do
         config.install_info.url =
