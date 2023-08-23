@@ -1,5 +1,5 @@
 return {
-  { "h-hg/fcitx.nvim" },
+  { "h-hg/fcitx.nvim", event = "InsertCharPre" },
   { "jghauser/mkdir.nvim", event = "InsertCharPre" },
   { "mg979/vim-visual-multi", event = "BufRead" },
   {

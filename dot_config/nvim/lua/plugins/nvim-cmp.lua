@@ -1,19 +1,17 @@
+local M = require("extra.nvim-cmp.mappings")
 return {
   {
     "hrsh7th/nvim-cmp",
     event = "BufRead",
     opts = function()
-      local M = require("extra.nvim-cmp.mappings")
       local cmp = require("cmp")
-      local luasnip = require("luasnip")
-      local cmp_under_comparator = require("cmp-under-comparator")
       return {
         sorting = {
           comparators = {
             cmp.config.compare.offset,
             cmp.config.compare.exact,
             cmp.config.compare.score,
-            cmp_under_comparator.under,
+            require("cmp-under-comparator").under,
             cmp.config.compare.kind,
             cmp.config.compare.sort_text,
             cmp.config.compare.length,
@@ -22,7 +20,7 @@ return {
         },
         snippet = {
           expand = function(args)
-            luasnip.lsp_expand(args.body)
+            require("luasnip").lsp_expand(args.body)
           end,
         },
         sources = cmp.config.sources({
@@ -34,7 +32,7 @@ return {
           { name = "async_path" },
           { name = "nvim_lsp_signature_help" },
         }),
-        mapping = cmp.mapping.preset.insert(M.insert(cmp, luasnip)),
+        mapping = cmp.mapping.preset.insert(M.insert(cmp, require("luasnip"))),
         formatting = {
           fields = { "kind", "abbr", "menu" },
           format = function(entry, vim_item)
@@ -53,15 +51,13 @@ return {
       }
     end,
     config = function(_, opts)
+      require("cmp").setup(opts)
       local cmp = require("cmp")
-      cmp.setup(opts)
-      local M = require("extra.nvim-cmp.mappings")
       local mapping = cmp.mapping.preset.cmdline(M.cmdline(cmp))
       for _, source in pairs({ "/", "?" }) do
         cmp.setup.cmdline(source, {
           mapping = mapping,
           sources = cmp.config.sources({
-            { name = "nvim_lsp_document_symbol" },
             { name = "buffer" },
           }),
         })
@@ -79,7 +75,6 @@ return {
       "hrsh7th/cmp-cmdline",
       "hrsh7th/cmp-nvim-lua",
       "hrsh7th/cmp-nvim-lsp-signature-help",
-      "hrsh7th/cmp-nvim-lsp-document-symbol",
       "saadparwaiz1/cmp_luasnip",
       "PhilRunninger/cmp-rpncalc",
       "FelipeLema/cmp-async-path",
