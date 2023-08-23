@@ -101,7 +101,7 @@ return {
           --   end,
           --   fg = function(buffer)
           --     local infos = buffer.diagnostics.infos
-          --     return infos ~= 0 and G.colors.blue
+          --     return infos ~= 0 and G.colors.green
           --   end,
           --   bg = function(buffer)
           --     return buffer.is_focused and G.colors.bg2 or G.colors.bg1
@@ -114,7 +114,7 @@ return {
           --   end,
           --   fg = function(buffer)
           --     local hints = buffer.diagnostics.hints
-          --     return hints ~= 0 and G.colors.green
+          --     return hints ~= 0 and G.colors.blue
           --   end,
           --   bg = function(buffer)
           --     return buffer.is_focused and G.colors.bg2 or G.colors.bg1

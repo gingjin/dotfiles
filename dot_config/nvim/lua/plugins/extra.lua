@@ -30,7 +30,7 @@ return {
       vim.g.asynctasks_term_focus = 1
       vim.g.asynctasks_config_name = { "tasks.ini", ".git/tasks.ini", ".svn/tasks.ini" }
       vim.g.asynctasks_extra_config = {
-        vim.fn.stdpath('config') .. "/lua/extra/asynctasks/tasks.ini",
+        vim.fn.stdpath("config") .. "/lua/extra/asynctasks/tasks.ini",
       }
     end,
     dependencies = { "skywind3000/asyncrun.vim" },

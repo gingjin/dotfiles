@@ -31,6 +31,8 @@ o.splitbelow = true
 o.splitright = true
 o.tabstop = 2
 o.termguicolors = true
+o.undodir = vim.fn.stdpath("data") .. "/undodir"
+o.undofile = true
 
 vim.diagnostic.config({
   virtual_text = { spacing = 2, prefix = "▎" },

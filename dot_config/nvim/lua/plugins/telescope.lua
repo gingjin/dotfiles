@@ -23,7 +23,7 @@ return {
           multi_icon = "",
           prompt_prefix = " ",
           selection_caret = "ﰲ ",
-          file_ignore_patterns = { "__pycache__", ".git" },
+          file_ignore_patterns = { "^__pycache__$", "^.git$" },
           layout_strategy = "center",
           layout_config = {
             center = {

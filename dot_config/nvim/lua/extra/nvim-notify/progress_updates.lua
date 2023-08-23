@@ -42,4 +42,5 @@ end
 function M.format_message(message, percentage)
   return (percentage and percentage .. "%\t" or "") .. (message or "")
 end
+
 return M

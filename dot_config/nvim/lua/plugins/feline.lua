@@ -57,12 +57,12 @@ return {
         {
           provider = "diagnostic_info",
           icon = " " .. G.signs.Info .. " ",
-          hl = { fg = G.colors.blue, bg = G.colors.bg3 },
+          hl = { fg = G.colors.green, bg = G.colors.bg3 },
         },
         {
           provider = "diagnostic_hints",
           icon = " " .. G.signs.Hint .. " ",
-          hl = { fg = G.colors.green, bg = G.colors.bg3 },
+          hl = { fg = G.colors.blue, bg = G.colors.bg3 },
         },
       }
 

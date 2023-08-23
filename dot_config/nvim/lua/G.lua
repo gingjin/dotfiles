@@ -53,10 +53,10 @@ G.colors = {
   bg3 = "#0f1c1e",
   red = "#e85c51",
   yellow = "#fda47f",
-  blue = "#5a93aa",
-  green = "#7aa4a1",
+  blue = "#7aa4a1",
+  cyan = "#5a93aa",
   orange = "#ff8349",
-  cyan = "#63cdcd",
+  green = "#63cdcd",
 }
 
 function G.map(maps)

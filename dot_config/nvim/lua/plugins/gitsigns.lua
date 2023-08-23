@@ -44,7 +44,7 @@ return {
         bufmap("n", "<leader>hD", function()
           require("gitsigns").diffthis("~")
         end, "Diff this ~")
-        bufmap('n', '<leader>td', gs.toggle_deleted, "Toggle deleted")
+        bufmap("n", "<leader>td", gs.toggle_deleted, "Toggle deleted")
         bufmap({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>", "Select hunk")
       end
 
