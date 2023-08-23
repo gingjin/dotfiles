@@ -1,3 +1,26 @@
+local parser = {
+  "bash",
+  "c",
+  "cmake",
+  "cpp",
+  "diff",
+  "html",
+  "htmldjango",
+  "ini",
+  "javascript",
+  "json",
+  "json5",
+  "lua",
+  "luadoc",
+  "make",
+  "markdown",
+  "python",
+  "rust",
+  "vim",
+  "vimdoc",
+  "yaml",
+}
+
 return {
   {
     "nvim-treesitter/nvim-treesitter",
@@ -17,7 +40,7 @@ return {
       })
     end,
     opts = {
-      ensure_installed = "all",
+      ensure_installed = parser,
       sync_install = false,
       ignore_install = {},
       highlight = {
@@ -98,6 +121,7 @@ return {
       },
     },
     config = function(_, opts)
+      require("nvim-treesitter.install").prefer_git = true
       for _, config in pairs(require("nvim-treesitter.parsers").get_parser_configs()) do
         config.install_info.url =
           config.install_info.url:gsub("https://github.com/", "https://ghproxy.com/https://github.com/")
