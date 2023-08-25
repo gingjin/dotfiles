@@ -59,14 +59,4 @@ G.colors = {
   green = "#63cdcd",
 }
 
-function G.map(maps)
-  for _, map in pairs(maps) do
-    local mode = map[1]
-    local lhs = map[2]
-    local rhs = map[3]
-    local opts = { noremap = true, silent = true, desc = map[4] }
-    vim.keymap.set(mode, lhs, rhs, opts)
-  end
-end
-
 return G

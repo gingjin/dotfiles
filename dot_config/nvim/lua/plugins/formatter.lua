@@ -53,9 +53,6 @@ return {
           rust = {
             require("formatter.filetypes.rust").rustfmt,
           },
-          latex = {
-            require("formatter.filetypes.latex").latexindent,
-          },
         },
       }
     end,

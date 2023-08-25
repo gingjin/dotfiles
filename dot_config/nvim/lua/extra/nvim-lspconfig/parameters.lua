@@ -14,8 +14,8 @@ M.on_attach = function(client, bufnr)
   end
 
   -- lspconfig
-  bufmap("n", "<leader>e", vim.diagnostic.open_float, "Open float diagnostic")
   bufmap("n", "gq", vim.diagnostic.setqflist, "Open setqflist")
+  bufmap("n", "go", vim.diagnostic.open_float, "Open float diagnostic")
   bufmap("n", "[e", vim.diagnostic.goto_prev, "Goto previous diagnostic")
   bufmap("n", "]e", vim.diagnostic.goto_next, "Goto next diagnostic")
   bufmap("n", "K", vim.lsp.buf.hover, "LSP hover")

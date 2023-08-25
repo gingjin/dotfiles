@@ -82,17 +82,11 @@ return {
       {
         "L3MON4D3/LuaSnip",
         build = "make install_jsregexp",
+        dependencies = { "rafamadriz/friendly-snippets" },
         config = function()
           require("extra.nvim-cmp.snippets")
+          require("luasnip.loaders.from_vscode").lazy_load()
         end,
-        dependencies = {
-          {
-            "rafamadriz/friendly-snippets",
-            config = function()
-              require("luasnip.loaders.from_vscode").lazy_load()
-            end,
-          },
-        },
       },
       {
         "windwp/nvim-autopairs",

@@ -31,8 +31,6 @@ o.splitbelow = true
 o.splitright = true
 o.tabstop = 2
 o.termguicolors = true
-o.undodir = vim.fn.stdpath("data") .. "/undodir"
-o.undofile = true
 
 vim.diagnostic.config({
   virtual_text = { spacing = 2, prefix = "▎" },
@@ -45,5 +43,12 @@ vim.diagnostic.config({
 
 for type, icon in pairs(require("G").signs) do
   local hl = "DiagnosticSign" .. type
-  vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+  vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
 end
+
+local sign = vim.fn.sign_define
+sign("DapBreakpoint", { text = "", texthl = "", numhl = "" })
+sign("DapBreakpointCondition", { text = "", texthl = "", numhl = "" })
+sign("DapLogPoint", { text = "", texthl = "", numhl = "" })
+sign("DapStopped", { text = "➤", texthl = "", numhl = "" })
+sign("DapBreakpointRejected", { text = "", texthl = "", numhl = "" })

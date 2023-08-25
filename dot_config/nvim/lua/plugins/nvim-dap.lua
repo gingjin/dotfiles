@@ -14,51 +14,42 @@ return {
         desc = "Log breakpoint message",
       },
     },
+    init = function()
+      local map = require("K").map
+      map("n", "<F5>", ":lua require'dap'.continue()<CR>", "Continue")
+      map("n", "<F6>", ":lua require'dap'.step_over()<CR>", "Step over")
+      map("n", "<F7>", ":lua require'dap'.step_into()<CR>", "Step into")
+      map("n", "<F8>", ":lua require'dap'.step_out()<CR>", "Step out")
+      map("n", "<leader>dr", ":lua require'dap'.restart()<CR>", "Restart")
+      map("n", "<leader>dR", ":lua require'dap'.repl.toggle()<CR>", "Repl")
+      map("n", "<leader>dk", ":lua require'dapui'.eval()<CR>", "Evaluate expression")
+      map("n", "<leader>ds", function()
+        local widgets = require("dap.ui.widgets")
+        widgets.centered_float(widgets.scopes)
+      end, "Scopes")
+      map("n", "<leader>df", function()
+        local widgets = require("dap.ui.widgets")
+        widgets.centered_float(widgets.frames)
+      end, "Frames")
+    end,
     config = function()
-      require("G").map({
-        { "n", "<F5>", ":lua require'dap'.continue()<CR>", "Continue" },
-        { "n", "<F6>", ":lua require'dap'.step_over()<CR>", "Step over" },
-        { "n", "<F7>", ":lua require'dap'.step_into()<CR>", "Step into" },
-        { "n", "<F8>", ":lua require'dap'.step_out()<CR>", "Step out" },
-        { "n", "<leader>dr", ":lua require'dap'.restart()<CR>", "Restart" },
-        { "n", "<leader>dR", ":lua require'dap'.repl.toggle()<CR>", "Repl" },
-        { "n", "<leader>dk", ":lua require'dapui'.eval()<CR>", "Evaluate expression" },
-        {
-          "n",
-          "<leader>ds",
-          function()
-            local widgets = require("dap.ui.widgets")
-            widgets.centered_float(widgets.scopes)
-          end,
-          "Scopes",
-        },
-        {
-          "n",
-          "<leader>df",
-          function()
-            local widgets = require("dap.ui.widgets")
-            widgets.centered_float(widgets.frames)
-          end,
-          "Frames",
-        },
-      })
-
-      local sign = vim.fn.sign_define
-      sign("DapBreakpoint", { text = "", texthl = "", numhl = "" })
-      sign("DapBreakpointCondition", { text = "", texthl = "", numhl = "" })
-      sign("DapLogPoint", { text = "", texthl = "", numhl = "" })
-      sign("DapStopped", { text = "➤", texthl = "", numhl = "" })
-      sign("DapBreakpointRejected", { text = "", texthl = "", numhl = "" })
       vim.cmd("au FileType dap-repl lua require('dap.ext.autocompl').attach()")
 
       local dap = require("dap")
       dap.defaults.fallback.external_terminal = true
       dap.defaults.fallback.focus_terminal = true
 
+      -- c, cpp, rust
+      local codelldb = require("extra.nvim-dap.adapter").codelldb
+      dap.adapters.codelldb = codelldb.adapter
+      dap.configurations.c = codelldb.config
+      dap.configurations.cpp = codelldb.config
+      dap.configurations.rust = codelldb.config
+
       -- python
-      local M = require("extra.nvim-dap.adapter")
-      dap.adapters.python = M.python.adapter
-      dap.configurations.python = M.python.config
+      local debugpy = require("extra.nvim-dap.adapter").debugpy
+      dap.adapters.python = debugpy.adapter
+      dap.configurations.python = debugpy.config
     end,
     dependencies = {
       {
@@ -113,8 +104,8 @@ return {
           },
         },
         config = function(_, opts)
-          local dap = require("dap")
           require("dapui").setup(opts)
+          local dap = require("dap")
           dap.listeners.after.event_initialized["dapui_config"] = function()
             require("dapui").open()
           end

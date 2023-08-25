@@ -1,23 +1,22 @@
-require("G").map({
-  { "i", "<M-h>", "<left>", "" },
-  { "i", "<M-j>", "<down>", "" },
-  { "i", "<M-k>", "<up>", "" },
-  { "i", "<M-l>", "<right>", "" },
-  { "n", "H", "^", "" },
-  { "n", "L", "$", "" },
-  { "n", "<C-u>", "9k", "Up 9 lines" },
-  { "n", "<C-d>", "9j", "Down 9 lines" },
-  { "n", "<M-h>", "<C-w>h", "Go to the left window" },
-  { "n", "<M-j>", "<C-w>j", "Go to the bottom window" },
-  { "n", "<M-k>", "<C-w>k", "Go to the upper window" },
-  { "n", "<M-l>", "<C-w>l", "Go to the right window" },
-  { "n", "<M-up>", "<C-w>10+", "The window height increases" },
-  { "n", "<M-down>", "<C-w>10-", "The window height decrease" },
-  { "n", "<M-left>", "<C-w>10<", "The window width decrease" },
-  { "n", "<M-right>", "<C-w>10>", "The window width increases" },
-  { "n", "<leader>bs", ":w<CR>", "Save focus buffer" },
-  { "n", "<leader>bq", ":wq<CR>", "Save and quit" },
-  { "n", "<leader>bd", ":bdelete<CR>", "Delete focus buffer" },
-  { "n", "<Tab>", ":bnext<CR>", "Focus next buffer" },
-  { "n", "<S-Tab>", ":bprevious<CR>", "Focus previous buffer" },
-})
+local map = require("K").map
+map("i", "<M-h>", "<left>", "")
+map("i", "<M-j>", "<down>", "")
+map("i", "<M-k>", "<up>", "")
+map("i", "<M-l>", "<right>", "")
+map("n", "H", "^", "")
+map("n", "L", "$", "")
+map("n", "<C-u>", "9k", "Up 9 lines")
+map("n", "<C-d>", "9j", "Down 9 lines")
+map("n", "<M-h>", "<C-w>h", "Go to the left window")
+map("n", "<M-j>", "<C-w>j", "Go to the bottom window")
+map("n", "<M-k>", "<C-w>k", "Go to the upper window")
+map("n", "<M-l>", "<C-w>l", "Go to the right window")
+map("n", "<M-up>", "<C-w>10+", "The window height increases")
+map("n", "<M-down>", "<C-w>10-", "The window height decrease")
+map("n", "<M-left>", "<C-w>10<", "The window width decrease")
+map("n", "<M-right>", "<C-w>10>", "The window width increases")
+map("n", "<leader>bs", ":w<CR>", "Save focus buffer")
+map("n", "<leader>bq", ":wq<CR>", "Save and quit")
+map("n", "<leader>bd", ":bdelete<CR>", "Delete focus buffer")
+map("n", "<Tab>", ":bnext<CR>", "Focus next buffer")
+map("n", "<S-Tab>", ":bprevious<CR>", "Focus previous buffer")

@@ -1,11 +1,12 @@
 return {
   {
     "nvim-tree/nvim-tree.lua",
+    dependencies = { "nvim-lua/plenary.nvim", "nvim-tree/nvim-web-devicons" },
     init = function()
       vim.g.loaded_netrw = 1
       vim.g.loaded_netrwPlugin = 1
       vim.cmd("highlight NvimTreeWindowPicker guifg=#ededed guibg=#44cc41")
-      require("G").map({ { "n", "<M-e>", ":NvimTreeToggle<CR>", "NvimTree" } })
+      require("K").map("n", "<M-e>", ":NvimTreeToggle<CR>", "NvimTree")
     end,
     opts = function()
       local function my_attach(bufnr)
@@ -193,19 +194,5 @@ return {
         },
       }
     end,
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-      "nvim-tree/nvim-web-devicons",
-      {
-        "s1n7ax/nvim-window-picker",
-        name = "window-picker",
-        init = function()
-          vim.keymap.set("n", "<leader>w", function()
-            local picked_window_id = require("window-picker").pick_window() or vim.api.nvim_get_current_win()
-            vim.api.nvim_set_current_win(picked_window_id)
-          end, { desc = "Pick a window" })
-        end,
-      },
-    },
   },
 }

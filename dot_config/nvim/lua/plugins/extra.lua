@@ -1,7 +1,7 @@
 return {
   { "h-hg/fcitx.nvim", event = "InsertCharPre" },
   { "jghauser/mkdir.nvim", event = "InsertCharPre" },
-  { "mg979/vim-visual-multi", event = "BufRead" },
+  { "mg979/vim-visual-multi", event = { "BufRead", "BufNewFile" } },
   {
     "stevearc/aerial.nvim",
     keys = { { "<M-a>", ":AerialToggle!<CR>", desc = "Aerial", silent = true } },
@@ -48,14 +48,15 @@ return {
   {
     "uga-rosa/ccc.nvim",
     keys = {
-      { "<leader>ct", ":CccHighlighterToggle<CR>", desc = "Highlight", silent = true },
-      { "<leader>cp", ":CccPick<CR>", desc = "Pick", silent = true },
       { "<leader>cc", ":CccConvert<CR>", desc = "Convert", silent = true },
+      { "<leader>cp", ":CccPick<CR>", desc = "Pick", silent = true },
+      { "<leader>ct", ":CccHighlighterToggle<CR>", desc = "Highlight", silent = true },
     },
   },
   {
     "numToStr/Comment.nvim",
-    event = "BufRead",
+    event = { "BufRead", "BufNewFile" },
+    dependencies = { "JoosepAlviste/nvim-ts-context-commentstring" },
     opts = function()
       return {
         padding = true,
@@ -69,19 +70,6 @@ return {
         post_hook = nil,
       }
     end,
-    dependencies = { "JoosepAlviste/nvim-ts-context-commentstring" },
-  },
-  {
-    "sindrets/diffview.nvim",
-    cmd = "DiffviewOpen",
-    keys = {
-      { "<leader>Do", ":DiffviewOpen<CR>", desc = "Open", silent = true },
-      { "<leader>Dc", ":DiffviewClose<CR>", desc = "Close", silent = true },
-      { "<leader>Dt", ":DiffviewToggleFiles<CR>", desc = "Files", silent = true },
-      { "<leader>Df", ":DiffviewFocusFiles<CR>", desc = "Focus files", silent = true },
-      { "<leader>Dr", ":DiffviewRefresh<CR>", desc = "Refresh", silent = true },
-      { "<leader>Dh", ":DiffviewfileHistory<CR>", desc = "History", silent = true },
-    },
   },
   {
     "lukas-reineke/indent-blankline.nvim",
@@ -94,22 +82,19 @@ return {
   },
   {
     "kdheepak/lazygit.nvim",
-    cmd = "ToggleTerm",
-    keys = { { "<M-g>", ":LazyGit<CR>", desc = "LazyGit", silent = true } },
-    config = function()
-      vim.g.lazygit_use_neovim_remote = 0
-      local Terminal = require("toggleterm.terminal").Terminal
-      local lazygit = Terminal:new({ cmd = "lazygit", hidden = true })
-      require("G").map({
-        {
-          "n",
-          "<M-g>",
-          function()
-            lazygit:toggle()
-          end,
-        },
-      })
-    end,
+    cmd = "LazyGit",
+    keys = {
+      {
+        "<M-g>",
+        function()
+          local Terminal = require("toggleterm.terminal").Terminal
+          local lazygit = Terminal:new({ cmd = "lazygit", hidden = true })
+          lazygit:toggle()
+        end,
+        desc = "LazyGit",
+        silent = true,
+      },
+    },
   },
   {
     "iamcco/markdown-preview.nvim",
@@ -134,12 +119,12 @@ return {
     cmd = { "MasonToolsInstall", "MasonToolsUpdate" },
     opts = {
       ensure_installed = {
+        "codelldb",
         "debugpy",
         "cmakelint",
         "cpplint",
         "flake8",
         "clang-format",
-        "latexindent",
         "rustfmt",
         "stylua",
         "yapf",
@@ -190,12 +175,26 @@ return {
     config = function(_, opts)
       require("notify").setup(opts)
       vim.notify = require("notify")
-      require("extra.nvim-notify.lsp_status").lsp_status()
+      -- require("extra.nvim-notify.lsp_status").lsp_status()
     end,
   },
   {
+    "s1n7ax/nvim-window-picker",
+    name = "window-picker",
+    keys = {
+      {
+        "<leader>w",
+        function()
+          local picked_window_id = require("window-picker").pick_window() or vim.api.nvim_get_current_win()
+          vim.api.nvim_set_current_win(picked_window_id)
+        end,
+        desc = "Pick a window",
+      },
+    },
+  },
+  {
     "kylechui/nvim-surround",
-    event = "BufRead",
+    event = { "BufRead", "BufNewFile" },
     config = function()
       require("nvim-surround").setup()
     end,
@@ -246,17 +245,17 @@ return {
       { "<leader>xl", ":TroubleToggle loclist<CR>", desc = "Loclist", silent = true },
     },
     opts = function()
-      local G = require("G")
+      local signs = require("G").signs
       return {
         padding = false,
         indent_lines = false,
         auto_close = true,
         signs = {
-          error = G.signs.Error,
-          warning = G.signs.Warn,
-          hint = G.signs.Hint,
-          information = G.signs.Info,
-          other = G.signs.Other,
+          error = signs.Error,
+          warning = signs.Warn,
+          hint = signs.Hint,
+          information = signs.Info,
+          other = signs.Other,
         },
         use_diagnostic_signs = true,
       }
@@ -281,33 +280,12 @@ return {
     "voldikss/vim-translator",
     keys = {
       { "<leader>tv", "<Plug>Translate", mode = "n", desc = "On cmdline" },
-      { "<leader>tv", "<Plug>TranslateV", mode = "v" },
+      { "<leader>tv", "<Plug>TranslateV", mode = "v", desc = "On cmdline" },
       { "<leader>tw", "<Plug>TranslateW", mode = "n", desc = "On windown" },
-      { "<leader>tw", "<Plug>TranslateWV", mode = "v" },
+      { "<leader>tw", "<Plug>TranslateWV", mode = "v", desc = "On windown" },
     },
     init = function()
       vim.g.translator_default_engines = { "bing", "haici" }
-    end,
-  },
-  {
-    "folke/which-key.nvim",
-    opts = { layout = { height = { min = 4, max = 10 } } },
-    config = function(_, opts)
-      vim.o.timeout = true
-      vim.o.timeoutlen = 500
-      require("which-key").setup(opts)
-      require("which-key").register({
-        b = { name = "+Buffer" },
-        c = { name = "+CCC" },
-        d = { name = "+Dap" },
-        D = { name = "+Diffview" },
-        f = { name = "+Telescope" },
-        l = { name = "+Lazy" },
-        m = { name = "+MarkdownPreview" },
-        t = { name = "+Traslate" },
-        v = { name = "+Vimtex" },
-        x = { name = "+Trouble" },
-      }, { prefix = "<leader>" })
     end,
   },
 }

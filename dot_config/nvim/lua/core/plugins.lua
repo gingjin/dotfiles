@@ -1,7 +1,4 @@
-require("G").map({
-  { "n", "<leader>ly", ":Lazy<CR>", "Plugin manager" },
-})
-
+require("K").map("n", "<leader>ly", ":Lazy<CR>", "Plugin manager")
 require("lazy").setup("plugins", {
   git = {
     log = { "-8" },
@@ -21,7 +18,7 @@ require("lazy").setup("plugins", {
   ui = {
     size = { width = 0.8, height = 0.8 },
     wrap = true,
-    border = "none",
+    border = "double",
     icons = {
       cmd = "",
       config = "",

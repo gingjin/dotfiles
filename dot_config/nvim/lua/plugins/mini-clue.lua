@@ -1,0 +1,61 @@
+return {
+  {
+    "echasnovski/mini.clue",
+    version = false,
+    dependencies = { { "echasnovski/mini.nvim", version = false } },
+    opts = function()
+      local miniclue = require("mini.clue")
+      return {
+        clues = {
+          miniclue.gen_clues.g(),
+          miniclue.gen_clues.z(),
+          miniclue.gen_clues.marks(),
+          miniclue.gen_clues.windows(),
+          miniclue.gen_clues.registers(),
+          miniclue.gen_clues.builtin_completion(),
+          { mode = "n", keys = "<Leader>b", desc = "+Buffers" },
+          { mode = "n", keys = "<Leader>c", desc = "+CCC" },
+          { mode = "n", keys = "<Leader>d", desc = "+Dap" },
+          { mode = "n", keys = "<Leader>f", desc = "+Telescope" },
+          { mode = "n", keys = "<Leader>l", desc = "+Lazy" },
+          { mode = "n", keys = "<Leader>m", desc = "+MarkdownPreview" },
+          { mode = "n", keys = "<Leader>t", desc = "+Traslate" },
+          { mode = "x", keys = "<Leader>t", desc = "+Traslate" },
+          { mode = "n", keys = "<Leader>v", desc = "+Vimtex" },
+          { mode = "n", keys = "<Leader>x", desc = "+Trouble" },
+        },
+        triggers = {
+          { mode = "n", keys = "<Leader>" },
+          { mode = "x", keys = "<Leader>" },
+          { mode = "n", keys = "]" },
+          { mode = "n", keys = "[" },
+          { mode = "n", keys = "z" },
+          { mode = "n", keys = "g" },
+          { mode = "x", keys = "g" },
+          { mode = "n", keys = "'" },
+          { mode = "n", keys = "`" },
+          { mode = "n", keys = '"' },
+          { mode = "x", keys = "'" },
+          { mode = "x", keys = "`" },
+          { mode = "x", keys = '"' },
+          { mode = "i", keys = "<C-x>" },
+          { mode = "i", keys = "<C-r>" },
+          { mode = "c", keys = "<C-r>" },
+          { mode = "n", keys = "<C-w>" },
+        },
+        window = {
+          config = {
+            anchor = "SW",
+            row = "auto",
+            col = "auto",
+            width = 50,
+            border = "double",
+          },
+          delay = 400,
+          scroll_down = "<C-d>",
+          scroll_up = "<C-u>",
+        },
+      }
+    end,
+  },
+}

@@ -95,7 +95,7 @@ return {
           set_jumps = true,
           goto_next_start = {
             ["]f"] = "@function.outer",
-            ["]c"] = { query = "@class.outer", desc = "Next class start" },
+            ["]c"] = "@class.outer",
             ["]l"] = "@loop.*",
             ["]z"] = { query = "@fold", query_group = "folds", desc = "Next fold" },
           },
