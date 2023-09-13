@@ -1,26 +1,3 @@
-local parser = {
-  "bash",
-  "c",
-  "cmake",
-  "cpp",
-  "diff",
-  "html",
-  "htmldjango",
-  "ini",
-  "javascript",
-  "json",
-  "json5",
-  "lua",
-  "luadoc",
-  "make",
-  "markdown",
-  "python",
-  "rust",
-  "vim",
-  "vimdoc",
-  "yaml",
-}
-
 return {
   {
     "nvim-treesitter/nvim-treesitter",
@@ -39,87 +16,90 @@ return {
         end,
       })
     end,
-    opts = {
-      ensure_installed = parser,
-      sync_install = false,
-      ignore_install = {},
-      highlight = {
-        enable = true,
-        disable = { "latex" },
-        additional_vim_regex_highlighting = false,
-      },
-      incremental_selection = {
-        enable = true,
-        keymaps = {
-          init_selection = "<CR>",
-          node_incremental = "<CR>",
-          node_decremental = "<BS>",
-          scope_incremental = "<TAB>",
+    opts = function()
+      local parsers = require("G").parsers
+      return {
+        ensure_installed = parsers,
+        sync_install = false,
+        ignore_install = {},
+        highlight = {
+          enable = true,
+          disable = { "latex" },
+          additional_vim_regex_highlighting = false,
         },
-      },
-      indent = {
-        enable = true,
-        disable = { "python" },
-      },
-      autotag = { enable = true },
-      context_commentstring = {
-        enable = true,
-        enable_autocmd = false,
-      },
-      textobjects = {
-        select = {
+        incremental_selection = {
           enable = true,
           keymaps = {
-            ["af"] = "@function.outer",
-            ["if"] = "@function.inner",
-            ["ac"] = "@class.outer",
-            ["ic"] = "@class.inner",
+            init_selection = "<CR>",
+            node_incremental = "<CR>",
+            node_decremental = "<BS>",
+            scope_incremental = "<TAB>",
           },
         },
-        selection_modes = {
-          ["@parameter.outer"] = "v",
-          ["@function.outer"] = "V",
-          ["@class.outer"] = "<c-v>",
-        },
-        swap = {
+        indent = {
           enable = true,
-          swap_next = {
-            ["gn"] = "@parameter.inner",
-          },
-          swap_previous = {
-            ["gp"] = "@parameter.inner",
-          },
+          disable = { "python" },
         },
-        move = {
+        autotag = { enable = true },
+        context_commentstring = {
           enable = true,
-          set_jumps = true,
-          goto_next_start = {
-            ["]f"] = "@function.outer",
-            ["]c"] = "@class.outer",
-            ["]l"] = "@loop.*",
-            ["]z"] = { query = "@fold", query_group = "folds", desc = "Next fold" },
+          enable_autocmd = false,
+        },
+        textobjects = {
+          select = {
+            enable = true,
+            keymaps = {
+              ["af"] = "@function.outer",
+              ["if"] = "@function.inner",
+              ["ac"] = "@class.outer",
+              ["ic"] = "@class.inner",
+            },
           },
-          goto_next_end = {
-            ["]F"] = "@function.outer",
-            ["]C"] = "@class.outer",
+          selection_modes = {
+            ["@parameter.outer"] = "v",
+            ["@function.outer"] = "V",
+            ["@class.outer"] = "<c-v>",
           },
-          goto_previous_start = {
-            ["[f"] = "@function.outer",
-            ["[c"] = "@class.outer",
+          swap = {
+            enable = true,
+            swap_next = {
+              ["gn"] = "@parameter.inner",
+            },
+            swap_previous = {
+              ["gp"] = "@parameter.inner",
+            },
           },
-          goto_previous_end = {
-            ["[F"] = "@function.outer",
-            ["[C"] = "@class.outer",
-          },
-          goto_next = {
-            ["]d"] = "@conditional.outer",
-          },
-          goto_previous = {
-            ["[d"] = "@conditional.outer",
+          move = {
+            enable = true,
+            set_jumps = true,
+            goto_next_start = {
+              ["]f"] = "@function.outer",
+              ["]c"] = "@class.outer",
+              ["]l"] = "@loop.*",
+              ["]z"] = { query = "@fold", query_group = "folds", desc = "Next fold" },
+            },
+            goto_next_end = {
+              ["]F"] = "@function.outer",
+              ["]C"] = "@class.outer",
+            },
+            goto_previous_start = {
+              ["[f"] = "@function.outer",
+              ["[c"] = "@class.outer",
+            },
+            goto_previous_end = {
+              ["[F"] = "@function.outer",
+              ["[C"] = "@class.outer",
+            },
+            goto_next = {
+              ["]d"] = "@conditional.outer",
+            },
+            goto_previous = {
+              ["[d"] = "@conditional.outer",
+            },
           },
         },
-      },
-    },
+      }
+    end,
     config = function(_, opts)
       require("nvim-treesitter.install").prefer_git = true
       for _, config in pairs(require("nvim-treesitter.parsers").get_parser_configs()) do

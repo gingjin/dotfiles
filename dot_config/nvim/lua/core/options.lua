@@ -10,6 +10,7 @@ o.autoread = true
 o.autowrite = true
 o.clipboard = "unnamedplus"
 o.completeopt = { "menu", "menuone", "noselect" }
+o.conceallevel = 2
 o.cursorline = true
 o.expandtab = true
 o.fileencodings = { "utf-8", "ucs-bom", "gbk" }

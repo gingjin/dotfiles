@@ -6,6 +6,10 @@ return {
     opts = function()
       local cmp = require("cmp")
       return {
+        window = {
+          completion = cmp.config.window.bordered(),
+          documentation = cmp.config.window.bordered(),
+        },
         sorting = {
           comparators = {
             cmp.config.compare.offset,
@@ -53,17 +57,14 @@ return {
     config = function(_, opts)
       require("cmp").setup(opts)
       local cmp = require("cmp")
-      local mapping = cmp.mapping.preset.cmdline(M.cmdline(cmp))
       for _, source in pairs({ "/", "?" }) do
         cmp.setup.cmdline(source, {
-          mapping = mapping,
           sources = cmp.config.sources({
             { name = "buffer" },
           }),
         })
       end
       cmp.setup.cmdline(":", {
-        mapping = mapping,
         sources = cmp.config.sources({
           { name = "async_path" },
           { name = "cmdline" },

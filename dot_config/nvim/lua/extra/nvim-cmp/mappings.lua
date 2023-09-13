@@ -7,10 +7,10 @@ function M.insert(cmp, luasnip)
     ["<C-c>"] = cmp.mapping.close(),
     ["<C-d>"] = cmp.mapping.scroll_docs(4),
     ["<C-u>"] = cmp.mapping.scroll_docs(-4),
-    ["<M-p>"] = cmp.mapping.select_prev_item(),
-    ["<M-n>"] = cmp.mapping.select_next_item(),
-    ["<Up>"] = cmp.mapping.select_prev_item(),
-    ["<Down>"] = cmp.mapping.select_next_item(),
+    ["<M-p>"] = cmp.mapping(cmp.mapping.select_prev_item(), { "i", "c" }),
+    ["<M-n>"] = cmp.mapping(cmp.mapping.select_next_item(), { "i", "c" }),
+    ["<Up>"] = cmp.mapping(cmp.mapping.select_prev_item(), { "i", "c" }),
+    ["<Down>"] = cmp.mapping(cmp.mapping.select_next_item(), { "i", "c" }),
     ["<CR>"] = cmp.mapping.confirm({
       behavior = cmp.ConfirmBehavior.Replace,
       select = false,
@@ -29,39 +29,6 @@ function M.insert(cmp, luasnip)
         fallback()
       end
     end, { "i", "s" }),
-  }
-end
-
-function M.cmdline(cmp)
-  return {
-    ["<M-p>"] = cmp.mapping(function(fallback)
-      if cmp.visible() then
-        cmp.select_prev_item()
-      else
-        fallback()
-      end
-    end, { "c" }),
-    ["<M-n>"] = cmp.mapping(function(fallback)
-      if cmp.visible() then
-        cmp.select_next_item()
-      else
-        fallback()
-      end
-    end, { "c" }),
-    ["<Up>"] = cmp.mapping(function(fallback)
-      if cmp.visible() then
-        cmp.select_prev_item()
-      else
-        fallback()
-      end
-    end, { "c" }),
-    ["<Down>"] = cmp.mapping(function(fallback)
-      if cmp.visible() then
-        cmp.select_next_item()
-      else
-        fallback()
-      end
-    end, { "c" }),
   }
 end
 

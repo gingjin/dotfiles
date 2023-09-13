@@ -19,21 +19,12 @@ return {
       local action_layout = require("telescope.actions.layout")
       return {
         defaults = {
+          preview = false,
           initial_mode = "normal",
           multi_icon = "",
           prompt_prefix = " ",
           selection_caret = "ﰲ ",
           file_ignore_patterns = { "^__pycache__$", "^.git$" },
-          layout_strategy = "center",
-          layout_config = {
-            center = {
-              anchor = "S",
-              height = 0.4,
-              width = 0.6,
-              preview_cutoff = 1,
-              prompt_position = "bottom",
-            },
-          },
           mappings = {
             n = {
               ["<M-p>"] = action_layout.toggle_preview,

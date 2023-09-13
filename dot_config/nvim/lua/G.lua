@@ -59,4 +59,36 @@ G.colors = {
   green = "#63cdcd",
 }
 
+G.parsers = {
+  "bash",
+  "c",
+  "cmake",
+  "cpp",
+  "diff",
+  "html",
+  "htmldjango",
+  "ini",
+  "javascript",
+  "json",
+  "json5",
+  "lua",
+  "luadoc",
+  "make",
+  "markdown",
+  "python",
+  "rust",
+  "vim",
+  "vimdoc",
+  "yaml",
+}
+
+G.servers = {
+  "bashls",
+  "clangd",
+  "cmake",
+  "lua_ls",
+  "pyright",
+  "rust_analyzer",
+}
+
 return G

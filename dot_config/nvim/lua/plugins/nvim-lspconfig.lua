@@ -1,32 +1,7 @@
-local servers = {
-  "bashls",
-  "clangd",
-  "cmake",
-  "lua_ls",
-  "pyright",
-  "rust_analyzer",
-}
-
 return {
   {
     "neovim/nvim-lspconfig",
     event = { "BufReadPre", "BufNewFile" },
-    config = function()
-      require("lspconfig.ui.windows").default_options.border = "double"
-
-      for _, server in ipairs(servers) do
-        if server == "lua_ls" then
-          require("extra.nvim-lspconfig.providers.lua_ls")
-        else
-          local M = require("extra.nvim-lspconfig.parameters")
-          require("lspconfig")[server].setup({
-            handlers = M.handlers,
-            on_attach = M.on_attach,
-            capabilities = M.capabilities,
-          })
-        end
-      end
-    end,
     dependencies = {
       "hrsh7th/cmp-nvim-lsp",
       {
@@ -47,10 +22,42 @@ return {
       },
       {
         "williamboman/mason-lspconfig.nvim",
-        opts = {
-          ensure_installed = servers,
-          automatic_installation = true,
-        },
+        opts = function()
+          local servers = require("G").servers
+          return {
+            ensure_installed = servers,
+            automatic_installation = true,
+            handlers = {
+              function(server_name)
+                local M = require("extra.nvim-lspconfig.parameters")
+                require("lspconfig")[server_name].setup({
+                  handlers = M.handlers,
+                  on_attach = M.on_attach,
+                  capabilities = M.capabilities,
+                })
+              end,
+              ["lua_ls"] = function()
+                local M = require("extra.nvim-lspconfig.parameters")
+                require("lspconfig")["lua_ls"].setup({
+                  handlers = M.handlers,
+                  on_attach = M.on_attach,
+                  capabilities = M.capabilities,
+                  settings = {
+                    Lua = {
+                      diagnostics = {
+                        globals = { "vim" },
+                      },
+                    },
+                  },
+                })
+              end,
+            },
+          }
+        end,
+        config = function(_, opts)
+          require("lspconfig.ui.windows").default_options.border = "double"
+          require("mason-lspconfig").setup(opts)
+        end,
       },
     },
   },

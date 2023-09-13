@@ -35,7 +35,14 @@ return {
       },
       palettes = {},
       specs = {},
-      groups = {},
+      groups = {
+        all = {
+          Pmenu = { bg = "NONE" },
+          NormalFloat = { bg = "NONE" },
+          FoldColumn = { bg = "NONE" },
+          Conceal = { link = "Comment" },
+        },
+      },
     },
     config = function(_, opts)
       require("nightfox").setup(opts)
