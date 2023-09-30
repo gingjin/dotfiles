@@ -3,17 +3,18 @@ return {
     "nvim-telescope/telescope.nvim",
     cmd = "Telescope",
     keys = {
-      { "<leader><space>", ":Telescope<CR>", desc = "Telescope", silent = true },
-      { "<leader>fb", ":Telescope buffers<CR>", desc = "Find Buffers", silent = true },
-      { "<leader>fc", ":Telescope commands<CR>", desc = "Find Commands", silent = true },
-      { "<leader>ff", ":Telescope find_files<CR>", desc = "Find File", silent = true },
-      { "<leader>fh", ":Telescope help_tags<CR>", desc = "Find Vim Help", silent = true },
-      { "<leader>fk", ":Telescope keymaps<CR>", desc = "Find Keymaps", silent = true },
-      { "<leader>fl", ":Telescope luasnip<CR>", desc = "Find Snippets", silent = true },
-      { "<leader>fo", ":Telescope oldfiles<CR>", desc = "Find Recent File", silent = true },
-      { "<leader>fs", ":Telescope symbols<CR>", desc = "Find Symbols", silent = true },
-      { "<leader>fw", ":Telescope live_grep<CR>", desc = "Find Words", silent = true },
-      { "<leader>fy", ":Telescope lazy<CR>", desc = "Find Plugin Files", silent = true },
+      { "<leader><Space>", "<Cmd>Telescope<CR>", desc = "Telescope", silent = true },
+      { "<leader>fb", "<Cmd>Telescope buffers<CR>", desc = "Find buffers", silent = true },
+      { "<leader>fc", "<Cmd>Telescope commands<CR>", desc = "Find commands", silent = true },
+      { "<leader>ff", "<Cmd>Telescope find_files<CR>", desc = "Find file", silent = true },
+      { "<leader>fh", "<Cmd>Telescope help_tags<CR>", desc = "Find vim help", silent = true },
+      { "<leader>fk", "<Cmd>Telescope keymaps<CR>", desc = "Find keymaps", silent = true },
+      { "<leader>fl", "<Cmd>Telescope luasnip<CR>", desc = "Find snippets", silent = true },
+      { "<leader>fo", "<Cmd>Telescope oldfiles<CR>", desc = "Find recent file", silent = true },
+      { "<leader>fs", "<Cmd>Telescope symbols<CR>", desc = "Find symbols", silent = true },
+      { "<leader>fw", "<Cmd>Telescope live_grep<CR>", desc = "Find words", silent = true },
+      { "<leader>fy", "<Cmd>Telescope lazy<CR>", desc = "Find plugin files", silent = true },
+      { "<leader>fp", "<Cmd>Telescope projects<CR>", desc = "Find projects", silent = true },
     },
     opts = function()
       local action_layout = require("telescope.actions.layout")
@@ -64,6 +65,7 @@ return {
       require("telescope").load_extension("fzf")
       require("telescope").load_extension("lazy")
       require("telescope").load_extension("luasnip")
+      require("telescope").load_extension("projects")
     end,
     dependencies = {
       "tsakirist/telescope-lazy.nvim",

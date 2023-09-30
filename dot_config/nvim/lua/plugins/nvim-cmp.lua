@@ -28,6 +28,7 @@ return {
           end,
         },
         sources = cmp.config.sources({
+          { name = "neorg" },
           { name = "buffer" },
           { name = "luasnip" },
           { name = "rpncalc" },
@@ -57,13 +58,13 @@ return {
     config = function(_, opts)
       require("cmp").setup(opts)
       local cmp = require("cmp")
-      for _, source in pairs({ "/", "?" }) do
-        cmp.setup.cmdline(source, {
-          sources = cmp.config.sources({
-            { name = "buffer" },
-          }),
-        })
-      end
+      -- for _, source in pairs({ "/", "?" }) do
+      --   cmp.setup.cmdline(source, {
+      --     sources = cmp.config.sources({
+      --       { name = "buffer" },
+      --     }),
+      --   })
+      -- end
       cmp.setup.cmdline(":", {
         sources = cmp.config.sources({
           { name = "async_path" },

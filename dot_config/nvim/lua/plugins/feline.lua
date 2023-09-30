@@ -158,12 +158,15 @@ return {
       return {
         components = components,
         disable = {
-          filetypes = { "^aerial" },
+          filetypes = {
+            "^aerial",
+            "^NvimTree",
+          },
         },
         force_inactive = {
           filetypes = {
+            "^vimtex",
             "^Trouble$",
-            "^NvimTree",
             "^dapui_console$",
             "^dapui_breakpoints$",
             "^dapui_scopes$",

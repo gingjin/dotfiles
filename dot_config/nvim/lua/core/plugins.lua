@@ -1,4 +1,4 @@
-require("K").map("n", "<M-y>", ":Lazy<CR>", "Plugin manager")
+require("K").map("n", "<M-y>", "<Cmd>Lazy<CR>", "Plugin manager")
 require("lazy").setup("plugins", {
   git = {
     log = { "-8" },
@@ -10,7 +10,7 @@ require("lazy").setup("plugins", {
     enabled = true,
     concurrency = 1,
     notify = true,
-    frequency = 43200,
+    frequency = 604800,
   },
   install = { colorscheme = { "nightfox" } },
   ui = {

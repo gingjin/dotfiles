@@ -13,8 +13,8 @@ return {
       local colors = require("G").colors
       local icons = require("G").icons
       -- local signs = require("G").signs
-      local is_picking_focus = require("cokeline/mappings").is_picking_focus
-      local is_picking_close = require("cokeline/mappings").is_picking_close
+      local is_picking_focus = require("cokeline.mappings").is_picking_focus
+      local is_picking_close = require("cokeline.mappings").is_picking_close
       return {
         default_hl = {
           fg = function(buffer)
@@ -47,9 +47,7 @@ return {
               local picking = is_picking_focus() or is_picking_close()
               return picking and buffer.pick_letter .. " " or buffer.devicon.icon
             end,
-            bold = function(buffer)
-              return buffer.is_focused
-            end,
+            bold = true,
             fg = function(buffer)
               return (is_picking_focus() and colors.orange)
                 or (is_picking_close() and colors.red)
@@ -150,7 +148,7 @@ return {
           },
         },
         sidebar = {
-          filetype = "NvimTree",
+          filetype = { "NvimTree" },
           components = {
             {
               text = "",
@@ -159,7 +157,9 @@ return {
               end,
             },
             {
-              text = "NvimTree",
+              text = function(buf)
+                return vim.bo[buf.number].filetype
+              end,
               bold = function(buffer)
                 return buffer.is_focused
               end,

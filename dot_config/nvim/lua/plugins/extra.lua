@@ -4,11 +4,11 @@ return {
   { "mg979/vim-visual-multi", event = { "BufRead", "BufNewFile" } },
   {
     "stevearc/aerial.nvim",
-    keys = { { "<M-a>", ":AerialToggle!<CR>", desc = "Aerial", silent = true } },
+    keys = { { "<M-a>", "<Cmd>AerialToggle!<CR>", desc = "Aerial", silent = true } },
     opts = {
       on_attach = function(bufnr)
-        vim.keymap.set("n", "{", ":AerialPrev<CR>", { buffer = bufnr })
-        vim.keymap.set("n", "}", ":AerialNext<CR>", { buffer = bufnr })
+        vim.keymap.set("n", "{", "<Cmd>AerialPrev<CR>", { buffer = bufnr })
+        vim.keymap.set("n", "}", "<Cmd>AerialNext<CR>", { buffer = bufnr })
       end,
     },
   },
@@ -16,11 +16,11 @@ return {
     "skywind3000/asynctasks.vim",
     cmd = { "AsyncTask", "AsyncTaskEdit", "AsyncTaskList", "AsyncTaskMacro", "AsyncRun", "AsyncStop" },
     keys = {
-      { "<F3>", ":AsyncTask file-build<CR>", desc = "AsyncTask file-build" },
-      { "<F4>", ":AsyncTask file-run<CR>", desc = "AsyncTask file-run" },
-      { "<F9>", ":AsyncTask project-init<CR>", desc = "AsyncTask project-init" },
-      { "<F10>", ":AsyncTask project-build<CR>", desc = "AsyncTask project-build" },
-      { "<F11>", ":AsyncTask project-run<CR>", desc = "AsyncTask project-run" },
+      { "<F3>", "<Cmd>AsyncTask file-build<CR>", desc = "AsyncTask file-build" },
+      { "<F4>", "<Cmd>AsyncTask file-run<CR>", desc = "AsyncTask file-run" },
+      { "<F9>", "<Cmd>AsyncTask project-init<CR>", desc = "AsyncTask project-init" },
+      { "<F10>", "<Cmd>AsyncTask project-build<CR>", desc = "AsyncTask project-build" },
+      { "<F11>", "<Cmd>AsyncTask project-run<CR>", desc = "AsyncTask project-run" },
     },
     init = function()
       vim.g.asyncrun_open = 10
@@ -48,9 +48,9 @@ return {
   {
     "uga-rosa/ccc.nvim",
     keys = {
-      { "<leader>cc", ":CccConvert<CR>", desc = "Convert", silent = true },
-      { "<leader>cp", ":CccPick<CR>", desc = "Pick", silent = true },
-      { "<leader>ct", ":CccHighlighterToggle<CR>", desc = "Highlight", silent = true },
+      { "<leader>cc", "<Cmd>CccConvert<CR>", desc = "Convert", silent = true },
+      { "<leader>cp", "<Cmd>CccPick<CR>", desc = "Pick", silent = true },
+      { "<leader>ct", "<Cmd>CccHighlighterToggle<CR>", desc = "Highlight", silent = true },
     },
   },
   {
@@ -73,12 +73,13 @@ return {
   },
   {
     "lukas-reineke/indent-blankline.nvim",
+    main = "ibl",
     event = { "BufReadPre", "BufNewFile" },
     init = function()
       vim.opt.list = true
       vim.opt.listchars:append("tab:⇝ ")
     end,
-    opts = { char = "⎸" },
+    opts = { char = "⎸", scope = { enabled = false } },
   },
   {
     "kdheepak/lazygit.nvim",
@@ -98,7 +99,7 @@ return {
   },
   {
     "iamcco/markdown-preview.nvim",
-    keys = { { "<leader>mp", ":MarkdownPreviewToggle<CR>", desc = "Preview", silent = true } },
+    keys = { { "<leader>mp", "<Cmd>MarkdownPreviewToggle<CR>", desc = "Preview", silent = true } },
     ft = { "markdown" },
     build = "cd app && npm install",
     init = function()
@@ -202,7 +203,7 @@ return {
   {
     "akinsho/toggleterm.nvim",
     cmd = "ToggleTerm",
-    keys = { { "<M-t>", ":ToggleTerm<CR>", desc = "ToggleTerm", silent = true } },
+    keys = { { "<M-t>", "<Cmd>ToggleTerm<CR>", desc = "ToggleTerm", silent = true } },
     init = function()
       function _G.set_terminal_keymaps()
         local term_opts = { buffer = 0 }
@@ -238,11 +239,11 @@ return {
     "folke/trouble.nvim",
     cmd = "TroubleToggle",
     keys = {
-      { "<leader>xx", ":TroubleToggle<CR>", desc = "Trouble", silent = true },
-      { "<leader>xw", ":TroubleToggle workspace_diagnostics<CR>", desc = "Workspace diagnostics", silent = true },
-      { "<leader>xd", ":TroubleToggle document_diagnostics<CR>", desc = "Document diagnostics", silent = true },
-      { "<leader>xq", ":TroubleToggle quickfix<CR>", desc = "Quickfix", silent = true },
-      { "<leader>xl", ":TroubleToggle loclist<CR>", desc = "Loclist", silent = true },
+      { "<leader>xx", "<Cmd>TroubleToggle<CR>", desc = "Trouble", silent = true },
+      { "<leader>xw", "<Cmd>TroubleToggle workspace_diagnostics<CR>", desc = "Workspace diagnostics", silent = true },
+      { "<leader>xd", "<Cmd>TroubleToggle document_diagnostics<CR>", desc = "Document diagnostics", silent = true },
+      { "<leader>xq", "<Cmd>TroubleToggle quickfix<CR>", desc = "Quickfix", silent = true },
+      { "<leader>xl", "<Cmd>TroubleToggle loclist<CR>", desc = "Loclist", silent = true },
     },
     opts = function()
       local signs = require("G").signs
@@ -263,16 +264,26 @@ return {
     dependencies = {
       {
         "folke/todo-comments.nvim",
-        keys = { { "<leader>xt", ":TroubleToggle todo<CR>", desc = "Todo comments", silent = true } },
-        config = function()
-          require("todo-comments").setup()
-          vim.keymap.set("n", "]t", function()
-            require("todo-comments").jump_next()
-          end, { desc = "Next todo comment" })
-          vim.keymap.set("n", "[t", function()
-            require("todo-comments").jump_prev()
-          end, { desc = "Previous todo comment" })
-        end,
+        keys = {
+          { "<leader>xt", "<Cmd>TroubleToggle todo<CR>", desc = "Todo comments", silent = true },
+          {
+            "]t",
+            function()
+              require("todo-comments").jump_next()
+            end,
+            desc = "Next todo comment",
+            silent = true,
+          },
+          {
+            "[t",
+            function()
+              require("todo-comments").jump_prev()
+            end,
+            desc = "Previous todo comment",
+            silent = true,
+          },
+        },
+        config = true,
       },
     },
   },
@@ -287,5 +298,34 @@ return {
     init = function()
       vim.g.translator_default_engines = { "bing", "haici" }
     end,
+  },
+  {
+    "folke/zen-mode.nvim",
+    keys = { { "<F12>", ":ZenMode<CR>", desc = "Zen mode", silent = true } },
+    opts = {
+      window = {
+        backdrop = 0.95,
+        width = 100,
+        height = 1,
+        options = {
+          signcolumn = "no",
+          number = true,
+          relativenumber = true,
+          cursorline = false,
+          cursorcolumn = false,
+          foldcolumn = "0",
+          list = false,
+        },
+      },
+      plugins = {
+        options = { enabled = true, ruler = false, showcmd = false },
+        twilight = { enabled = false },
+        gitsigns = { enabled = false },
+        tmux = { enabled = false },
+        kitty = { enabled = false, font = "+4" },
+        alacritty = { enabled = false, font = "14" },
+        wezterm = { enabled = false, font = "+4" },
+      },
+    },
   },
 }

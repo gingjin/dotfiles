@@ -6,7 +6,7 @@ return {
       vim.g.loaded_netrw = 1
       vim.g.loaded_netrwPlugin = 1
       vim.cmd("highlight NvimTreeWindowPicker guifg=#ededed guibg=#44cc41")
-      require("K").map("n", "<M-e>", ":NvimTreeToggle<CR>", "NvimTree")
+      require("K").map("n", "<M-e>", "<Cmd>NvimTreeToggle<CR>", "NvimTree")
     end,
     opts = function()
       local function my_attach(bufnr)
@@ -30,14 +30,14 @@ return {
         hijack_cursor = false,
         root_dirs = {},
         prefer_startup_root = false,
-        sync_root_with_cwd = false,
+        sync_root_with_cwd = true,
         reload_on_bufenter = true,
         respect_buf_cwd = true,
         hijack_directories = { enable = true, auto_open = true },
         update_focused_file = {
           enable = true,
           update_root = true,
-          ignore_list = { "toggleterm" },
+          -- ignore_list = { "toggleterm" },
         },
         system_open = {
           cmd = "xdg-open",
@@ -65,13 +65,12 @@ return {
           centralize_selection = true,
           cursorline = true,
           debounce_delay = 15,
-          hide_root_folder = false,
-          width = 25,
           side = "left",
           preserve_window_proportions = true,
           number = false,
           relativenumber = false,
           signcolumn = "auto",
+          width = 25,
           float = {
             enable = false,
             quit_on_focus_loss = true,

@@ -36,7 +36,7 @@ M.on_attach = function(client, bufnr)
   end, "")
 
   -- Trouble
-  bufmap("n", "gr", ":TroubleToggle lsp_references<CR>", "LSP references")
+  bufmap("n", "gr", "<Cmd>TroubleToggle lsp_references<CR>", "LSP references")
 end
 
 return M

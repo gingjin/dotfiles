@@ -2,27 +2,27 @@ return {
   {
     "mfussenegger/nvim-dap",
     keys = {
-      { "<leader>db", ":lua require'dap'.toggle_breakpoint()<CR>", desc = "Breakpoint", silent = true },
+      { "<leader>db", "<Cmd>lua require'dap'.toggle_breakpoint()<CR>", desc = "Breakpoint", silent = true },
       {
         "<leader>dB",
-        ":lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>",
+        "<Cmd>lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>",
         desc = "Breakpoint condition",
       },
       {
         "<leader>dl",
-        ":lua require'dap'.set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<CR>",
+        "<Cmd>lua require'dap'.set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<CR>",
         desc = "Log breakpoint message",
       },
     },
     init = function()
       local map = require("K").map
-      map("n", "<F5>", ":lua require'dap'.continue()<CR>", "Continue")
-      map("n", "<F6>", ":lua require'dap'.step_over()<CR>", "Step over")
-      map("n", "<F7>", ":lua require'dap'.step_into()<CR>", "Step into")
-      map("n", "<F8>", ":lua require'dap'.step_out()<CR>", "Step out")
-      map("n", "<leader>dr", ":lua require'dap'.restart()<CR>", "Restart")
-      map("n", "<leader>dR", ":lua require'dap'.repl.toggle()<CR>", "Repl")
-      map("n", "<leader>dk", ":lua require'dapui'.eval()<CR>", "Evaluate expression")
+      map("n", "<F5>", "<Cmd>lua require'dap'.continue()<CR>", "Continue")
+      map("n", "<F6>", "<Cmd>lua require'dap'.step_over()<CR>", "Step over")
+      map("n", "<F7>", "<Cmd>lua require'dap'.step_into()<CR>", "Step into")
+      map("n", "<F8>", "<Cmd>lua require'dap'.step_out()<CR>", "Step out")
+      map("n", "<leader>dr", "<Cmd>lua require'dap'.restart()<CR>", "Restart")
+      map("n", "<leader>dR", "<Cmd>lua require'dap'.repl.toggle()<CR>", "Repl")
+      map("n", "<leader>dk", "<Cmd>lua require'dapui'.eval()<CR>", "Evaluate expression")
       map("n", "<leader>ds", function()
         local widgets = require("dap.ui.widgets")
         widgets.centered_float(widgets.scopes)

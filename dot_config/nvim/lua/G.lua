@@ -67,6 +67,7 @@ G.parsers = {
   "diff",
   "html",
   "htmldjango",
+  "norg",
   "ini",
   "javascript",
   "json",

@@ -3,8 +3,8 @@ return {
     "lervag/vimtex",
     config = function()
       local map = require("K").map
-      map("n", "<leader>lw", ":VimtexCountWords<CR>", "Count words")
-      map("n", "<leader>lR", ":call vimtex#toc#refresh()<CR>", "Refresh toc")
+      map("n", "<leader>lw", "<Cmd>VimtexCountWords<CR>", "Count words")
+      map("n", "<leader>lR", "<Cmd>call vimtex#toc#refresh()<CR>", "Refresh toc")
       vim.g.tex_flavor = "latex"
       vim.g.vimtex_view_method = "zathura"
       vim.g.vimtex_view_general_viewer = "zathura"
@@ -30,7 +30,7 @@ return {
           todo = 1,
           include = 1,
         },
-        resize = 1,
+        resize = 0,
         refresh_always = 0,
         show_help = 0,
         show_numbers = 0,
