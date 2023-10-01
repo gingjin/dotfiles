@@ -1,7 +1,7 @@
 return {
   {
     "willothy/nvim-cokeline",
-    dependencies = { "nvim-tree/nvim-web-devicons" },
+    dependencies = { "nvim-lua/plenary.nvim", "nvim-tree/nvim-web-devicons" },
     init = function()
       local map = require("K").map
       map("n", "<leader>bn", "<Plug>(cokeline-focus-next)", "Goto next buffer")

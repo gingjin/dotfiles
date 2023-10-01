@@ -5,7 +5,7 @@ return {
       options = {
         compile_path = vim.fn.stdpath("cache") .. "/nightfox",
         compile_file_suffix = "_compiled",
-        transparent = true,
+        transparent = false,
         terminal_colors = true,
         dim_inactive = false,
         module_default = true,
@@ -23,7 +23,7 @@ return {
           numbers = "NONE",
           operators = "NONE",
           strings = "NONE",
-          types = "italic,bold",
+          types = "italic",
           variables = "NONE",
         },
         inverse = {

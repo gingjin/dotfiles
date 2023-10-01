@@ -2,7 +2,7 @@ local M = require("extra.nvim-cmp.mappings")
 return {
   {
     "hrsh7th/nvim-cmp",
-    event = "BufRead",
+    event = { "BufRead", "BufNewFile" },
     opts = function()
       local cmp = require("cmp")
       return {
@@ -113,29 +113,6 @@ return {
           local Rule = require("nvim-autopairs.rule")
           require("nvim-autopairs").add_rule(Rule("$", "$", { "markdown" }))
         end,
-      },
-      {
-        "abecodes/tabout.nvim",
-        opts = {
-          tabkey = "<Tab>",
-          backwards_tabkey = "<S-Tab>",
-          act_as_tab = true,
-          act_as_shift_tab = true,
-          default_tab = "<C-t>",
-          default_shift_tab = "<C-d>",
-          enable_backwards = true,
-          completion = true,
-          tabouts = {
-            { open = "'", close = "'" },
-            { open = '"', close = '"' },
-            { open = "`", close = "`" },
-            { open = "(", close = ")" },
-            { open = "[", close = "]" },
-            { open = "{", close = "}" },
-          },
-          ignore_beginning = true,
-          exclude = {},
-        },
       },
     },
   },
