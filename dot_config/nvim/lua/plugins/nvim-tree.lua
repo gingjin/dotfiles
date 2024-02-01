@@ -25,7 +25,6 @@ return {
         hijack_netrw = true,
         disable_netrw = true,
         auto_reload_on_write = true,
-        sort = { sorter = "case_sensitive", folders_first = true },
         hijack_unnamed_buffer_when_opening = true,
         hijack_cursor = false,
         root_dirs = {},
@@ -42,13 +41,6 @@ return {
         system_open = {
           cmd = "xdg-open",
           args = {},
-        },
-        git = {
-          enable = true,
-          show_on_dirs = true,
-          show_on_open_dirs = true,
-          disable_for_dirs = {},
-          timeout = 100,
         },
         modified = {
           enable = true,

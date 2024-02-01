@@ -24,7 +24,7 @@ return {
         ignore_install = {},
         highlight = {
           enable = true,
-          disable = { "latex", "lua" },
+          disable = { "lua" },
           additional_vim_regex_highlighting = false,
         },
         incremental_selection = {
@@ -41,10 +41,6 @@ return {
           disable = { "python" },
         },
         autotag = { enable = true },
-        context_commentstring = {
-          enable = true,
-          enable_autocmd = false,
-        },
         textobjects = {
           select = {
             enable = true,
@@ -103,14 +99,12 @@ return {
     config = function(_, opts)
       require("nvim-treesitter.install").prefer_git = true
       for _, config in pairs(require("nvim-treesitter.parsers").get_parser_configs()) do
-        config.install_info.url =
-          config.install_info.url:gsub("https://github.com/", "https://ghproxy.com/https://github.com/")
+        config.install_info.url = config.install_info.url:gsub("https://github.com/", "git@git.zhlh6.cn:")
       end
       require("nvim-treesitter.configs").setup(opts)
     end,
     dependencies = {
       "windwp/nvim-ts-autotag",
-      "JoosepAlviste/nvim-ts-context-commentstring",
       "nvim-treesitter/nvim-treesitter-textobjects",
     },
   },

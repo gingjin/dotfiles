@@ -6,16 +6,20 @@ return {
       "hrsh7th/cmp-nvim-lsp",
       {
         "williamboman/mason.nvim",
+        keys = {
+          { "<A-m>", "<Cmd>Mason<CR>", desc = "Mason", silent = true },
+        },
         cmd = { "Mason", "MasonInstall", "MasonUninstall", "MasonUpdate" },
         opts = {
           github = {
-            download_url_template = "https://ghproxy.com/https://github.com/%s/releases/download/%s/%s",
+            download_url_template = "https://download.fastgit.org/%s/releases/download/%s/%s",
           },
           ui = {
+            border = "rounded",
             icons = {
-              package_pending = "",
-              package_installed = "",
-              package_uninstalled = "ﮊ",
+              package_installed = "✓",
+              package_pending = "➜",
+              package_uninstalled = "✗",
             },
           },
         },
@@ -23,9 +27,8 @@ return {
       {
         "williamboman/mason-lspconfig.nvim",
         opts = function()
-          local servers = require("G").servers
           return {
-            ensure_installed = servers,
+            ensure_installed = require("G").servers,
             automatic_installation = true,
             handlers = {
               function(server_name)
@@ -55,7 +58,7 @@ return {
           }
         end,
         config = function(_, opts)
-          require("lspconfig.ui.windows").default_options.border = "double"
+          require("lspconfig.ui.windows").default_options.border = "rounded"
           require("mason-lspconfig").setup(opts)
         end,
       },

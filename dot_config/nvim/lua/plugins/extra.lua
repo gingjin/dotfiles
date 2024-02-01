@@ -14,6 +14,7 @@ return {
   },
   {
     "skywind3000/asynctasks.vim",
+    dependencies = { "skywind3000/asyncrun.vim" },
     cmd = { "AsyncTask", "AsyncTaskEdit", "AsyncTaskList", "AsyncTaskMacro", "AsyncRun", "AsyncStop" },
     keys = {
       { "<F3>", "<Cmd>AsyncTask file-build<CR>", desc = "AsyncTask file-build" },
@@ -33,7 +34,6 @@ return {
         vim.fn.stdpath("config") .. "/lua/extra/asynctasks/tasks.ini",
       }
     end,
-    dependencies = { "skywind3000/asyncrun.vim" },
   },
   {
     "max397574/better-escape.nvim",
@@ -56,7 +56,12 @@ return {
   {
     "numToStr/Comment.nvim",
     event = { "BufRead", "BufNewFile" },
-    dependencies = { "JoosepAlviste/nvim-ts-context-commentstring" },
+    dependencies = {
+      {
+        "JoosepAlviste/nvim-ts-context-commentstring",
+        opts = { enable_autocmd = false },
+      },
+    },
     opts = function()
       return {
         padding = true,
@@ -79,7 +84,10 @@ return {
       vim.opt.list = true
       vim.opt.listchars:append("tab:⇝ ")
     end,
-    opts = { char = "⎸", scope = { enabled = false } },
+    opts = {
+      indent = { char = "⎸" },
+      scope = { enabled = false },
+    },
   },
   {
     "kdheepak/lazygit.nvim",
@@ -99,7 +107,7 @@ return {
   },
   {
     "iamcco/markdown-preview.nvim",
-    keys = { { "<leader>mp", "<Cmd>MarkdownPreviewToggle<CR>", desc = "Preview", silent = true } },
+    keys = { { "<leader>pm", "<Cmd>MarkdownPreviewToggle<CR>", desc = "Preview", silent = true } },
     ft = { "markdown" },
     build = "cd app && npm install",
     init = function()
@@ -248,7 +256,7 @@ return {
       shell = vim.o.shell,
       direction = "float",
       float_opts = {
-        border = "double",
+        border = "rounded",
         width = 110,
       },
       highlights = {

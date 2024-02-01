@@ -1,7 +1,7 @@
 return {
   {
     "willothy/nvim-cokeline",
-    dependencies = { "nvim-lua/plenary.nvim", "nvim-tree/nvim-web-devicons" },
+    dependencies = { "nvim-lua/plenary.nvim" },
     init = function()
       local map = require("K").map
       map("n", "<leader>bn", "<Plug>(cokeline-focus-next)", "Goto next buffer")
@@ -11,8 +11,7 @@ return {
     end,
     opts = function()
       local colors = require("G").colors
-      local icons = require("G").icons
-      -- local signs = require("G").signs
+      local signs = require("G").signs
       local is_picking_focus = require("cokeline.mappings").is_picking_focus
       local is_picking_close = require("cokeline.mappings").is_picking_close
       return {
@@ -68,62 +67,62 @@ return {
               return buffer.is_focused and colors.bg2 or colors.bg1
             end,
           },
-          -- {
-          --   text = function(buffer)
-          --     local errors = buffer.diagnostics.errors
-          --     return (errors ~= 0 and " " .. signs.Error .. " " .. errors) or ""
-          --   end,
-          --   fg = function(buffer)
-          --     local errors = buffer.diagnostics.errors
-          --     return errors ~= 0 and colors.red
-          --   end,
-          --   bg = function(buffer)
-          --     return buffer.is_focused and colors.bg2 or colors.bg1
-          --   end,
-          -- },
-          -- {
-          --   text = function(buffer)
-          --     local warnings = buffer.diagnostics.warnings
-          --     return (warnings ~= 0 and " " .. signs.Warn .. " " .. warnings) or ""
-          --   end,
-          --   fg = function(buffer)
-          --     local warnings = buffer.diagnostics.warnings
-          --     return warnings ~= 0 and colors.yellow
-          --   end,
-          --   bg = function(buffer)
-          --     return buffer.is_focused and colors.bg2 or colors.bg1
-          --   end,
-          -- },
-          -- {
-          --   text = function(buffer)
-          --     local infos = buffer.diagnostics.infos
-          --     return (infos ~= 0 and " " .. signs.Info .. " " .. infos) or ""
-          --   end,
-          --   fg = function(buffer)
-          --     local infos = buffer.diagnostics.infos
-          --     return infos ~= 0 and colors.green
-          --   end,
-          --   bg = function(buffer)
-          --     return buffer.is_focused and colors.bg2 or colors.bg1
-          --   end,
-          -- },
-          -- {
-          --   text = function(buffer)
-          --     local hints = buffer.diagnostics.hints
-          --     return (hints ~= 0 and " " .. signs.Hint .. " " .. hints) or ""
-          --   end,
-          --   fg = function(buffer)
-          --     local hints = buffer.diagnostics.hints
-          --     return hints ~= 0 and colors.blue
-          --   end,
-          --   bg = function(buffer)
-          --     return buffer.is_focused and colors.bg2 or colors.bg1
-          --   end,
-          -- },
+          {
+            text = function(buffer)
+              local errors = buffer.diagnostics.errors
+              return (errors ~= 0 and " " .. signs.Error .. errors) or ""
+            end,
+            fg = function(buffer)
+              local errors = buffer.diagnostics.errors
+              return errors ~= 0 and colors.red
+            end,
+            bg = function(buffer)
+              return buffer.is_focused and colors.bg2 or colors.bg1
+            end,
+          },
+          {
+            text = function(buffer)
+              local warnings = buffer.diagnostics.warnings
+              return (warnings ~= 0 and " " .. signs.Warn .. warnings) or ""
+            end,
+            fg = function(buffer)
+              local warnings = buffer.diagnostics.warnings
+              return warnings ~= 0 and colors.yellow
+            end,
+            bg = function(buffer)
+              return buffer.is_focused and colors.bg2 or colors.bg1
+            end,
+          },
+          {
+            text = function(buffer)
+              local infos = buffer.diagnostics.infos
+              return (infos ~= 0 and " " .. signs.Info .. infos) or ""
+            end,
+            fg = function(buffer)
+              local infos = buffer.diagnostics.infos
+              return infos ~= 0 and colors.green
+            end,
+            bg = function(buffer)
+              return buffer.is_focused and colors.bg2 or colors.bg1
+            end,
+          },
+          {
+            text = function(buffer)
+              local hints = buffer.diagnostics.hints
+              return (hints ~= 0 and " " .. signs.Hint .. hints) or ""
+            end,
+            fg = function(buffer)
+              local hints = buffer.diagnostics.hints
+              return hints ~= 0 and colors.blue
+            end,
+            bg = function(buffer)
+              return buffer.is_focused and colors.bg2 or colors.bg1
+            end,
+          },
           {
             text = function(buffer)
               local modified = buffer.is_modified
-              return modified and " " .. icons.file_modified or " " .. icons.close
+              return modified and " " or " "
             end,
             fg = function(buffer)
               local modified = buffer.is_modified

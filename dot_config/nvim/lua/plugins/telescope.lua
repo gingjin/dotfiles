@@ -14,7 +14,6 @@ return {
       { "<leader>fs", "<Cmd>Telescope symbols<CR>", desc = "Find symbols", silent = true },
       { "<leader>fw", "<Cmd>Telescope live_grep<CR>", desc = "Find words", silent = true },
       { "<leader>fy", "<Cmd>Telescope lazy<CR>", desc = "Find plugin files", silent = true },
-      { "<leader>fp", "<Cmd>Telescope projects<CR>", desc = "Find projects", silent = true },
     },
     opts = function()
       local action_layout = require("telescope.actions.layout")
@@ -65,7 +64,6 @@ return {
       require("telescope").load_extension("fzf")
       require("telescope").load_extension("lazy")
       require("telescope").load_extension("luasnip")
-      require("telescope").load_extension("projects")
     end,
     dependencies = {
       "tsakirist/telescope-lazy.nvim",

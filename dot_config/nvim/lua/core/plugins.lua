@@ -1,10 +1,8 @@
-require("K").map("n", "<M-y>", "<Cmd>Lazy<CR>", "Plugin manager")
 require("lazy").setup("plugins", {
   git = {
-    log = { "-8" },
     timeout = 120,
-    url_format = "https://ghproxy.com/https://github.com/%s.git",
     filter = true,
+    url_format = "git@git.zhlh6.cn:%s.git",
   },
   checker = {
     enabled = true,
@@ -16,29 +14,6 @@ require("lazy").setup("plugins", {
   ui = {
     size = { width = 0.8, height = 0.8 },
     wrap = true,
-    border = "double",
-    icons = {
-      cmd = "",
-      config = "",
-      event = "",
-      ft = "",
-      init = "",
-      import = "",
-      keys = "",
-      lazy = "󰒲",
-      loaded = "",
-      not_loaded = "󰍕",
-      plugin = "",
-      runtime = "󱑒",
-      source = "",
-      start = "",
-      task = "",
-      list = {
-        "󰝥",
-        "➜",
-        "★",
-        "‒",
-      },
-    },
+    border = "rounded",
   },
 })

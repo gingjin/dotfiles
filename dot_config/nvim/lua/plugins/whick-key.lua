@@ -19,7 +19,6 @@ return {
       },
     },
     config = function(_, opts)
-      require("K").map("n", "<M-w>", "<Cmd>WhichKey<CR>", "Which Key")
       require("which-key").setup(opts)
       require("which-key").register({
         b = { name = "+Buffers" },
@@ -28,7 +27,7 @@ return {
         f = { name = "+Telescope" },
         h = { name = "+Gitsigns" },
         l = { name = "+Vimtex" },
-        m = { name = "+MarkdownPreview" },
+        p = { name = "+MarkdownPreview" },
         t = { name = "+Traslate" },
         x = { name = "+Trouble" },
       }, { mode = "n", prefix = "<leader>" })

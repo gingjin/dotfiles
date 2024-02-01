@@ -1,20 +1,11 @@
 local G = {}
 
 G.signs = {
-  Error = "",
-  Warn = "",
-  Info = "",
-  Hint = "",
+  Error = "E",
+  Warn = "W",
+  Info = "I",
+  Hint = "H",
   Other = "",
-}
-
-G.icons = {
-  branch = "",
-  add = "",
-  change = "",
-  remove = "",
-  file_modified = "",
-  close = "",
 }
 
 G.cmp_kinds = {
@@ -54,9 +45,9 @@ G.colors = {
   red = "#e85c51",
   yellow = "#fda47f",
   blue = "#7aa4a1",
+  green = "#63cdcd",
   cyan = "#5a93aa",
   orange = "#ff8349",
-  green = "#63cdcd",
 }
 
 G.parsers = {
@@ -67,7 +58,6 @@ G.parsers = {
   "diff",
   "html",
   "htmldjango",
-  "norg",
   "ini",
   "javascript",
   "json",

@@ -28,7 +28,6 @@ return {
           end,
         },
         sources = cmp.config.sources({
-          { name = "neorg" },
           { name = "buffer" },
           { name = "luasnip" },
           { name = "rpncalc" },
@@ -83,6 +82,7 @@ return {
       "lukas-reineke/cmp-under-comparator",
       {
         "L3MON4D3/LuaSnip",
+        version = "v2.*",
         build = "make install_jsregexp",
         dependencies = { "rafamadriz/friendly-snippets" },
         config = function()
