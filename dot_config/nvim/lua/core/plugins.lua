@@ -1,9 +1,4 @@
 require("lazy").setup("plugins", {
-  git = {
-    timeout = 120,
-    filter = true,
-    url_format = "git@git.zhlh6.cn:%s.git",
-  },
   checker = {
     enabled = true,
     concurrency = 1,

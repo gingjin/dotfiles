@@ -122,7 +122,7 @@ return {
           {
             text = function(buffer)
               local modified = buffer.is_modified
-              return modified and " " or " "
+              return modified and " " or " "
             end,
             fg = function(buffer)
               local modified = buffer.is_modified

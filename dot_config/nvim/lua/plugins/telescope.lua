@@ -22,8 +22,8 @@ return {
           preview = false,
           initial_mode = "normal",
           multi_icon = "",
-          prompt_prefix = " ",
-          selection_caret = "ﰲ ",
+          prompt_prefix = "  ",
+          selection_caret = "󰁕 ",
           file_ignore_patterns = { "^__pycache__$", "^.git$" },
           mappings = {
             n = {

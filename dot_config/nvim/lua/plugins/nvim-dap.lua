@@ -33,6 +33,13 @@ return {
       end, "Frames")
     end,
     config = function()
+      local sign = vim.fn.sign_define
+      sign("DapBreakpoint", { text = "", texthl = "", numhl = "" })
+      sign("DapBreakpointCondition", { text = "", texthl = "", numhl = "" })
+      sign("DapLogPoint", { text = "", texthl = "", numhl = "" })
+      sign("DapStopped", { text = "➤", texthl = "", numhl = "" })
+      sign("DapBreakpointRejected", { text = "", texthl = "", numhl = "" })
+
       vim.cmd("au FileType dap-repl lua require('dap.ext.autocompl').attach()")
 
       local dap = require("dap")

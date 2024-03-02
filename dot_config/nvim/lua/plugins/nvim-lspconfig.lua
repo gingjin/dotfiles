@@ -1,19 +1,11 @@
 return {
   {
     "neovim/nvim-lspconfig",
-    event = { "BufReadPre", "BufNewFile" },
     dependencies = {
       "hrsh7th/cmp-nvim-lsp",
       {
         "williamboman/mason.nvim",
-        keys = {
-          { "<A-m>", "<Cmd>Mason<CR>", desc = "Mason", silent = true },
-        },
-        cmd = { "Mason", "MasonInstall", "MasonUninstall", "MasonUpdate" },
         opts = {
-          github = {
-            download_url_template = "https://download.fastgit.org/%s/releases/download/%s/%s",
-          },
           ui = {
             border = "rounded",
             icons = {
@@ -26,6 +18,24 @@ return {
       },
       {
         "williamboman/mason-lspconfig.nvim",
+        dependencies = {
+          {
+            "WhoIsSethDaniel/mason-tool-installer.nvim",
+            opts = {
+              ensure_installed = {
+                "codelldb",
+                "debugpy",
+                "cmakelint",
+                "cpplint",
+                "flake8",
+                "clang-format",
+                "rustfmt",
+                "stylua",
+                "yapf",
+              },
+            },
+          },
+        },
         opts = function()
           return {
             ensure_installed = require("G").servers,
@@ -58,6 +68,21 @@ return {
           }
         end,
         config = function(_, opts)
+          vim.diagnostic.config({
+            virtual_text = { spacing = 2, prefix = "▎" },
+            float = { border = "double" },
+            signs = true,
+            underline = true,
+            update_in_insert = false,
+            severity_sort = true,
+          })
+
+          local signs = require("G").signs
+          for type, icon in pairs(signs) do
+            local hl = "DiagnosticSign" .. type
+            vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
+          end
+
           require("lspconfig.ui.windows").default_options.border = "rounded"
           require("mason-lspconfig").setup(opts)
         end,

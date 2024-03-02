@@ -52,6 +52,9 @@ return {
       { "<leader>cp", "<Cmd>CccPick<CR>", desc = "Pick", silent = true },
       { "<leader>ct", "<Cmd>CccHighlighterToggle<CR>", desc = "Highlight", silent = true },
     },
+    opts = {
+      highlighter = { auto_enable = true, lsp = true },
+    },
   },
   {
     "numToStr/Comment.nvim",
@@ -122,23 +125,6 @@ return {
     "chentoast/marks.nvim",
     event = "BufRead",
     opts = { force_write_shada = true },
-  },
-  {
-    "WhoIsSethDaniel/mason-tool-installer.nvim",
-    cmd = { "MasonToolsInstall", "MasonToolsUpdate" },
-    opts = {
-      ensure_installed = {
-        "codelldb",
-        "debugpy",
-        "cmakelint",
-        "cpplint",
-        "flake8",
-        "clang-format",
-        "rustfmt",
-        "stylua",
-        "yapf",
-      },
-    },
   },
   {
     "nacro90/numb.nvim",
