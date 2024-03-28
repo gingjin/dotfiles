@@ -39,7 +39,7 @@ alias euse="sudo euse"
 alias revdep-rebuild="sudo revdep-rebuild"
 alias genlop="sudo genlop"
 alias dmidecode="sudo dmidecode"
-alias yc='cd ~/.local/share/yadm/'
+alias yc='cd ~/.local/share/yadm/repo.git/'
 
 alias g="git"
 alias ga="git add"
