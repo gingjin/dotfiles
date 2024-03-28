@@ -1,10 +1,4 @@
 #!/bin/sh
-# ~/.zshrc
-
-# history
-export HISTFILE="$HOME/.zsh_history"
-HISTSIZE=10000000
-export SAVEHIST=$HISTSIZE
 
 # enabling portage completions and gentoo prompt for zsh
 autoload -Uz compinit promptinit
