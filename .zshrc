@@ -14,15 +14,17 @@ zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|=*' 'l:|=* r:|=
 # enabling cache for the completions for zsh
 zstyle ':completion::complete:*' use-cache 1
 
+# zsh-z
+source $HOME/.zsh/zsh-z/zsh-z.plugin.zsh
 # zsh-syntax-highlighting
-source $HOME/.zsh/zsh-syntax-highlighting-master/zsh-syntax-highlighting.zsh
+source $HOME/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 # zsh-autosuggestions
-source $HOME/.zsh/zsh-autosuggestions-master/zsh-autosuggestions.zsh
+source $HOME/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 
+# fzf
+eval "$(fzf --zsh)"
 # starship
 eval "$(starship init zsh)"
-export STARSHIP_LOG='error'
-export STARSHIP_CONFIG="$HOME/.config/starship/starship.toml"
 
 # alias
 alias ls="ls --color=auto"
@@ -42,7 +44,6 @@ alias euse="sudo euse"
 alias revdep-rebuild="sudo revdep-rebuild"
 alias genlop="sudo genlop"
 alias dmidecode="sudo dmidecode"
-alias yc='cd ~/.local/share/yadm/repo.git/'
 
 alias g="git"
 alias ga="git add"
