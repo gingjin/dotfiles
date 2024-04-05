@@ -1,4 +1,13 @@
-# ~/.zshenv
+#!/bin/sh
+
+export PATH="$HOME/.local/bin:$PATH"
+
+# fzf
+export FZF_DEFAULT_OPTS='--height 80% --layout=reverse --border'
+
+# starship
+export STARSHIP_LOG='error'
+export STARSHIP_CONFIG="$HOME/.config/starship/starship.toml"
 
 # rust
 export PATH="$HOME/.cargo/bin:$PATH"
