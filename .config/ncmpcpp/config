@@ -1,26 +1,42 @@
-execute_on_song_change = notify-send "Now Playing" "$(mpc --format '%title% - %artist%' current)"
-
 [mpd]
-mpd_music_dir = "~/Music"
-mpd_host = "localhost"
-mpd_port = "6600"
+mpd_music_dir      = "~/Music"
+mpd_host           = "localhost"
+mpd_port           = "6600"
 mpd_crossfade_time = "2"
 
-[lyric]
-lyrics_directory = "~/Music"
+[main]
+message_delay_time = "1"
+header_visibility  = "no"
+mouse_support      = "yes"
+centered_cursor    = "yes"
+main_window_color  = "white"
+user_interface     = "classic"
+playlist_disable_highlight_delay = "5"
 
 [visualizer]
-visualizer_data_source = "/tmp/mpd.fifo"
+visualizer_look        = "●┃"
+visualizer_in_stereo   = "yes"
 visualizer_output_name = "my_fifo"
-visualizer_in_stereo = "yes"
-#visualizer_type = "spectrum"
-visualizer_look = "●┃"
-visualizer_color = "blue, cyan, green, yellow, magenta, red"
+visualizer_data_source = "/tmp/mpd.fifo"
+visualizer_color       = "blue, cyan, green, yellow, magenta, red"
+
+[playlist]
+now_playing_prefix       = "$b$9 "
+now_playing_suffix       = "$9$/b"
+song_columns_list_format = "(6)[green]{l} (12)[yellow]{a} (24)[yellow]{t|f} (30)[magenta]{b}"
+
+[lyric]
+lyrics_directory   = "~/Music"
+
+[progressbar]
+progressbar_look          = "▃▃▃"
+progressbar_elapsed_color = "cyan"
 
 [statusbar]
-progressbar_look = "=>"
-progressbar_color = "black"
-progressbar_elapsed_color = "cyan"
-statusbar_visibility = "no"
-statusbar_color = "default"
-song_status_format = "{{%a{ - %t}}|{ - %f}{ - %b{ (%y)}}}"
+statusbar_color      = "7"
+statusbar_visibility = "yes"
+#song_status_format   = "{{%a{ - %t}}|{ - %f}{ - %b{ (%y)}}}"
+song_status_format   = "{{%a{ - %t}}|{ - %b{ (%y)}}}"
+
+[extra]
+execute_on_song_change = notify-send "Now Playing" "$(mpc --format '%title% - %artist%' current)"
