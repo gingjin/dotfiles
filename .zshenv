@@ -3,7 +3,7 @@
 export PATH="$HOME/.local/bin:$PATH"
 
 # fzf
-export FZF_DEFAULT_OPTS='--height 80% --layout=reverse --border'
+export FZF_DEFAULT_OPTS='--height 80% --layout=reverse --border --extended'
 
 # starship
 export STARSHIP_LOG='error'
@@ -18,8 +18,3 @@ export CARGO_TARGET_DIR="$HOME/.cargo"
 export PATH="/usr/lib/ccache/bin${PATH:+:}${PATH}"
 export CCACHE_DIR='$HOME/.cache/ccache'
 export CCACHE_RECACHE="yes"
-
-# history
-export HISTFILE="$HOME/.zsh_history"
-HISTSIZE=10000000
-export SAVEHIST=$HISTSIZE
