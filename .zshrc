@@ -1,19 +1,36 @@
 #!/bin/sh
 
+zstyle ':completion:*' auto-description 'Introduce %d'
+zstyle ':completion:*' completer _oldlist _expand _complete _ignored _match _correct _approximate _prefix
+zstyle ':completion:*' completions 1
+zstyle ':completion:*' condition 0
+zstyle ':completion:*' expand prefix
+zstyle ':completion:*' file-sort name
+zstyle ':completion:*' format 'Completing %d'
+zstyle ':completion:*' glob 1
+zstyle ':completion:*' group-name ''
+zstyle ':completion:*' insert-unambiguous true
+zstyle ':completion:*' list-colors ''
+zstyle ':completion:*' list-prompt '%SHit TAB for more results...%s'
+zstyle ':completion:*' list-suffixes true
+zstyle ':completion:*' matcher-list '' '+m:{[:lower:]}={[:upper:]} m:{[:lower:][:upper:]}={[:upper:][:lower:]}' '+r:|[._-]=* r:|=*'
+zstyle ':completion:*' max-errors 2
+zstyle ':completion:*' menu select=0
+zstyle ':completion:*' original true
+zstyle ':completion:*' preserve-prefix '//[^/]##/'
+zstyle ':completion:*' prompt 'Found %e errors...'
+zstyle ':completion:*' select-prompt '%SScrolling active: current selection at %p%s'
+zstyle ':completion:*' substitute 1
+zstyle ':completion:*' verbose true
+zstyle ':completion::complete:*' use-cache 1
+
 # enabling portage completions and gentoo prompt for zsh
 autoload -Uz compinit promptinit
 compinit
 promptinit; prompt gentoo
 
-# Allow selecting with menu.
-zstyle ':completion:*' menu yes select
-
-# case-insensitive
-zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|=*' 'l:|=* r:|=*'
-
-# enabling cache for the completions for zsh
-zstyle ':completion::complete:*' use-cache 1
-
+# alias
+source $HOME/.zsh_alias
 # zsh-z
 source $HOME/.zsh/zsh-z/zsh-z.plugin.zsh
 # zsh-syntax-highlighting
@@ -26,47 +43,10 @@ eval "$(fzf --zsh)"
 # starship
 eval "$(starship init zsh)"
 
-# alias
-alias ls="ls --color=auto"
-alias la="ls -A"
-alias ll="ls -alF"
-alias md="mkdir -p"
-alias emerge="sudo emerge"
-alias emerge-webrsync="sudo emerge-webrsync"
-alias eselect="sudo eselect"
-alias eclean="sudo eclean"
-alias eclean-dist="sudo eclean-dist"
-alias eclean-pkg="sudo eclean-pkg"
-alias equery="sudo equery"
-alias epkginfo="sudo epkginfo"
-alias eshowkw="sudo eshowkw"
-alias euse="sudo euse"
-alias revdep-rebuild="sudo revdep-rebuild"
-alias genlop="sudo genlop"
-alias dmidecode="sudo dmidecode"
-
-alias g="git"
-alias ga="git add"
-alias gaa="git add --all"
-alias gap="git apply"
-alias gb="git branch"
-alias gco="git checkout"
-alias gcl="git clone"
-alias gcmsg="git commit --message"
-alias gd="git diff"
-alias gf="git fetch"
-alias ghh="git help"
-alias glg="git log"
-alias gm="git merge"
-alias gl="git pull"
-alias gp="git push"
-alias grb="git rebase"
-alias grm="git remote"
-alias grs="git reset"
-alias grst="git restore"
-alias gr="git rm"
-alias gsh="git show"
-alias gst="git status"
+# history
+HISTFILE="$HOME/.zsh_history"
+HISTSIZE=10000
+SAVEHIST=10000
 
 # create a zkbd compatible hash;
 # to add other keys to this hash, see: man 5 terminfo
@@ -91,8 +71,8 @@ key[Shift-Tab]="${terminfo[kcbt]}"
 [[ -n "${key[Insert]}"    ]] && bindkey -- "${key[Insert]}"     overwrite-mode
 [[ -n "${key[Backspace]}" ]] && bindkey -- "${key[Backspace]}"  backward-delete-char
 [[ -n "${key[Delete]}"    ]] && bindkey -- "${key[Delete]}"     delete-char
-[[ -n "${key[Up]}"        ]] && bindkey -- "${key[Up]}"         up-line-or-history
-[[ -n "${key[Down]}"      ]] && bindkey -- "${key[Down]}"       down-line-or-history
+[[ -n "${key[Up]}"        ]] && bindkey -- "${key[Up]}"         history-beginning-search-backward
+[[ -n "${key[Down]}"      ]] && bindkey -- "${key[Down]}"       history-beginning-search-forward
 [[ -n "${key[Left]}"      ]] && bindkey -- "${key[Left]}"       backward-char
 [[ -n "${key[Right]}"     ]] && bindkey -- "${key[Right]}"      forward-char
 [[ -n "${key[PageUp]}"    ]] && bindkey -- "${key[PageUp]}"     beginning-of-buffer-or-history
@@ -102,9 +82,8 @@ key[Shift-Tab]="${terminfo[kcbt]}"
 # Finally, make sure the terminal is in application mode, when zle is
 # active. Only then are the values from $terminfo valid.
 if (( ${+terminfo[smkx]} && ${+terminfo[rmkx]} )); then
-  autoload -Uz add-zle-hook-widget
   function zle_application_mode_start { echoti smkx }
   function zle_application_mode_stop { echoti rmkx }
-  add-zle-hook-widget -Uz zle-line-init zle_application_mode_start
-  add-zle-hook-widget -Uz zle-line-finish zle_application_mode_stop
+  zle -N zle-line-init zle_application_mode_start
+  zle -N zle-line-finish zle_application_mode_stop
 fi
