@@ -5,13 +5,12 @@ mpd_port           = "6600"
 mpd_crossfade_time = "2"
 
 [main]
-titles_visibility  = "no"
 message_delay_time = "1"
-header_visibility  = "no"
+main_window_color  = "16"
+titles_visibility  = "no"
+header_visibility  = "yes"
 mouse_support      = "yes"
 centered_cursor    = "yes"
-main_window_color  = "white"
-user_interface     = "classic"
 playlist_disable_highlight_delay = "5"
 
 [visualizer]
@@ -19,19 +18,21 @@ visualizer_in_stereo   = "yes"
 visualizer_type        = "ellipse"
 visualizer_output_name = "my_fifo"
 visualizer_data_source = "/tmp/mpd.fifo"
-visualizer_color       = "green, yellow, red"
+visualizer_color       = "197, 198, 199, 200, 201"
 
 [playlist]
-now_playing_prefix       = "$b$9 "
-now_playing_suffix       = "$9$/b"
-song_columns_list_format = "(6)[green]{l} (12)[yellow]{a} (24)[yellow]{t|f} (30)[magenta]{b}"
+now_playing_prefix       = " "
+now_playing_suffix       = ""
+song_columns_list_format = "(6)[3]{l} (12)[12]{a} (24)[12]{t|f} (30)[9]{b}"
 
 [lyric]
-lyrics_directory   = "~/Music"
+lyrics_directory = "~/Music"
+follow_now_playing_lyrics = yes
+fetch_lyrics_for_current_song_in_background = yes
 
 [progressbar]
 progressbar_look          = "▃▃▃"
-progressbar_elapsed_color = "cyan"
+progressbar_elapsed_color = "15"
 
 [statusbar]
 statusbar_color      = "7"
