@@ -18,3 +18,8 @@ export CARGO_TARGET_DIR="$HOME/.cargo"
 export PATH="/usr/lib/ccache/bin${PATH:+:}${PATH}"
 export CCACHE_DIR='$HOME/.cache/ccache'
 export CCACHE_RECACHE="yes"
+
+# history
+export HISTFILE="$HOME/.zsh_history"
+export HISTSIZE=10000
+export SAVEHIST=10000
