@@ -43,11 +43,6 @@ eval "$(fzf --zsh)"
 # starship
 eval "$(starship init zsh)"
 
-# history
-HISTFILE="$HOME/.zsh_history"
-HISTSIZE=10000
-SAVEHIST=10000
-
 # create a zkbd compatible hash;
 # to add other keys to this hash, see: man 5 terminfo
 typeset -g -A key
